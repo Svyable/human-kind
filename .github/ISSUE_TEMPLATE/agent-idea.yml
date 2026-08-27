@@ -1,0 +1,174 @@
+name: Agent idea submission
+description: Trusted agents submit a structured idea that can be materialized automatically as an intake dossier PR
+title: "[Agent Idea] "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        This form is a machine-readable contribution contract. For trusted repository collaborators, opening a valid issue automatically creates an `intake` dossier pull request. The PR still requires human review and normal validation before merge.
+  - type: input
+    id: agent_identifier
+    attributes:
+      label: Agent identifier
+      description: Stable agent, bot, harness, or workflow name. Do not put secrets here.
+      placeholder: scout-v1
+    validations:
+      required: true
+  - type: dropdown
+    id: agent_role
+    attributes:
+      label: Agent role
+      options:
+        - Scout
+        - Skeptic
+        - Synthesizer
+        - Taxonomist
+        - Pilot designer
+        - Red team
+        - Other constrained contributor
+    validations:
+      required: true
+  - type: dropdown
+    id: domain
+    attributes:
+      label: Primary domain
+      options:
+        - climate
+        - health
+        - poverty-and-economic-mobility
+        - conflict-and-governance
+        - education
+        - information-integrity
+        - digital-rights-and-ai-safety
+        - biodiversity
+        - disaster-resilience
+        - cross-cutting
+    validations:
+      required: true
+  - type: input
+    id: geography
+    attributes:
+      label: Geography
+      description: One or more geographies, comma-separated.
+      placeholder: global
+    validations:
+      required: true
+  - type: dropdown
+    id: time_horizon
+    attributes:
+      label: Time horizon
+      options: [short, medium, long]
+    validations:
+      required: true
+  - type: textarea
+    id: beneficiaries
+    attributes:
+      label: Beneficiaries
+      description: One affected population, community, or ecosystem per line.
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem statement
+      description: What specific harm or opportunity exists, for whom, and at what scale?
+    validations:
+      required: true
+  - type: textarea
+    id: intervention
+    attributes:
+      label: Proposed intervention
+      description: What would change?
+    validations:
+      required: true
+  - type: textarea
+    id: theory
+    attributes:
+      label: Theory of change
+      description: If we do X, then Y changes through mechanism Z.
+    validations:
+      required: true
+  - type: dropdown
+    id: intervention_type
+    attributes:
+      label: Intervention type
+      options:
+        - policy
+        - technology
+        - service
+        - institution
+        - financing
+        - research
+        - education
+        - infrastructure
+        - community-practice
+        - standards
+    validations:
+      required: true
+  - type: textarea
+    id: existing_work
+    attributes:
+      label: Existing work and sources
+      description: One source URL, DOI, report identifier, or comparable intervention per line. Separate factual claims from hypotheses.
+    validations:
+      required: true
+  - type: textarea
+    id: falsifier
+    attributes:
+      label: What would falsify the central claim?
+      description: State evidence or an observation that should cause us to reject or substantially revise the mechanism.
+    validations:
+      required: true
+  - type: textarea
+    id: risks
+    attributes:
+      label: Key risks and failure modes
+      description: One material risk, misuse path, displacement effect, or failure mode per line.
+    validations:
+      required: true
+  - type: dropdown
+    id: reversibility
+    attributes:
+      label: Reversibility
+      options: [high, medium, low]
+    validations:
+      required: true
+  - type: textarea
+    id: equity
+    attributes:
+      label: Equity and legitimacy
+      description: Who benefits, who bears risk, and whose participation or consent matters?
+    validations:
+      required: true
+  - type: textarea
+    id: participants
+    attributes:
+      label: Required participants and reviewers
+      description: Affected communities, domain experts, implementers, regulators, or other people who need a voice before action.
+    validations:
+      required: true
+  - type: textarea
+    id: metrics
+    attributes:
+      label: Success metrics
+      description: One measurable outcome per line.
+    validations:
+      required: true
+  - type: textarea
+    id: next_action
+    attributes:
+      label: Smallest responsible next step
+      description: Prefer an ethical, reversible learning action.
+    validations:
+      required: true
+  - type: checkboxes
+    id: attestation
+    attributes:
+      label: Agent attestation
+      options:
+        - label: I distinguished sourced claims from inference and did not fabricate citations, stakeholder views, experiments, or consensus.
+          required: true
+        - label: I searched for prior work or counterevidence appropriate to this intake submission.
+          required: true
+        - label: I understand this submission has no decision authority and requires human review before promotion or real-world action.
+          required: true

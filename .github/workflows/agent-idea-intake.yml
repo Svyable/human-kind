@@ -1,0 +1,116 @@
+name: Agent idea intake
+
+on:
+  issues:
+    types: [opened]
+
+permissions:
+  contents: write
+  issues: write
+  pull-requests: write
+
+concurrency:
+  group: agent-idea-${{ github.event.issue.number }}
+  cancel-in-progress: false
+
+jobs:
+  materialize:
+    if: >-
+      startsWith(github.event.issue.title, '[Agent Idea]') &&
+      contains(fromJSON('["OWNER","MEMBER","COLLABORATOR"]'), github.event.issue.author_association)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: python -m pip install --disable-pip-version-check pyyaml jsonschema
+
+      - name: Materialize issue as dossier
+        env:
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+          ISSUE_TITLE: ${{ github.event.issue.title }}
+          ISSUE_BODY: ${{ github.event.issue.body }}
+          ISSUE_URL: ${{ github.event.issue.html_url }}
+          ISSUE_ACTOR: ${{ github.event.issue.user.login }}
+          ISSUE_UPDATED_AT: ${{ github.event.issue.updated_at }}
+        run: python scripts/agent_issue_to_dossier.py
+
+      - name: Validate generated dossier
+        run: python scripts/validate_ideas.py
+
+      - name: Commit generated intake branch
+        env:
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+        run: |
+          set -euo pipefail
+          branch="agent-intake/issue-${ISSUE_NUMBER}"
+          git config user.name "human-kind-agent-intake[bot]"
+          git config user.email "human-kind-agent-intake[bot]@users.noreply.github.com"
+          git checkout -b "$branch"
+          git add ideas data/idea-index.yaml
+          git commit -m "Materialize agent idea #${ISSUE_NUMBER}"
+          git push origin "$branch"
+          echo "BRANCH=$branch" >> "$GITHUB_ENV"
+
+      - name: Open dossier pull request
+        id: pr
+        env:
+          GH_TOKEN: ${{ github.token }}
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+          ISSUE_TITLE: ${{ github.event.issue.title }}
+        run: |
+          set -euo pipefail
+          clean_title="${ISSUE_TITLE#\[Agent Idea\] }"
+          body=$(cat <<EOF
+          ## Agent-generated intake dossier
+
+          Source issue: #${ISSUE_NUMBER}
+
+          This PR was materialized automatically from a trusted agent submission. It remains at **intake** status.
+
+          - Human reviewer: **required**
+          - Claims requiring verification: **yes**
+          - Decision authority: **none**
+          - Merge only after normal repository validation and substantive human review.
+
+          Closes #${ISSUE_NUMBER}
+          EOF
+          )
+          url=$(gh pr create --base main --head "$BRANCH" --title "[Agent intake] ${clean_title}" --body "$body")
+          echo "url=$url" >> "$GITHUB_OUTPUT"
+
+      - name: Link PR from source issue
+        env:
+          GH_TOKEN: ${{ github.token }}
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+          PR_URL: ${{ steps.pr.outputs.url }}
+        run: gh issue comment "$ISSUE_NUMBER" --body "🤖 Intake dossier PR created: ${PR_URL}. Human review is required before merge or lifecycle promotion."
+
+      - name: Explain materialization failure
+        if: failure()
+        env:
+          GH_TOKEN: ${{ github.token }}
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+          RUN_URL: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: gh issue comment "$ISSUE_NUMBER" --body "Agent intake could not be materialized. Review the validation output and correct the submission contract before retrying with a new issue: ${RUN_URL}"
+
+  untrusted:
+    if: >-
+      startsWith(github.event.issue.title, '[Agent Idea]') &&
+      !contains(fromJSON('["OWNER","MEMBER","COLLABORATOR"]'), github.event.issue.author_association)
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      issues: write
+    steps:
+      - name: Explain trust boundary
+        env:
+          GH_TOKEN: ${{ github.token }}
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+        run: gh issue comment "$ISSUE_NUMBER" --body "Thanks for the agent submission. Automatic PR materialization is limited to trusted repository collaborators so public Issues cannot obtain a write-capable automation path. A maintainer can review and resubmit or promote this intake manually."

@@ -27,6 +27,13 @@
     "next_action": {"type": "string", "minLength": 5},
     "owners": {"type": "array", "items": {"type": "string"}},
     "sources": {"type": "array", "items": {"type": "string"}},
-    "last_reviewed": {"type": "string", "format": "date"}
+    "last_reviewed": {"type": "string", "format": "date"},
+    "generated_by": {"enum": ["agent"]},
+    "human_reviewer": {"enum": ["required"]},
+    "claims_requiring_verification": {"type": "boolean"},
+    "source_links_required": {"type": "boolean"},
+    "decision_authority": {"enum": ["none"]},
+    "source_issue": {"type": "string", "format": "uri"},
+    "source_agent": {"type": "string", "minLength": 2, "maxLength": 120}
   }
 }
