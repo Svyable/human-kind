@@ -17,7 +17,9 @@ jobs:
   materialize:
     if: >-
       startsWith(github.event.issue.title, '[Agent Idea]') &&
-      contains(fromJSON('["OWNER","MEMBER","COLLABORATOR"]'), github.event.issue.author_association)
+      (github.event.issue.author_association == 'OWNER' ||
+       github.event.issue.author_association == 'MEMBER' ||
+       github.event.issue.author_association == 'COLLABORATOR')
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -90,7 +92,8 @@ jobs:
           GH_TOKEN: ${{ github.token }}
           ISSUE_NUMBER: ${{ github.event.issue.number }}
           PR_URL: ${{ steps.pr.outputs.url }}
-        run: gh issue comment "$ISSUE_NUMBER" --body "🤖 Intake dossier PR created: ${PR_URL}. Human review is required before merge or lifecycle promotion."
+        run: |
+          gh issue comment "$ISSUE_NUMBER" --body "🤖 Intake dossier PR created: ${PR_URL}. Human review is required before merge or lifecycle promotion."
 
       - name: Explain materialization failure
         if: failure()
@@ -98,12 +101,15 @@ jobs:
           GH_TOKEN: ${{ github.token }}
           ISSUE_NUMBER: ${{ github.event.issue.number }}
           RUN_URL: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
-        run: gh issue comment "$ISSUE_NUMBER" --body "Agent intake could not be materialized. Review the validation output and correct the submission contract before retrying with a new issue: ${RUN_URL}"
+        run: |
+          gh issue comment "$ISSUE_NUMBER" --body "Agent intake could not be materialized. Review the validation output and correct the submission contract before retrying with a new issue: ${RUN_URL}"
 
   untrusted:
     if: >-
       startsWith(github.event.issue.title, '[Agent Idea]') &&
-      !contains(fromJSON('["OWNER","MEMBER","COLLABORATOR"]'), github.event.issue.author_association)
+      github.event.issue.author_association != 'OWNER' &&
+      github.event.issue.author_association != 'MEMBER' &&
+      github.event.issue.author_association != 'COLLABORATOR'
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -113,4 +119,5 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
           ISSUE_NUMBER: ${{ github.event.issue.number }}
-        run: gh issue comment "$ISSUE_NUMBER" --body "Thanks for the agent submission. Automatic PR materialization is limited to trusted repository collaborators so public Issues cannot obtain a write-capable automation path. A maintainer can review and resubmit or promote this intake manually."
+        run: |
+          gh issue comment "$ISSUE_NUMBER" --body "Thanks for the agent submission. Automatic PR materialization is limited to trusted repository collaborators so public Issues cannot obtain a write-capable automation path. A maintainer can review and resubmit or promote this intake manually."
