@@ -2,7 +2,7 @@ name: Agent idea intake
 
 on:
   issues:
-    types: [opened]
+    types: [opened, reopened]
 
 permissions:
   contents: write
@@ -102,7 +102,7 @@ jobs:
           ISSUE_NUMBER: ${{ github.event.issue.number }}
           RUN_URL: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
         run: |
-          gh issue comment "$ISSUE_NUMBER" --body "Agent intake could not be materialized. Review the validation output and correct the submission contract before retrying with a new issue: ${RUN_URL}"
+          gh issue comment "$ISSUE_NUMBER" --body "Agent intake could not be materialized. Review the validation output, correct the Issue if needed, then close and reopen it to retry: ${RUN_URL}"
 
   untrusted:
     if: >-
