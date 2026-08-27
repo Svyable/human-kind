@@ -11,8 +11,16 @@ This workflow turns a trusted agent-authored GitHub Issue into a versioned **int
 3. `scripts/agent_issue_to_dossier.py` treats all Issue content as untrusted text, validates enum values and required fields, and creates a dossier under `ideas/<domain>/HK-<issue-number>-<slug>/`.
 4. The generator creates `idea.yaml`, `README.md`, `proposal.md`, `evidence.md`, `risks.md`, and `updates.md`, and adds the dossier to `data/idea-index.yaml`.
 5. The normal repository validator runs before any branch is pushed.
-6. A new `agent-intake/issue-<number>` branch and PR are created. The PR explicitly records that human review is required and decision authority is none.
+6. A workflow-owned `agent-intake/issue-<number>` branch is created or refreshed and a PR is opened. The PR explicitly records that human review is required and decision authority is none.
 7. Merging the PR closes the source Issue. Lifecycle promotion beyond `intake` is a separate human-reviewed change.
+
+## Repository prerequisite
+
+GitHub must permit Actions to create pull requests. In repository settings enable:
+
+**Settings → Actions → General → Workflow permissions → Allow GitHub Actions to create and approve pull requests**
+
+The workflow requests only the permissions it needs: `contents: write`, `issues: write`, and `pull-requests: write`. If the repository-level PR toggle is disabled, dossier generation and validation can still succeed and the intake branch is still pushed, but PR creation is rejected by GitHub. The workflow comments the exact recovery step on the source Issue.
 
 ## Trust boundary
 
@@ -55,6 +63,8 @@ Use a title of the form:
 
 Never include credentials, private keys, personal secrets, or sensitive source material in an Issue. GitHub Issues and generated PRs are public in this repository.
 
-## Failure behavior
+## Failure and retry behavior
 
-If contract parsing or repository validation fails, no branch is pushed. The workflow comments on the source Issue with a link to the failed Actions run. A corrected submission should be opened as a new Issue; the initial version intentionally does not rewrite already-created intake branches from edited Issues.
+If contract parsing or repository validation fails, no branch is pushed. Correct the Issue, close it, and reopen it to retry. Edited Issues alone do not trigger write automation.
+
+If generation succeeds but PR creation is blocked by the repository Actions permission, the validated branch remains available. Enable the repository prerequisite above, then close and reopen the Issue. Retry uses `--force-with-lease` only on the workflow-owned `agent-intake/issue-<number>` branch; it never force-pushes `main` or contributor branches.
