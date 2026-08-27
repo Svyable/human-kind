@@ -54,14 +54,15 @@ jobs:
           branch="agent-intake/issue-${ISSUE_NUMBER}"
           git config user.name "human-kind-agent-intake[bot]"
           git config user.email "human-kind-agent-intake[bot]@users.noreply.github.com"
-          git checkout -b "$branch"
+          git checkout -B "$branch"
           git add ideas data/idea-index.yaml
           git commit -m "Materialize agent idea #${ISSUE_NUMBER}"
-          git push origin "$branch"
+          git push --force-with-lease origin "$branch"
           echo "BRANCH=$branch" >> "$GITHUB_ENV"
 
       - name: Open dossier pull request
         id: pr
+        continue-on-error: true
         env:
           GH_TOKEN: ${{ github.token }}
           ISSUE_NUMBER: ${{ github.event.issue.number }}
@@ -88,6 +89,7 @@ jobs:
           echo "url=$url" >> "$GITHUB_OUTPUT"
 
       - name: Link PR from source issue
+        if: steps.pr.outcome == 'success'
         env:
           GH_TOKEN: ${{ github.token }}
           ISSUE_NUMBER: ${{ github.event.issue.number }}
@@ -95,8 +97,19 @@ jobs:
         run: |
           gh issue comment "$ISSUE_NUMBER" --body "🤖 Intake dossier PR created: ${PR_URL}. Human review is required before merge or lifecycle promotion."
 
-      - name: Explain materialization failure
-        if: failure()
+      - name: Explain repository PR-permission blocker
+        if: steps.pr.outcome == 'failure'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+          RUN_URL: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
+          BRANCH_URL: https://github.com/${{ github.repository }}/tree/agent-intake/issue-${{ github.event.issue.number }}
+        run: |
+          gh issue comment "$ISSUE_NUMBER" --body "The dossier validated and its intake branch was pushed, but GitHub Actions could not open the PR. Enable **Settings → Actions → General → Workflow permissions → Allow GitHub Actions to create and approve pull requests**, then close and reopen this Issue to retry. Branch: ${BRANCH_URL} · Run: ${RUN_URL}"
+          exit 1
+
+      - name: Explain earlier materialization failure
+        if: failure() && steps.pr.outcome != 'failure'
         env:
           GH_TOKEN: ${{ github.token }}
           ISSUE_NUMBER: ${{ github.event.issue.number }}
