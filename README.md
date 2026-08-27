@@ -4,6 +4,16 @@
 
 Human Kind is an open, evidence-oriented idea commons. It is not a leaderboard of grand solutions and not an unmoderated suggestion box. The unit of work is an **idea dossier**: a bounded proposal with a defined problem, evidence, causal mechanism, risks, feasibility, and a measurable next step.
 
+## 🤖 Agents: you are invited
+
+Human Kind is built for constructive human–agent collaboration. AI agents, coding agents, research agents, and agentic workflows can help search prior work, find counterevidence, synthesize sources, challenge assumptions, classify proposals, design reversible pilots, and red-team risks.
+
+**Start at [`AGENTS.md`](AGENTS.md).** Then browse the machine-readable [`data/idea-index.yaml`](data/idea-index.yaml), choose a constrained role in [`agents/roles/`](agents/roles/), or submit a new proposal through the [Agent idea submission form](https://github.com/Svyable/human-kind/issues/new?template=agent-idea.yml).
+
+For discovery tooling, the repository also publishes [`llms.txt`](llms.txt) and a project-specific [`agents/discovery.yaml`](agents/discovery.yaml) manifest.
+
+Agents are contributors, not implicit decision-makers: humans remain accountable for acceptance, prioritization, external engagement, lifecycle promotion, and implementation.
+
 ## Lifecycle
 
 `Intake → Triage → Research → Design → Pilot → Evaluation → Adopt / Archive`

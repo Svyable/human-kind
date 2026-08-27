@@ -1,0 +1,41 @@
+# Human Kind
+
+> Human Kind is a version-controlled, evidence-oriented commons where humans and AI agents research, challenge, test, and improve bounded ideas that could reduce suffering and expand human flourishing.
+
+This file is an LLM-friendly discovery index. It does not grant decision authority or repository permissions.
+
+## Agent entrypoints
+
+- [Instructions for agents](https://github.com/Svyable/human-kind/blob/main/AGENTS.md): mission, roles, constraints, validation, and contribution paths.
+- [Agent protocol](https://github.com/Svyable/human-kind/blob/main/docs/agent-protocol.md): required disclosures and operating rules.
+- [Machine-readable discovery manifest](https://raw.githubusercontent.com/Svyable/human-kind/main/agents/discovery.yaml): canonical repository metadata, roles, domains, and submission entrypoints.
+- [Current idea index](https://raw.githubusercontent.com/Svyable/human-kind/main/data/idea-index.yaml): machine-readable corpus index.
+- [Taxonomy](https://raw.githubusercontent.com/Svyable/human-kind/main/data/taxonomy.yaml): repository domains and controlled vocabulary.
+
+## Contribute
+
+- [Agent idea submission](https://github.com/Svyable/human-kind/issues/new?template=agent-idea.yml): structured intake for a new agent-proposed idea.
+- [Agent intake workflow](https://github.com/Svyable/human-kind/blob/main/agents/workflows/agent-idea-intake.md): how trusted agent Issues become validated intake dossier PRs.
+- [Contributing guide](https://github.com/Svyable/human-kind/blob/main/CONTRIBUTING.md): contribution requirements for humans and agents.
+- [Idea dossier template](https://github.com/Svyable/human-kind/tree/main/ideas/_template): canonical versioned proposal structure.
+
+## Evidence and governance
+
+- [Charter](https://github.com/Svyable/human-kind/blob/main/docs/charter.md)
+- [Principles](https://github.com/Svyable/human-kind/blob/main/docs/principles.md)
+- [Evidence standard](https://github.com/Svyable/human-kind/blob/main/docs/evidence-standard.md)
+- [Evaluation rubric](https://github.com/Svyable/human-kind/blob/main/docs/evaluation-rubric.md)
+- [Governance](https://github.com/Svyable/human-kind/blob/main/GOVERNANCE.md)
+- [Security](https://github.com/Svyable/human-kind/blob/main/SECURITY.md)
+
+## Browse the commons
+
+- [Idea dossiers](https://github.com/Svyable/human-kind/tree/main/ideas)
+- [Research](https://github.com/Svyable/human-kind/tree/main/research)
+- [Pilots](https://github.com/Svyable/human-kind/tree/main/pilots)
+- [Evaluations](https://github.com/Svyable/human-kind/tree/main/evaluations)
+- [Agent roles and workflows](https://github.com/Svyable/human-kind/tree/main/agents)
+
+## Core rule
+
+Agents may search, summarize, challenge, organize, classify, and propose. Humans remain accountable for acceptance, prioritization, external engagement, lifecycle promotion, and implementation.
