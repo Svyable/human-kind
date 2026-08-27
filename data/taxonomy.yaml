@@ -1,0 +1,41 @@
+version: 1
+statuses:
+  - intake
+  - needs-evidence
+  - needs-scope
+  - researching
+  - designed
+  - pilot-ready
+  - piloting
+  - validated
+  - not-pursuing
+  - archived
+domains:
+  - climate
+  - health
+  - poverty-and-economic-mobility
+  - conflict-and-governance
+  - education
+  - information-integrity
+  - digital-rights-and-ai-safety
+  - biodiversity
+  - disaster-resilience
+  - cross-cutting
+time_horizons: [short, medium, long]
+maturities: [concept, researched, designed, pilot-ready, piloted, operational]
+evidence_levels: [hypothesis, suggestive, supported, strong, contested]
+expected_impact: [unknown, low, medium, high, transformative]
+cost_bands: [unknown, low, medium, high, very-high]
+reversibility: [low, medium, high]
+intervention_types:
+  - policy
+  - technology
+  - service
+  - institution
+  - financing
+  - research
+  - education
+  - infrastructure
+  - community-practice
+  - standards
+geography_examples: [global, multinational, national, regional, local]

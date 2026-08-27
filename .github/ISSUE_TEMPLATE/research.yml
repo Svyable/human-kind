@@ -1,0 +1,27 @@
+name: Research question
+description: Request evidence, prior work, replication, or source verification
+title: "[Research] "
+body:
+  - type: input
+    id: dossier
+    attributes:
+      label: Related dossier or decision
+  - type: textarea
+    id: question
+    attributes:
+      label: Decision-relevant question
+      description: What uncertainty should this research reduce?
+    validations:
+      required: true
+  - type: textarea
+    id: known
+    attributes:
+      label: What is already known
+      description: Include sources and important counterevidence.
+  - type: textarea
+    id: output
+    attributes:
+      label: Useful output
+      description: What evidence would change the decision or status?
+    validations:
+      required: true

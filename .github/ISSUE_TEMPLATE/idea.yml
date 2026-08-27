@@ -1,0 +1,39 @@
+name: Idea intake
+description: Propose a bounded idea for triage before creating or expanding a dossier
+title: "[Idea] "
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: What specific harm or opportunity exists, for whom, and at what scale?
+    validations:
+      required: true
+  - type: textarea
+    id: intervention
+    attributes:
+      label: Proposed intervention
+      description: What would change, through what mechanism?
+    validations:
+      required: true
+  - type: textarea
+    id: prior
+    attributes:
+      label: Existing work and sources
+      description: What already addresses this? Add links or identifiers.
+    validations:
+      required: true
+  - type: textarea
+    id: risks
+    attributes:
+      label: Risks and affected stakeholders
+      description: What could go wrong, who bears risk, and who should participate?
+    validations:
+      required: true
+  - type: textarea
+    id: next
+    attributes:
+      label: Smallest responsible next step
+      description: Prefer an ethical, reversible learning action.
+    validations:
+      required: true

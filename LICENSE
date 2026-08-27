@@ -1,0 +1,11 @@
+Human Kind licensing policy
+
+Unless a file states otherwise:
+
+1. Source code, scripts, GitHub Actions workflows, and software configuration are licensed under the Apache License 2.0 (SPDX: Apache-2.0).
+2. Documentation, idea dossiers, research summaries, schemas expressed as documentation, and other non-code content are licensed under Creative Commons Attribution 4.0 International (SPDX: CC-BY-4.0).
+
+Apache-2.0 license text: https://www.apache.org/licenses/LICENSE-2.0
+CC BY 4.0 license text: https://creativecommons.org/licenses/by/4.0/legalcode
+
+Contributors retain copyright in their contributions and license them under the applicable terms above when submitted to this repository.

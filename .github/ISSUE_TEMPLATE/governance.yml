@@ -1,0 +1,28 @@
+name: Governance proposal
+description: Propose a change to project rules, taxonomy, lifecycle, or decision process
+title: "[Governance] "
+body:
+  - type: textarea
+    id: change
+    attributes:
+      label: Proposed change
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem with the current approach
+    validations:
+      required: true
+  - type: textarea
+    id: tradeoffs
+    attributes:
+      label: Tradeoffs and risks
+      description: Include effects on openness, evidence quality, safety, legitimacy, and contributor burden.
+    validations:
+      required: true
+  - type: textarea
+    id: migration
+    attributes:
+      label: Migration or reversibility
+      description: How would existing dossiers or workflows be affected?

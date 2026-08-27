@@ -1,0 +1,35 @@
+name: Pilot proposal
+description: Discuss a bounded test before creating or approving a pilot plan
+title: "[Pilot] "
+body:
+  - type: input
+    id: dossier
+    attributes:
+      label: Dossier
+    validations:
+      required: true
+  - type: textarea
+    id: uncertainty
+    attributes:
+      label: Uncertainty to reduce
+    validations:
+      required: true
+  - type: textarea
+    id: design
+    attributes:
+      label: Proposed design and metrics
+    validations:
+      required: true
+  - type: textarea
+    id: safeguards
+    attributes:
+      label: Safeguards, reversibility, and stop conditions
+    validations:
+      required: true
+  - type: textarea
+    id: approvals
+    attributes:
+      label: Ownership and review needed
+      description: Identify accountable owner, affected stakeholders, and domain/ethics/legal/safety review.
+    validations:
+      required: true

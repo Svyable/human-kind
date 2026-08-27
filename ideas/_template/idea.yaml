@@ -1,0 +1,32 @@
+id: HK-0001
+title: Short, testable proposal title
+status: intake
+domains:
+  - climate
+geography:
+  - global
+time_horizon: medium
+problem_statement: >
+  What specific harm or opportunity is being addressed?
+beneficiaries:
+  - affected population or ecosystem
+theory_of_change: >
+  If we do X, then Y changes through mechanism Z.
+intervention_type:
+  - policy
+maturity: concept
+evidence_level: hypothesis
+expected_impact: unknown
+cost_band: unknown
+reversibility: medium
+key_risks:
+  - unintended consequences
+  - misuse
+equity_considerations: >
+  Who benefits, who bears risk, and who must participate in decisions?
+success_metrics:
+  - measurable outcome
+next_action: Conduct a landscape review
+owners: []
+sources: []
+last_reviewed: 2026-08-26
