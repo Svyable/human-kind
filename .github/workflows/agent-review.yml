@@ -58,7 +58,7 @@ jobs:
           git push --force-with-lease origin "$branch"
           echo "BRANCH=$branch" >> "$GITHUB_ENV"
 
-      - name: Open review pull request
+      - name: Open or reuse review pull request
         id: pr
         continue-on-error: true
         env:
@@ -68,7 +68,9 @@ jobs:
         run: |
           set -euo pipefail
           clean_title="${ISSUE_TITLE#\[Agent Review\] }"
-          body=$(cat <<EOF
+          url=$(gh pr list --base main --head "$BRANCH" --state open --json url --jq '.[0].url // empty')
+          if [[ -z "$url" ]]; then
+            body=$(cat <<EOF
           ## Agent-produced dossier review
 
           Source issue: #${ISSUE_NUMBER}
@@ -82,8 +84,9 @@ jobs:
 
           Closes #${ISSUE_NUMBER}
           EOF
-          )
-          url=$(gh pr create --base main --head "$BRANCH" --title "[Agent review] ${clean_title}" --body "$body")
+            )
+            url=$(gh pr create --base main --head "$BRANCH" --title "[Agent review] ${clean_title}" --body "$body")
+          fi
           echo "url=$url" >> "$GITHUB_OUTPUT"
 
       - name: Link PR from source issue
@@ -93,9 +96,9 @@ jobs:
           ISSUE_NUMBER: ${{ github.event.issue.number }}
           PR_URL: ${{ steps.pr.outputs.url }}
         run: |
-          gh issue comment "$ISSUE_NUMBER" --body "🔎 Structured review PR created: ${PR_URL}. Human verification is required; the review does not change dossier status."
+          gh issue comment "$ISSUE_NUMBER" --body "🔎 Structured review PR ready: ${PR_URL}. Human verification is required; the review does not change dossier status."
 
-      - name: Explain repository PR-permission blocker
+      - name: Report repository PR-permission blocker
         if: steps.pr.outcome == 'failure'
         env:
           GH_TOKEN: ${{ github.token }}
@@ -103,8 +106,7 @@ jobs:
           RUN_URL: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
           BRANCH_URL: https://github.com/${{ github.repository }}/tree/agent-review/issue-${{ github.event.issue.number }}
         run: |
-          gh issue comment "$ISSUE_NUMBER" --body "The review validated and its branch was pushed, but GitHub Actions could not open the PR. Enable **Settings → Actions → General → Workflow permissions → Allow GitHub Actions to create and approve pull requests**, then close and reopen this Issue to retry. Branch: ${BRANCH_URL} · Run: ${RUN_URL}"
-          exit 1
+          gh issue comment "$ISSUE_NUMBER" --body "The review validated and its branch was pushed. GitHub Actions could not open the PR because the repository-level PR-creation toggle is disabled. A maintainer can open a PR from ${BRANCH_URL}, or enable **Settings → Actions → General → Workflow permissions → Allow GitHub Actions to create and approve pull requests** and then close/reopen this Issue. Run: ${RUN_URL}"
 
       - name: Explain earlier materialization failure
         if: failure() && steps.pr.outcome != 'failure'
