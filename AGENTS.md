@@ -13,6 +13,7 @@ Before making a substantive contribution, read:
 3. [`docs/evidence-standard.md`](docs/evidence-standard.md)
 4. [`docs/agent-protocol.md`](docs/agent-protocol.md)
 5. [`docs/taxonomy.md`](docs/taxonomy.md)
+6. [`docs/triage.md`](docs/triage.md) when reviewing an existing dossier
 
 For machine-readable discovery, see [`agents/discovery.yaml`](agents/discovery.yaml). For the current corpus, see [`data/idea-index.yaml`](data/idea-index.yaml).
 
@@ -47,10 +48,26 @@ The form requires a bounded problem, causal mechanism, prior work and sources, f
 
 Trusted collaborator agents can trigger the repository's Issue → dossier branch → intake PR workflow. Public/untrusted submissions remain Issues until a maintainer chooses to promote them. See [`agents/workflows/agent-idea-intake.md`](agents/workflows/agent-idea-intake.md).
 
+## Fast path: review an existing idea
+
+If your contribution is primarily analysis rather than a direct dossier edit, use the **Agent review** Issue Form:
+
+<https://github.com/Svyable/human-kind/issues/new?template=agent-review.yml>
+
+Use a title beginning with:
+
+```text
+[Agent Review] HK-0000 - short review description
+```
+
+Read the complete dossier first, choose exactly one role, and provide findings, sources, counterevidence/uncertainty, risks, a non-authoritative status recommendation, and the smallest responsible next step.
+
+Trusted collaborator agents can trigger the Issue → structured review artifact → PR workflow. Reviews are stored under the dossier's `reviews/` directory as paired YAML and Markdown artifacts. **A review never changes `idea.yaml` status by itself.** See [`agents/workflows/agent-review.md`](agents/workflows/agent-review.md) and [`docs/triage.md`](docs/triage.md).
+
 ## Fast path: improve an existing idea
 
 1. Find a dossier in [`ideas/`](ideas/) or [`data/idea-index.yaml`](data/idea-index.yaml).
-2. Read the complete dossier, especially `evidence.md`, `risks.md`, and `updates.md`.
+2. Read the complete dossier, especially `evidence.md`, `risks.md`, `updates.md`, and existing `reviews/` when present.
 3. Make the smallest coherent change that improves evidence, scope, falsifiability, safety, or testability.
 4. Use a Pull Request for versioned changes.
 5. Clearly distinguish new evidence, inference, disagreement, and unresolved questions.
@@ -88,14 +105,14 @@ The repository does not reward persuasive confidence. It rewards **epistemic qua
 
 ## Local validation
 
-Before proposing repository changes that touch dossiers, run:
+Before proposing repository changes that touch dossiers or structured reviews, run:
 
 ```bash
 python -m pip install --disable-pip-version-check pyyaml jsonschema
 python scripts/validate_ideas.py
 ```
 
-The normal GitHub Actions workflow also validates dossier schema, duplicate titles/IDs, stale review dates, repository-local links, and external links.
+The normal GitHub Actions workflow also validates dossier and review schemas, duplicate titles/IDs, stale review dates, repository-local links, and external links.
 
 ## Lifecycle
 

@@ -10,15 +10,31 @@ Start with [`../AGENTS.md`](../AGENTS.md). It is the canonical agent-facing entr
 - Browse [`roles/`](roles/) and choose a constrained role.
 - Look for missing evidence, unresolved falsification questions, duplicate proposals, weak risk analysis, or ideas needing better scope.
 - New proposal? Use the [Agent idea submission form](https://github.com/Svyable/human-kind/issues/new?template=agent-idea.yml).
+- Existing dossier needs analysis? Use the [Agent review form](https://github.com/Svyable/human-kind/issues/new?template=agent-review.yml).
+
+## Contribution lanes
+
+### New idea
+
+`Agent Idea Issue → validated dossier branch → intake PR → human review`
+
+See [`workflows/agent-idea-intake.md`](workflows/agent-idea-intake.md).
+
+### Existing idea review
+
+`Agent Review Issue → structured review artifact → review PR → human verification`
+
+See [`workflows/agent-review.md`](workflows/agent-review.md). Reviews can recommend a disposition but do not change lifecycle status.
 
 ## Agent infrastructure
 
 - [`discovery.yaml`](discovery.yaml) — project-specific machine-readable discovery manifest.
 - [`../llms.txt`](../llms.txt) — compact LLM-friendly repository index.
 - [`../docs/agent-protocol.md`](../docs/agent-protocol.md) — authority and disclosure contract.
+- [`../docs/triage.md`](../docs/triage.md) — how structured reviews inform human lifecycle decisions.
 - [`roles/`](roles/) — Scout, Skeptic, Synthesizer, Taxonomist, Pilot Designer, and Red Team role contracts.
-- [`workflows/`](workflows/) — agent contribution workflows, including Issue → dossier → PR intake.
-- [`schemas/`](schemas/) — machine-readable validation schemas.
+- [`workflows/`](workflows/) — agent contribution workflows.
+- [`schemas/`](schemas/) — machine-readable validation schemas for dossiers and reviews.
 - [`evals/`](evals/) — evaluation cases for agent behavior and workflow quality.
 
 ## What good agent contributions look like

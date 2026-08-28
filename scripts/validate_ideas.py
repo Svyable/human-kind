@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Validate Human Kind dossier metadata and repository-local Markdown links."""
+"""Validate Human Kind dossiers, agent reviews, and repository-local Markdown links."""
 
 from __future__ import annotations
 
@@ -16,6 +16,7 @@ import yaml
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 IDEAS = ROOT / "ideas"
 SCHEMA = json.loads((ROOT / "agents/schemas/idea.schema.json").read_text())
+REVIEW_SCHEMA = json.loads((ROOT / "agents/schemas/review.schema.json").read_text())
 TEMPLATE = (IDEAS / "_template").resolve()
 STALE_DAYS = 180
 
@@ -39,7 +40,9 @@ def validate_dossiers() -> int:
             continue
         try:
             data = yaml.safe_load(path.read_text())
-            jsonschema.Draft202012Validator(SCHEMA, format_checker=jsonschema.FormatChecker()).validate(data)
+            jsonschema.Draft202012Validator(
+                SCHEMA, format_checker=jsonschema.FormatChecker()
+            ).validate(data)
         except Exception as exc:
             error(f"{path.relative_to(ROOT)}: schema validation failed: {exc}")
             failures += 1
@@ -52,7 +55,9 @@ def validate_dossiers() -> int:
         reviewed = dt.date.fromisoformat(str(data["last_reviewed"]))
         age = (today - reviewed).days
         if age > STALE_DAYS:
-            warning(f"{path.relative_to(ROOT)}: last_reviewed is {age} days old (>{STALE_DAYS})")
+            warning(
+                f"{path.relative_to(ROOT)}: last_reviewed is {age} days old (>{STALE_DAYS})"
+            )
 
         folder = path.parent
         for required in ("proposal.md", "evidence.md", "risks.md", "updates.md"):
@@ -60,13 +65,66 @@ def validate_dossiers() -> int:
                 error(f"{folder.relative_to(ROOT)}: missing {required}")
                 failures += 1
 
-    for normalized, paths in titles.items():
+    for paths in titles.values():
         if len(paths) > 1:
-            error("Duplicate dossier title: " + ", ".join(str(p.relative_to(ROOT)) for p in paths))
+            error(
+                "Duplicate dossier title: "
+                + ", ".join(str(p.relative_to(ROOT)) for p in paths)
+            )
             failures += 1
-    for normalized, paths in ids.items():
+    for paths in ids.values():
         if len(paths) > 1:
-            error("Duplicate dossier id: " + ", ".join(str(p.relative_to(ROOT)) for p in paths))
+            error(
+                "Duplicate dossier id: "
+                + ", ".join(str(p.relative_to(ROOT)) for p in paths)
+            )
+            failures += 1
+
+    return failures
+
+
+def validate_reviews() -> int:
+    failures = 0
+    review_ids: dict[str, list[pathlib.Path]] = defaultdict(list)
+
+    for path in sorted(IDEAS.glob("*/*/reviews/*.yaml")):
+        try:
+            data = yaml.safe_load(path.read_text())
+            jsonschema.Draft202012Validator(
+                REVIEW_SCHEMA, format_checker=jsonschema.FormatChecker()
+            ).validate(data)
+        except Exception as exc:
+            error(f"{path.relative_to(ROOT)}: review schema validation failed: {exc}")
+            failures += 1
+            continue
+
+        review_ids[str(data["review_id"]).strip().casefold()].append(path)
+
+        idea_path = path.parent.parent / "idea.yaml"
+        if not idea_path.exists():
+            error(f"{path.relative_to(ROOT)}: parent dossier has no idea.yaml")
+            failures += 1
+            continue
+
+        idea = yaml.safe_load(idea_path.read_text())
+        if str(idea.get("id", "")).strip() != str(data["idea_id"]).strip():
+            error(
+                f"{path.relative_to(ROOT)}: idea_id {data['idea_id']} does not match "
+                f"parent dossier {idea.get('id')}"
+            )
+            failures += 1
+
+        markdown_twin = path.with_suffix(".md")
+        if not markdown_twin.exists():
+            error(f"{path.relative_to(ROOT)}: missing Markdown review twin")
+            failures += 1
+
+    for paths in review_ids.values():
+        if len(paths) > 1:
+            error(
+                "Duplicate review id: "
+                + ", ".join(str(p.relative_to(ROOT)) for p in paths)
+            )
             failures += 1
 
     return failures
@@ -102,7 +160,7 @@ def validate_local_links() -> int:
 
 
 def main() -> int:
-    failures = validate_dossiers() + validate_local_links()
+    failures = validate_dossiers() + validate_reviews() + validate_local_links()
     if failures:
         print(f"Validation failed with {failures} error(s).")
         return 1

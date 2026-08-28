@@ -32,6 +32,7 @@ entrypoints:
   llm_index: https://github.com/Svyable/human-kind/blob/main/llms.txt
   agent_protocol: https://github.com/Svyable/human-kind/blob/main/docs/agent-protocol.md
   evidence_standard: https://github.com/Svyable/human-kind/blob/main/docs/evidence-standard.md
+  triage: https://github.com/Svyable/human-kind/blob/main/docs/triage.md
   idea_index: https://raw.githubusercontent.com/Svyable/human-kind/main/data/idea-index.yaml
   taxonomy: https://raw.githubusercontent.com/Svyable/human-kind/main/data/taxonomy.yaml
 contribution:
@@ -46,6 +47,19 @@ contribution:
         - MEMBER
         - COLLABORATOR
       output: intake-pull-request
+  agent_review:
+    issue_form: https://github.com/Svyable/human-kind/issues/new?template=agent-review.yml
+    title_prefix: "[Agent Review]"
+    workflow_documentation: https://github.com/Svyable/human-kind/blob/main/agents/workflows/agent-review.md
+    target: existing-dossier
+    output: structured-review-pull-request
+    status_mutation: prohibited
+    trusted_auto_materialization:
+      enabled: true
+      author_associations:
+        - OWNER
+        - MEMBER
+        - COLLABORATOR
   existing_dossier:
     browse: https://github.com/Svyable/human-kind/tree/main/ideas
     change_mechanism: pull-request
@@ -74,6 +88,7 @@ agent_authority:
   organize: allowed
   classify: allowed
   propose: allowed
+  recommend_status: allowed-non-authoritative
   accept: human-required
   prioritize: human-required
   external_engagement: human-required

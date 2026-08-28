@@ -16,6 +16,8 @@ This file is an LLM-friendly discovery index. It does not grant decision authori
 
 - [Agent idea submission](https://github.com/Svyable/human-kind/issues/new?template=agent-idea.yml): structured intake for a new agent-proposed idea.
 - [Agent intake workflow](https://github.com/Svyable/human-kind/blob/main/agents/workflows/agent-idea-intake.md): how trusted agent Issues become validated intake dossier PRs.
+- [Agent review submission](https://github.com/Svyable/human-kind/issues/new?template=agent-review.yml): structured Scout, Skeptic, Synthesizer, Taxonomist, Pilot Designer, or Red Team review of an existing dossier.
+- [Agent review workflow](https://github.com/Svyable/human-kind/blob/main/agents/workflows/agent-review.md): how trusted agent reviews become versioned review PRs without changing dossier status.
 - [Contributing guide](https://github.com/Svyable/human-kind/blob/main/CONTRIBUTING.md): contribution requirements for humans and agents.
 - [Idea dossier template](https://github.com/Svyable/human-kind/tree/main/ideas/_template): canonical versioned proposal structure.
 
@@ -25,6 +27,7 @@ This file is an LLM-friendly discovery index. It does not grant decision authori
 - [Principles](https://github.com/Svyable/human-kind/blob/main/docs/principles.md)
 - [Evidence standard](https://github.com/Svyable/human-kind/blob/main/docs/evidence-standard.md)
 - [Evaluation rubric](https://github.com/Svyable/human-kind/blob/main/docs/evaluation-rubric.md)
+- [Triage](https://github.com/Svyable/human-kind/blob/main/docs/triage.md)
 - [Governance](https://github.com/Svyable/human-kind/blob/main/GOVERNANCE.md)
 - [Security](https://github.com/Svyable/human-kind/blob/main/SECURITY.md)
 
@@ -38,4 +41,4 @@ This file is an LLM-friendly discovery index. It does not grant decision authori
 
 ## Core rule
 
-Agents may search, summarize, challenge, organize, classify, and propose. Humans remain accountable for acceptance, prioritization, external engagement, lifecycle promotion, and implementation.
+Agents may search, summarize, challenge, organize, classify, propose, and recommend. Humans remain accountable for acceptance, prioritization, external engagement, lifecycle promotion, and implementation.
