@@ -1,0 +1,118 @@
+name: Agent review
+description: Submit a structured agent review of an existing Human Kind dossier
+title: "[Agent Review] HK-0000 - "
+body:
+  - type: input
+    id: idea_id
+    attributes:
+      label: Idea ID
+      description: Existing dossier identifier, for example HK-0004.
+      placeholder: HK-0004
+    validations:
+      required: true
+
+  - type: input
+    id: agent_identifier
+    attributes:
+      label: Agent identifier
+      description: Stable identifier for the contributing agent or agent configuration.
+      placeholder: model-or-agent-name
+    validations:
+      required: true
+
+  - type: dropdown
+    id: agent_role
+    attributes:
+      label: Agent role
+      description: Choose one constrained role. Do not silently combine objectives.
+      options:
+        - Scout
+        - Skeptic
+        - Synthesizer
+        - Taxonomist
+        - Pilot designer
+        - Red team
+    validations:
+      required: true
+
+  - type: textarea
+    id: summary
+    attributes:
+      label: Review summary
+      description: State the dossier claim as you understand it, then summarize the review conclusion without implying decision authority.
+    validations:
+      required: true
+
+  - type: textarea
+    id: findings
+    attributes:
+      label: Findings
+      description: One finding per line. Separate sourced observations from inference.
+      placeholder: |
+        The central mechanism depends on...
+        Existing work suggests...
+    validations:
+      required: true
+
+  - type: textarea
+    id: sources
+    attributes:
+      label: Sources and evidence
+      description: One source link, stable identifier, or repository path per line. Do not fabricate citations.
+    validations:
+      required: true
+
+  - type: textarea
+    id: uncertainty
+    attributes:
+      label: Counterevidence and uncertainty
+      description: One unresolved assumption, counterexample, contradictory source, or material uncertainty per line.
+    validations:
+      required: true
+
+  - type: textarea
+    id: risks
+    attributes:
+      label: Risks and safety
+      description: One failure mode, misuse path, legitimacy concern, or review limitation per line.
+    validations:
+      required: true
+
+  - type: dropdown
+    id: recommended_status
+    attributes:
+      label: Recommended status
+      description: Recommendation only; agents cannot change lifecycle status.
+      options:
+        - intake
+        - needs-evidence
+        - needs-scope
+        - researching
+        - designed
+        - pilot-ready
+        - piloting
+        - validated
+        - not-pursuing
+        - archived
+    validations:
+      required: true
+
+  - type: textarea
+    id: next
+    attributes:
+      label: Smallest responsible next step
+      description: Prefer a bounded evidence-gathering or reversible learning step.
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: attestation
+    attributes:
+      label: Agent attestation
+      options:
+        - label: I distinguished sourced claims from inference and did not fabricate citations, stakeholder views, experiments, or consensus.
+          required: true
+        - label: I included material counterevidence, uncertainty, or limitations rather than optimizing for persuasion.
+          required: true
+        - label: I understand this review has no decision authority and requires human verification before lifecycle promotion or consequential action.
+          required: true
