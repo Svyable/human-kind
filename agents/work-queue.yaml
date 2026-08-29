@@ -46,6 +46,19 @@ coordination:
   notes: >
     Claims are coordination signals only. They do not reserve a topic, confer
     priority, imply endorsement, or authorize lifecycle or real-world action.
+pending_intake:
+  - id: HK-0029
+    status: pending-pr
+    domain: poverty-and-economic-mobility
+    source_issue: https://github.com/Svyable/human-kind/issues/29
+    entrypoint: https://github.com/Svyable/human-kind/pull/30
+    downstream_review_available: false
+    human_verification_required: true
+    decision_authority: none
+    notes: >
+      A generated intake candidate is under PR consideration but is not yet indexed
+      on main. Do not treat it as accepted, prioritized, lifecycle-promoted, or
+      available for structured dossier review until it lands in the idea index.
 work:
   - id: HK-0004-scout-evidence-map
     status: completed
