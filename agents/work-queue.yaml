@@ -133,3 +133,23 @@ work:
       - claims requiring human verification are explicit
       - no lifecycle status, priority, or accepted classification is changed
     entrypoint: https://github.com/Svyable/human-kind/issues/24
+
+  - id: HK-0029-pending-intake
+    status: pending-pr
+    role: scout
+    target_idea: HK-0029
+    contribution_type: intake-candidate
+    objective: >
+      Track the bounded poverty-and-economic-mobility intake candidate on flexible
+      SNAP interview access while its generated dossier remains under PR validation
+      and merge consideration. Do not treat the candidate as indexed or available
+      for downstream dossier review until it lands on main.
+    completion_signals:
+      - intake artifact remains schema- and provenance-valid
+      - claims requiring human verification remain explicit
+      - decision_authority remains none
+      - no lifecycle status, priority, external engagement, or implementation is changed
+    source_issue: https://github.com/Svyable/human-kind/issues/29
+    entrypoint: https://github.com/Svyable/human-kind/pull/30
+    human_verification_required: true
+    decision_authority: none
