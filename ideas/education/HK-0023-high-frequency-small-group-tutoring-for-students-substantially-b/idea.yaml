@@ -1,0 +1,105 @@
+id: HK-0023
+title: High-frequency small-group tutoring for students substantially behind learning
+  goals
+status: intake
+domains:
+- education
+geography:
+- United States
+- Italy; transferability to other school systems requires local evidence
+time_horizon: medium
+problem_statement: 'Students who fall substantially behind expected learning goals
+  may not recover through ordinary classroom instruction alone. A 2024 systematic
+  review and meta-analysis of randomized tutoring experiments reported substantial
+  average learning gains but also meaningful heterogeneity across tutor type, grade,
+  setting, dosage, and group size. The relevant question for Human Kind is narrower
+  than “does tutoring work?”: under what conditions can school-day, high-frequency
+  tutoring reliably improve learning for students who are behind without creating
+  unacceptable cost, staffing, stigma, or opportunity-cost burdens?'
+beneficiaries:
+- Students substantially behind local grade-level or course learning goals
+- Students from lower-income communities where access to private tutoring is limited
+- Schools seeking evidence-based learning-recovery options
+theory_of_change: If students who are substantially behind receive frequent, targeted
+  instruction in much smaller groups than ordinary classrooms, with rapid feedback
+  and instruction adapted to demonstrated gaps, then their effective practice time
+  and mastery should increase. The mechanism is personalized instructional intensity
+  rather than tutoring as a generic mentoring relationship. Effects should depend
+  on implementation quality, dosage, subject, student age, tutor capacity, and what
+  instructional time tutoring displaces.
+intervention_type:
+- service
+maturity: concept
+evidence_level: hypothesis
+expected_impact: unknown
+cost_band: unknown
+reversibility: high
+key_risks:
+- Tutoring can displace core instruction, electives, rest, or other valued school
+  activities.
+- High cost and tutor shortages can make an effective small trial non-scalable or
+  crowd out more cost-effective supports.
+- Tutor quality, curriculum alignment, attendance, and dosage may vary enough to erase
+  expected effects.
+- Selection into tutoring can stigmatize students or systematically underserve students
+  with disabilities, multilingual learners, or students with unstable attendance.
+- Programs may optimize for short-term test performance without durable learning or
+  broader educational benefit.
+- Evidence is concentrated in particular countries, grades, subjects, and program
+  models; transfer to other contexts is uncertain.
+- Technology-assisted scaling may reduce cost but could change the mechanism or create
+  new access and quality gaps.
+equity_considerations: Eligibility criteria should be transparent and based on demonstrated
+  learning need rather than opaque profiling. Students and families should be informed
+  about what tutoring replaces and how participation affects the school day. Program
+  design needs explicit accommodation for disability, language, transportation, scheduling,
+  and attendance constraints. Distributional effects should be reported by relevant
+  subgroups rather than relying only on an average effect. Affected students, families,
+  educators, and local school communities need a meaningful voice before any implementation
+  decision.
+success_metrics:
+- Pre-specified subject learning outcomes using assessments not created solely by
+  the tutoring provider
+- Course grades or mastery measures where appropriate
+- Participation, dosage received, attendance, and attrition
+- Durability of learning gains after tutoring ends where feasible
+- Subgroup effects and access by income, disability, language, race/ethnicity, and
+  other locally relevant dimensions
+- Cost per participating student and cost per measured learning gain
+- Student-reported burden, stigma, and perceived usefulness
+- Core-instruction or elective time displaced by tutoring
+next_action: Create a focused evidence map comparing at least five randomized tutoring
+  evaluations across age, subject, tutor model, group size, and delivery setting.
+  Pre-register the comparison dimensions in the dossier, extract effect sizes and
+  implementation constraints, include null or heterogeneous findings, and identify
+  which design assumptions have direct evidence versus inference. Do not recruit students
+  or launch a tutoring program at this stage. Human reviewers should decide whether
+  the evidence map justifies any context-specific pilot-design work.
+owners: []
+sources:
+- https://www.nber.org/papers/w27476 — systematic review/meta-analysis of randomized
+  tutoring experiments; reports substantial average effects and heterogeneity across
+  program characteristics.
+- https://www.nber.org/papers/w28531 — two randomized trials of intensive math tutoring
+  for Chicago high-school students; reports positive math-test and course-grade effects,
+  with cost and scalability considerations.
+- https://www.nber.org/papers/w32510 — randomized evaluation of a lower-cost tutoring
+  model combining tutor time with computer-assisted learning; reports a 0.23 SD math-test
+  gain and explicitly identifies staffing and cost as scaling constraints.
+- https://www.nber.org/papers/w32039 — randomized trial of short-burst one-to-one
+  early-reading tutoring; provides evidence that tutoring effects can occur under
+  a different subject, age, and delivery model.
+- https://www.nber.org/papers/w32272 — randomized online tutoring evidence from Italy;
+  reports math gains, dosage differences, and smaller effects for group tutoring,
+  broadening the evidence beyond a single U.S. delivery model.
+- https://www.nber.org/papers/w23792 — randomized high-dosage reading study in New
+  York City with a positive but statistically insignificant mean ELA effect and important
+  subgroup heterogeneity; useful counterevidence against assuming uniform effects.
+last_reviewed: '2026-08-29'
+generated_by: agent
+human_reviewer: required
+claims_requiring_verification: true
+source_links_required: true
+decision_authority: none
+source_issue: https://github.com/Svyable/human-kind/issues/23
+source_agent: chatgpt-gpt-5.6-sol
