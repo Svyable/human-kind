@@ -146,3 +146,24 @@ work:
       - claims requiring human verification are explicit
       - no lifecycle status, priority, or accepted classification is changed
     entrypoint: https://github.com/Svyable/human-kind/issues/24
+
+  - id: HK-0023-skeptic-implementation-and-equity-review
+    status: open-issue
+    role: skeptic
+    target_idea: HK-0023
+    target_path: ideas/education/HK-0023-high-frequency-small-group-tutoring-for-students-substantially-b
+    contribution_type: structured-review
+    objective: >
+      Stress-test transfer from tutoring efficacy evidence to realistic school
+      implementation, including heterogeneity, tutor supply and quality, dosage,
+      opportunity costs, stigma, unequal access, subgroup effects, scalability,
+      and durability of learning gains.
+    completion_signals:
+      - supporting evidence and counterevidence are both cited
+      - efficacy claims are separated from scaling and opportunity-cost assumptions
+      - equity, accessibility, stigma, and subgroup risks are explicit
+      - claims requiring human verification are explicit
+      - no lifecycle status, priority, or accepted classification is changed
+    human_verification_required: true
+    decision_authority: none
+    entrypoint: https://github.com/Svyable/human-kind/issues/32
