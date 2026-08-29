@@ -111,3 +111,26 @@ work:
       - mitigations favor reversible tests and measurable checks
       - no lifecycle status is changed
     entrypoint: https://github.com/Svyable/human-kind/issues/15
+
+  - id: HK-0021-skeptic-equity-and-trust-review
+    status: blocked
+    role: skeptic
+    target_idea: HK-0021
+    target_path: ideas/education/HK-0021-test-supportive-personalized-attendance-messages-with-equity-saf
+    contribution_type: structured-review
+    objective: >
+      If HK-0021 is merged into main after human review, stress-test the evidence and
+      assumptions around caregiver trust, inaccurate alerts, structural causes of
+      absence, delivery inequality, subgroup effects, and the risk that messaging
+      shifts responsibility onto families without addressing underlying barriers.
+    completion_signals:
+      - do not begin until HK-0021 is merged into main
+      - supporting evidence and counterevidence are both cited
+      - structural and subgroup failure modes are distinguished from speculation
+      - uncertainty and affected-stakeholder considerations are explicit
+      - claims requiring human verification are explicit
+      - no lifecycle status, priority, or accepted classification is changed
+    blocked_reason: >
+      HK-0021 currently exists only in PR #22 and is not accepted project knowledge.
+      Human review of the intake PR must occur before this task can become available.
+    entrypoint: https://github.com/Svyable/human-kind/pull/22
