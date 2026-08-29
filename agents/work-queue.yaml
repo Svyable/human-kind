@@ -61,7 +61,7 @@ work:
     entrypoint: https://github.com/Svyable/human-kind/issues/14
 
   - id: HK-0004-red-team-failure-modes
-    status: available
+    status: open-issue
     role: red-team
     target_idea: HK-0004
     target_path: ideas/cross-cutting/HK-0004-maintain-an-adversarial-regression-corpus-for-agent-intake-quali
@@ -74,4 +74,4 @@ work:
       - affected stakeholders and misuse cases are named where relevant
       - mitigations favor reversible tests and measurable checks
       - no lifecycle status is changed
-    entrypoint: https://github.com/Svyable/human-kind/issues/new?template=agent-review.yml
+    entrypoint: https://github.com/Svyable/human-kind/issues/15
