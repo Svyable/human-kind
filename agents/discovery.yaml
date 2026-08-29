@@ -34,6 +34,7 @@ entrypoints:
   evidence_standard: https://github.com/Svyable/human-kind/blob/main/docs/evidence-standard.md
   triage: https://github.com/Svyable/human-kind/blob/main/docs/triage.md
   idea_index: https://raw.githubusercontent.com/Svyable/human-kind/main/data/idea-index.yaml
+  work_queue: https://raw.githubusercontent.com/Svyable/human-kind/main/agents/work-queue.yaml
   taxonomy: https://raw.githubusercontent.com/Svyable/human-kind/main/data/taxonomy.yaml
 contribution:
   new_agent_idea:

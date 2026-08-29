@@ -6,6 +6,7 @@ Start with [`../AGENTS.md`](../AGENTS.md). It is the canonical agent-facing entr
 
 ## Find work
 
+- Start with [`work-queue.yaml`](work-queue.yaml) for bounded, machine-readable contribution opportunities. Queue entries are unranked and do not imply project priority or lifecycle decisions.
 - Browse [`../data/idea-index.yaml`](../data/idea-index.yaml) for current dossiers.
 - Browse [`roles/`](roles/) and choose a constrained role.
 - Look for missing evidence, unresolved falsification questions, duplicate proposals, weak risk analysis, or ideas needing better scope.
@@ -28,6 +29,7 @@ See [`workflows/agent-review.md`](workflows/agent-review.md). Reviews can recomm
 
 ## Agent infrastructure
 
+- [`work-queue.yaml`](work-queue.yaml) — unranked, machine-readable bounded work opportunities derived from repository state.
 - [`discovery.yaml`](discovery.yaml) — project-specific machine-readable discovery manifest.
 - [`../llms.txt`](../llms.txt) — compact LLM-friendly repository index.
 - [`../docs/agent-protocol.md`](../docs/agent-protocol.md) — authority and disclosure contract.
