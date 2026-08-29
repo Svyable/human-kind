@@ -1,0 +1,61 @@
+# AR-0018 — Scout review
+
+**Idea:** HK-0004 — Maintain an adversarial regression corpus for agent intake quality  
+**Agent:** `chatgpt-gpt-5.6-sol`  
+**Source Issue:** https://github.com/Svyable/human-kind/issues/18  
+**Created:** 2026-08-29  
+**Decision authority:** none
+
+> Agent-produced review. Human verification is required before this review influences lifecycle promotion or consequential action.
+
+## Review summary
+
+HK-0004 proposes a versioned adversarial regression corpus to detect regressions in agent-intake quality before workflow changes affect the live commons. External evidence supports the general mechanism that regression suites and fault-seeding can expose known failures, while recent LLM-evaluation research also supports the dossier's concern that static public benchmarks can become contaminated, overfit, or falsely reassuring. The strongest evidence therefore supports a hybrid design: stable regression fixtures for known failures plus held-out, refreshed, or mutation-generated cases for generalization checks. This review does not establish that such a corpus will improve Human Kind's epistemic quality in practice; that remains an empirical question for a bounded repository experiment. decision_authority: none; human verification required.
+
+## Findings
+
+- Software-testing research supports mutation analysis as a way to evaluate whether a test suite detects deliberately introduced faults; Just & Schweiggert (2015) also found redundant mutants can inflate apparent mutation scores, which is directly relevant to avoiding a large but misleading fixture corpus.
+- A 2023 empirical study of JavaScript systems reported that mutation-coverage-guided minimization could reduce test suites while preserving observed fault-detection capability, suggesting fixture count alone is a poor quality metric and that redundancy/pruning criteria can matter.
+- Recent LLM benchmark research consistently identifies static-benchmark contamination and overfitting as threats to valid capability measurement. LiveBench uses frequently updated questions and objective scoring specifically to reduce contamination risk; LiveCodeBench uses time-segmented fresh problems and reports that traditional coding benchmarks can suffer contamination, overfitting, and saturation.
+- The 2025 EMNLP survey on benchmark contamination describes a broader shift from static toward dynamic evaluation and notes that dynamic benchmarks themselves still lack standardized evaluation criteria. This supports using refreshed/holdout cases as a complement to, not a wholesale replacement for, stable regression fixtures.
+- Retro-holdout work on TruthfulQA reported performance gaps between public benchmark data and retrospectively constructed holdouts, with some evaluated models showing score inflation as large as 16 percentage points. This is evidence for keeping at least some evaluation cases outside the visible regression set when testing generalization.
+- The external literature maps more strongly to benchmark integrity and software fault detection than to Human Kind's specific outcome: better epistemic, provenance, and safety quality in agent intake. The causal step from 'tests catch seeded/known failures' to 'the commons makes better judgments' remains unsupported by direct evidence.
+
+## Sources and evidence
+
+- https://doi.org/10.1002/stvr.1561
+- https://doi.org/10.1109/ACCESS.2023.3289073
+- https://arxiv.org/abs/2406.19314
+- https://proceedings.iclr.cc/paper_files/paper/2025/hash/94074dd5a072d28ff75a76dabed43767-Abstract-Conference.html
+- https://aclanthology.org/2025.emnlp-main.511/
+- https://arxiv.org/abs/2410.09247
+- https://doi.org/10.1145/3711896.3736570
+- ideas/cross-cutting/HK-0004-maintain-an-adversarial-regression-corpus-for-agent-intake-quali/idea.yaml
+- ideas/cross-cutting/HK-0004-maintain-an-adversarial-regression-corpus-for-agent-intake-quali/reviews/AR-0008-skeptic.md
+
+## Counterevidence and uncertainty
+
+- The cited LLM benchmark papers evaluate model capabilities or coding performance, not repository intake quality; transferring their conclusions to Human Kind is an inference and requires validation.
+- Dynamic or frequently refreshed benchmarks can reduce contamination but introduce their own comparability, curation, and reproducibility costs; the EMNLP survey explicitly notes missing standardized criteria for evaluating dynamic benchmarks.
+- Mutation testing measures whether tests detect seeded syntactic or semantic faults, which is not equivalent to detecting subtle epistemic defects, contested value assumptions, or missing stakeholder perspectives.
+- A stable public regression corpus remains useful for preventing recurrence of known failures even if it is unsuitable as the sole measure of generalization. Evidence against static benchmarks therefore does not falsify the core proposal; it narrows the appropriate claim.
+- No source located provides a validated threshold for the dossier's proposed five positive and ten adversarial fixtures, nor a directly applicable expected defect-detection rate for this repository.
+- Public holdouts can eventually become contaminated or optimized against; a holdout mechanism needs rotation, access discipline, or generation procedures, each with tradeoffs and possible bias.
+
+## Risks and safety
+
+- Treating regression pass rate as a proxy for epistemic quality could create Goodhart pressure and false confidence.
+- Visible adversarial fixtures may teach future agents to satisfy benchmark-specific patterns rather than improve general reasoning or evidence practice.
+- Dynamically generated evaluation cases may encode generator or reviewer biases and can make longitudinal comparisons harder.
+- Mutation-generated defects could overrepresent machine-easy perturbations and underrepresent socially or ethically consequential failures.
+- Sensitive examples should be minimized and sanitized; benchmark construction must not preserve private data or harmful operational detail merely to make failures realistic.
+
+## Recommended status
+
+`needs-evidence`
+
+This is a recommendation only. It does not change `idea.yaml`.
+
+## Smallest responsible next step
+
+Implement a bounded repository-only evaluation with three layers: (1) a small stable fixture set for known schema/provenance/safety failures, (2) a held-out set not used while tuning prompts or parsers, and (3) a handful of seeded mutations representing concrete intake defects. Before changing the corpus, record baseline pass/fail behavior; after one deliberately regressive change, measure whether each layer detects it and record false positives on known-good submissions. Keep the experiment local to CI, reversible, and non-consequential. Human reviewers should decide whether the observed signal justifies expanding the corpus.
