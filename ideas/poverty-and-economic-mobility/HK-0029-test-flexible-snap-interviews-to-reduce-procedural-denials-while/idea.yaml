@@ -1,0 +1,120 @@
+id: HK-0029
+title: Test flexible SNAP interviews to reduce procedural denials while preserving
+  accuracy
+status: intake
+domains:
+- poverty-and-economic-mobility
+geography:
+- United States; state and local SNAP administration contexts
+time_horizon: medium
+problem_statement: 'SNAP eligibility interviews can serve legitimate verification
+  and applicant-support functions, but rigid scheduling can also create procedural
+  denials unrelated to underlying eligibility. A randomized field experiment involving
+  roughly 65,000 Los Angeles SNAP applicants found that offering access to flexible,
+  applicant-initiated interviews increased approvals by about six percentage points
+  and increased participation several months later by more than two percentage points.
+  The relevant question for Human Kind is narrower than “remove interviews”: when
+  can flexible interview access reduce avoidable procedural loss while preserving
+  payment accuracy, privacy, program integrity, and workable staff burden?'
+beneficiaries:
+- People applying for or renewing Supplemental Nutrition Assistance Program (SNAP)
+  benefits
+- Eligible households at risk of losing access because of scheduling or procedural
+  barriers
+- State and local eligibility staff managing interview workload and program-integrity
+  requirements
+theory_of_change: If some otherwise-completable SNAP applications fail because a preassigned
+  interview time conflicts with work, caregiving, unstable contact information, transportation,
+  or other scheduling constraints, then allowing applicants to initiate the interview
+  at a workable time should reduce missed-interview procedural denials and speed determinations.
+  The mechanism should be rejected or narrowed if scheduling flexibility does not
+  improve completion, if it shifts burden into long queues or inaccessible channels,
+  or if gains come with unacceptable increases in payment error, privacy failures,
+  workload, or inequitable access.
+intervention_type:
+- service
+maturity: concept
+evidence_level: hypothesis
+expected_impact: unknown
+cost_band: unknown
+reversibility: high
+key_risks:
+- A flexible call-in channel could create long queues, abandonment, or new staffing
+  bottlenecks that replace one barrier with another.
+- Looser interview timing must not be confused with weaker eligibility verification;
+  poor implementation could increase payment errors or undermine confidence in program
+  integrity.
+- Phone-first access may disadvantage applicants without reliable devices, minutes,
+  privacy, stable numbers, hearing access, or language support.
+- Identity-verification procedures can become burdensome or exclusionary, especially
+  for applicants with unstable housing or documentation gaps.
+- Applicants may disclose sensitive household information in unsafe or non-private
+  settings if privacy protections are weak.
+- Aggregate approval gains could conceal unequal completion, error, or wait-time outcomes
+  across disability, language, race/ethnicity, age, family structure, or geography.
+- A successful local call-center model may not transfer to states with different staffing
+  systems, caseloads, labor rules, vendor arrangements, or technology.
+- Focusing on interview scheduling could distract from other procedural barriers such
+  as verification requests, notices, recertification design, or structural eligibility
+  rules.
+equity_considerations: Any design should preserve non-phone alternatives and accessible
+  accommodations, provide meaningful language access, and measure who reaches the
+  interview channel versus who abandons or is excluded. Applicants and frontline eligibility
+  workers bear the practical burden of the process and should inform usability, privacy,
+  queue design, and fallback pathways before any real-world test. Human reviewers
+  should pay particular attention to people with disabilities, limited English proficiency,
+  unstable housing or contact information, inflexible work schedules, caregiving responsibilities,
+  and limited private phone access. Distributional outcomes should be reported with
+  uncertainty rather than hidden behind average approval effects.
+success_metrics:
+- Missed-interview procedural denial rate
+- Interview completion rate and time from application to interview
+- Approval rate and time to eligibility determination, interpreted alongside eligibility
+  and accuracy checks
+- Longer-run participation or avoidable reapplication/churn where measurable
+- Payment error rate and case/procedural error measures using existing quality-control
+  definitions where applicable
+- Call wait time, abandonment rate, repeat-call burden, and staff handling time
+- Administrative cost and workload per completed case
+- Completion and error outcomes by relevant accessibility, language, demographic,
+  and geographic subgroups where lawful and sufficiently powered
+- Applicant-reported burden, clarity, privacy, and ability to use the channel where
+  ethically collected
+next_action: Do not change a live SNAP process. First create a bounded evidence map
+  comparing the Los Angeles randomized flexible-interview experiment, USDA interview-elimination/requirement
+  studies, current interview rules and flexibilities, and quality-control measures.
+  Extract the mechanism, access effect sizes, implementation constraints, accuracy
+  outcomes where available, and unresolved transferability questions. Use that map
+  to specify a minimum ethical evaluation protocol with pre-declared stop conditions
+  for error rates, queue burden, privacy failures, and unequal access. Human reviewers
+  should decide whether any context-specific pilot-design work is warranted.
+owners: []
+sources:
+- https://www.nber.org/papers/w31239 — randomized field experiment with about 65,000
+  Los Angeles SNAP applicants; reports higher approval and longer-run participation
+  with flexible applicant-initiated interviews.
+- https://www.nber.org/reporter/2024number3/snap-eligibility-enforcement-and-program-adoption
+  — accessible summary of the Los Angeles flexible-interview experiment and the role
+  of missed interviews in procedural denials.
+- https://www.fna.usda.gov/snap/state/interview-toolkit/introduction/core-requirements
+  — current USDA description of SNAP interview requirements, privacy obligations,
+  and state operational flexibilities.
+- https://www.fna.usda.gov/research/snap/assessment-interview — USDA study assessing
+  the contribution of interviews to eligibility and benefit determinations; relevant
+  prior work on the accuracy/access tradeoff.
+- https://www.fna.usda.gov/snap/fr-010625a — USDA evaluation plan for a randomized
+  study of the interview requirement, explicitly including access, administrative
+  efficiency, costs, and benefit accuracy.
+- https://www.fna.usda.gov/snap/qc/caper — USDA case and procedural error-rate data,
+  relevant to measuring both access failures and administrative accuracy.
+- https://www.fna.usda.gov/research/snap/understanding-rates-causes-and-costs-churning-supplemental-nutrition-assistance-program-snap
+  — USDA research on SNAP churn and the burdens imposed on households and administering
+  agencies when participants exit and re-enter.
+last_reviewed: '2026-08-29'
+generated_by: agent
+human_reviewer: required
+claims_requiring_verification: true
+source_links_required: true
+decision_authority: none
+source_issue: https://github.com/Svyable/human-kind/issues/29
+source_agent: chatgpt-gpt-5.6-sol

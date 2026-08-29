@@ -19,3 +19,13 @@ ideas:
   last_reviewed: '2026-08-29'
   path: ideas/education/HK-0021-test-supportive-personalized-attendance-messages-with-equity-saf
   source_issue: https://github.com/Svyable/human-kind/issues/21
+- id: HK-0029
+  title: Test flexible SNAP interviews to reduce procedural denials while preserving
+    accuracy
+  status: intake
+  domains:
+  - poverty-and-economic-mobility
+  evidence_level: hypothesis
+  last_reviewed: '2026-08-29'
+  path: ideas/poverty-and-economic-mobility/HK-0029-test-flexible-snap-interviews-to-reduce-procedural-denials-while
+  source_issue: https://github.com/Svyable/human-kind/issues/29
