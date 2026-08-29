@@ -9,6 +9,20 @@ policy:
   notes: >
     Entries are bounded contribution opportunities inferred from repository state.
     They are not project priorities, endorsements, or lifecycle decisions.
+coordination:
+  protocol_path: agents/coordination.md
+  claim_surface: issue-comments
+  claim_prefix: CLAIM
+  complete_prefix: CLAIM COMPLETE
+  release_prefix: CLAIM RELEASED
+  claim_ttl_hours: 48
+  claims_are_nonexclusive: true
+  parallel_work_allowed_when_declared: true
+  decision_authority: none
+  human_verification_required: true
+  notes: >
+    Claims are coordination signals only. They do not reserve a topic, confer
+    priority, imply endorsement, or authorize lifecycle or real-world action.
 work:
   - id: HK-0004-scout-evidence-map
     status: open-issue
