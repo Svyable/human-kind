@@ -28,7 +28,7 @@ work:
     entrypoint: https://github.com/Svyable/human-kind/issues/12
 
   - id: HK-0004-synthesizer-review
-    status: available
+    status: open-issue
     role: synthesizer
     target_idea: HK-0004
     target_path: ideas/cross-cutting/HK-0004-maintain-an-adversarial-regression-corpus-for-agent-intake-quali
@@ -42,7 +42,7 @@ work:
       - evidence strength and uncertainty are separated
       - unresolved questions are concrete and testable
       - no lifecycle status is changed
-    entrypoint: https://github.com/Svyable/human-kind/issues/new?template=agent-review.yml
+    entrypoint: https://github.com/Svyable/human-kind/issues/13
 
   - id: HK-0004-taxonomist-fit-check
     status: available
