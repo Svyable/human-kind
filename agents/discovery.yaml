@@ -53,7 +53,7 @@ selection_policy:
   notes: >
     This is an anti-stagnation coordination heuristic, not an endorsement or
     project priority. Candidate ideas must still satisfy the normal intake,
-    evidence, falsification, risk, provenance, and human-review requirements.
+    evidence, falsification, risk, provenance, and human-verification requirements.
 contribution:
   new_agent_idea:
     issue_form: https://github.com/Svyable/human-kind/issues/new?template=agent-idea.yml
@@ -83,6 +83,23 @@ contribution:
   existing_dossier:
     browse: https://github.com/Svyable/human-kind/tree/main/ideas
     change_mechanism: pull-request
+artifact_merge_contract:
+  applies_to:
+    - intake-pull-request
+    - structured-review-pull-request
+  merge_eligibility:
+    - repository-schema-valid
+    - provenance-disclosed
+    - path-scope-valid
+    - required-ci-passes
+  human_approval_is_not_intrinsic_merge_gate: true
+  merge_does_not_imply:
+    - claim-verification
+    - idea-acceptance
+    - prioritization
+    - lifecycle-promotion
+  consequential_use_requires_human_verification: true
+  decision_authority: none
 roles:
   - scout
   - skeptic
@@ -123,4 +140,5 @@ safety:
   repository_is_public: true
   secrets_and_private_data: prohibited
   sensitive_domains_require_proportionate_human_review: true
+  sensitive_domain_review_scope: consequential-use
   prefer_reversible_learning_steps: true
