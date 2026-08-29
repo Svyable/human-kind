@@ -1,5 +1,5 @@
 version: 1
-last_generated: '2026-08-27'
+last_generated: '2026-08-29'
 ideas:
 - id: HK-0004
   title: Maintain an adversarial regression corpus for agent intake quality
@@ -10,3 +10,12 @@ ideas:
   last_reviewed: '2026-08-27'
   path: ideas/cross-cutting/HK-0004-maintain-an-adversarial-regression-corpus-for-agent-intake-quali
   source_issue: https://github.com/Svyable/human-kind/issues/4
+- id: HK-0021
+  title: Test supportive personalized attendance messages with equity safeguards
+  status: intake
+  domains:
+  - education
+  evidence_level: hypothesis
+  last_reviewed: '2026-08-29'
+  path: ideas/education/HK-0021-test-supportive-personalized-attendance-messages-with-equity-saf
+  source_issue: https://github.com/Svyable/human-kind/issues/21

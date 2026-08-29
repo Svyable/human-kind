@@ -1,0 +1,91 @@
+id: HK-0021
+title: Test supportive personalized attendance messages with equity safeguards
+status: intake
+domains:
+- education
+geography:
+- United States
+time_horizon: short
+problem_statement: Chronic absenteeism remains widespread in U.S. K-12 education and
+  is associated with lost instructional time and worse academic and wellbeing outcomes.
+  Federal education data report a national chronic-absence rate of about 28% in 2022-23.
+  Absence has many causes, including health, transportation, caregiving, disengagement,
+  and lack of supports, so information alone will not address many barriers.
+beneficiaries:
+- K-12 students at risk of chronic absenteeism
+- Caregivers receiving school attendance communications
+- School communities seeking low-cost attendance supports
+theory_of_change: If caregivers receive accurate, timely attendance information that
+  they may not otherwise have, together with a clear route to existing support, then
+  some avoidable absences may decrease through reduced information gaps and earlier
+  problem-solving. The mechanism should be rejected or narrowed where absences are
+  driven by structural barriers that messaging cannot change, where messages are not
+  received, or where messaging damages trust.
+intervention_type:
+- service
+maturity: concept
+evidence_level: hypothesis
+expected_impact: unknown
+cost_band: unknown
+reversibility: high
+key_risks:
+- Messages may blame or shame families for absences caused by illness, disability,
+  transportation, housing instability, work, or caregiving constraints.
+- Incorrect attendance records can generate false alerts and damage trust.
+- Families with outdated contact information or limited access to messaging platforms
+  may be systematically missed, creating unequal reach.
+- Frequent automated communication can become harassment or surveillance rather than
+  support.
+- Aggregate improvements could conceal worse outcomes or trust effects for particular
+  racial, disability, language, income, or age groups.
+- Messaging can displace investment in structural attendance supports if treated as
+  a cheap substitute rather than a limited tool.
+- Student attendance data are sensitive and require appropriate privacy, access-control,
+  retention, and consent/notice practices.
+equity_considerations: Caregivers and students bear the direct communication and privacy
+  burden and should shape message framing, frequency, opt-out design, and what counts
+  as harmful contact. Disability advocates, multilingual families, families experiencing
+  housing or transportation instability, and groups with historically punitive school-attendance
+  experiences require explicit attention because a uniform attendance message may
+  affect them differently. Any test should report reach, outcomes, complaints, and
+  opt-outs by relevant subgroup where lawful and sufficiently powered, without treating
+  subgroup estimates as definitive when sample sizes are inadequate.
+success_metrics:
+- Difference in absence days versus usual communication with confidence intervals
+- Difference in chronic-absence rate versus usual communication
+- Message delivery and undeliverable rates
+- Opt-out rate and caregiver complaint rate
+- Rate of inaccurate or disputed attendance notifications
+- Caregiver-reported clarity, helpfulness, and trust where ethically collected
+- Pre-specified subgroup effect estimates with uncertainty, not just aggregate averages
+- Documented share of identified attendance barriers that messaging/support routing
+  could plausibly address
+next_action: Do not deploy anything. First commission a bounded Scout/Skeptic evidence
+  review that compares the recent urban/suburban and rural randomized trials, extracts
+  implementation details and subgroup/complaint findings, and specifies a minimum
+  ethical pilot protocol with stop conditions for inaccurate alerts, complaints, unequal
+  delivery, or adverse subgroup signals. Human reviewers should then decide whether
+  a real-world pilot is warranted.
+owners: []
+sources:
+- 'U.S. Department of Education chronic absenteeism overview: https://www.ed.gov/teaching-and-administration/supporting-students/chronic-absenteeism'
+- 'Institute of Education Sciences impact evaluation of parent messaging strategies:
+  https://ies.ed.gov/use-work/evaluations/impact-evaluation-parent-messaging-strategies-student-attendance'
+- 'Harvard CEPR summary of a multi-site randomized rural attendance messaging trial:
+  https://cepr.harvard.edu/resource/lifting-attendance-rural-districts-multi-site-trial-personalized-messaging-campaign'
+- 'American Institutes for Research summary of the earlier federal randomized elementary-school
+  messaging study: https://www.air.org/news/press-release/new-federal-study-finds-text-messages-parents-can-reduce-chronic-school-absences'
+- Recent multi-district evidence reports modest average reductions in absences, not
+  elimination of chronic absenteeism. The 2026 rural trial also reports implementation
+  failures, substantial negative caregiver feedback in responding districts, and a
+  subgroup estimate for Black students that the authors say warrants caution and further
+  study. These limitations are material counterevidence against treating messaging
+  as universally benign or sufficient.
+last_reviewed: '2026-08-29'
+generated_by: agent
+human_reviewer: required
+claims_requiring_verification: true
+source_links_required: true
+decision_authority: none
+source_issue: https://github.com/Svyable/human-kind/issues/21
+source_agent: chatgpt-gpt-5.6-sol
