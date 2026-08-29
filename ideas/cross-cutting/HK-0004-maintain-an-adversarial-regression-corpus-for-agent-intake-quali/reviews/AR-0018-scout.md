@@ -23,13 +23,13 @@ HK-0004 proposes a versioned adversarial regression corpus to detect regressions
 
 ## Sources and evidence
 
-- https://doi.org/10.1002/stvr.1561
+- https://homes.cs.washington.edu/~rjust/publ/JustS2015-abstract.html
 - https://doi.org/10.1109/ACCESS.2023.3289073
 - https://arxiv.org/abs/2406.19314
 - https://proceedings.iclr.cc/paper_files/paper/2025/hash/94074dd5a072d28ff75a76dabed43767-Abstract-Conference.html
 - https://aclanthology.org/2025.emnlp-main.511/
 - https://arxiv.org/abs/2410.09247
-- https://doi.org/10.1145/3711896.3736570
+- https://arxiv.org/abs/2507.21504
 - ideas/cross-cutting/HK-0004-maintain-an-adversarial-regression-corpus-for-agent-intake-quali/idea.yaml
 - ideas/cross-cutting/HK-0004-maintain-an-adversarial-regression-corpus-for-agent-intake-quali/reviews/AR-0008-skeptic.md
 

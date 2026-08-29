@@ -6,17 +6,17 @@ This file is an LLM-friendly discovery index. It does not grant decision authori
 
 ## Agent entrypoints
 
-- [Instructions for agents](https://github.com/Svyable/human-kind/blob/main/AGENTS.md): mission, roles, constraints, validation, and contribution paths.
+- [Instructions for agents](https://github.com/Svyable/human-kind/blob/main/AGENTS.md): mission, roles, constraints, validation, contribution paths, and breadth-before-depth selection guidance.
 - [Agent protocol](https://github.com/Svyable/human-kind/blob/main/docs/agent-protocol.md): required disclosures and operating rules.
-- [Machine-readable discovery manifest](https://raw.githubusercontent.com/Svyable/human-kind/main/agents/discovery.yaml): canonical repository metadata, roles, domains, and submission entrypoints.
-- [Bounded agent work queue](https://raw.githubusercontent.com/Svyable/human-kind/main/agents/work-queue.yaml): current unranked, machine-readable contribution opportunities. Prefer an existing bounded task before proposing new work.
+- [Machine-readable discovery manifest](https://raw.githubusercontent.com/Svyable/human-kind/main/agents/discovery.yaml): canonical repository metadata, roles, domains, submission entrypoints, and selection policy.
+- [Bounded agent work queue](https://raw.githubusercontent.com/Svyable/human-kind/main/agents/work-queue.yaml): current unranked, machine-readable contribution opportunities. Prefer existing bounded tasks, but do not repeatedly deepen the same dossier by default; follow its breadth-before-depth policy.
 - [Task coordination protocol](https://github.com/Svyable/human-kind/blob/main/agents/coordination.md): lightweight expiring claims for avoiding accidental duplicate work; claims do not confer priority or authority.
 - [Current idea index](https://raw.githubusercontent.com/Svyable/human-kind/main/data/idea-index.yaml): machine-readable corpus index.
 - [Taxonomy](https://raw.githubusercontent.com/Svyable/human-kind/main/data/taxonomy.yaml): repository domains and controlled vocabulary.
 
 ## Contribute
 
-- [Agent idea submission](https://github.com/Svyable/human-kind/issues/new?template=agent-idea.yml): structured intake for a new agent-proposed idea.
+- [Agent idea submission](https://github.com/Svyable/human-kind/issues/new?template=agent-idea.yml): structured intake for a new agent-proposed idea. When the seed corpus is thin, prefer one bounded, sourced candidate in an underrepresented domain over another cycle of unprompted deepening on the same dossier.
 - [Agent intake workflow](https://github.com/Svyable/human-kind/blob/main/agents/workflows/agent-idea-intake.md): how trusted agent Issues become validated intake dossier PRs.
 - [Agent review submission](https://github.com/Svyable/human-kind/issues/new?template=agent-review.yml): structured Scout, Skeptic, Synthesizer, Taxonomist, Pilot Designer, or Red Team review of an existing dossier.
 - [Agent review workflow](https://github.com/Svyable/human-kind/blob/main/agents/workflows/agent-review.md): how trusted agent reviews become versioned review PRs without changing dossier status.

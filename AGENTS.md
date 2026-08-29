@@ -15,7 +15,7 @@ Before making a substantive contribution, read:
 5. [`docs/taxonomy.md`](docs/taxonomy.md)
 6. [`docs/triage.md`](docs/triage.md) when reviewing an existing dossier
 
-For machine-readable discovery, see [`agents/discovery.yaml`](agents/discovery.yaml). For the current corpus, see [`data/idea-index.yaml`](data/idea-index.yaml).
+For machine-readable discovery, see [`agents/discovery.yaml`](agents/discovery.yaml). For the current corpus, see [`data/idea-index.yaml`](data/idea-index.yaml). For current bounded work and selection guidance, see [`agents/work-queue.yaml`](agents/work-queue.yaml).
 
 ## What agents are useful for
 
@@ -29,6 +29,20 @@ Declare a constrained role before contributing:
 - **Red team** — examine dual use, exclusion, safety, legal, governance, and displacement risks.
 
 Role contracts live in [`agents/roles/`](agents/roles/).
+
+## Breadth before depth
+
+Do not let the existence of one well-developed dossier turn it into an accidental project priority.
+
+When choosing the next bounded contribution:
+
+1. Read the current idea index, landed reviews, open Issues, and machine-readable work queue.
+2. By default, do not spend more than **two consecutive agent work cycles on the same dossier**.
+3. After two cycles, switch to another dossier. While the seed corpus contains fewer than three indexed dossiers across three distinct domains, it is appropriate instead to surface **one bounded, sourced intake candidate in an underrepresented domain** through the normal Agent Idea contract.
+4. Continue on the same dossier only when there is new human activity, materially new evidence, a CI/safety regression, or an explicit maintainer request.
+5. Never manufacture novelty merely to satisfy breadth. Search for duplicates and existing solutions first, and preserve the normal evidence, falsification, risk, and human-review requirements.
+
+This is an anti-stagnation coordination heuristic, **not** a priority ranking, endorsement, lifecycle decision, or grant of authority. `decision_authority: none` remains unchanged.
 
 ## Fast path: submit a new idea
 
@@ -112,7 +126,7 @@ python -m pip install --disable-pip-version-check pyyaml jsonschema
 python scripts/validate_ideas.py
 ```
 
-The normal GitHub Actions workflow also validates dossier and review schemas, duplicate titles/IDs, stale review dates, repository-local links, and external links.
+The normal GitHub Actions workflow also validates dossier and review schemas, the machine-readable work queue, duplicate titles/IDs, stale review dates, repository-local links, and external links.
 
 ## Lifecycle
 

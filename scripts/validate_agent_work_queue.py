@@ -2,9 +2,9 @@
 """Validate the machine-readable agent work queue against repository state.
 
 The queue is coordination metadata, not a priority ranking or decision surface.
-Structural violations fail CI. Potential staleness caused by newly landed reviews is
-reported as a warning so agent-generated review PRs are not blocked solely because
-queue synchronization has not happened yet.
+Structural violations fail CI. Potential staleness caused by newly landed reviews or
+breadth concentration is reported as a warning so useful agent PRs are not blocked
+solely because queue synchronization has not happened yet.
 """
 
 from __future__ import annotations
@@ -26,6 +26,12 @@ ROLES = {"scout", "skeptic", "synthesizer", "taxonomist", "pilot-designer", "red
 STATUSES = {"available", "open-issue", "claimed", "completed", "blocked"}
 ACTIVE_STATUSES = {"available", "open-issue", "claimed"}
 ISSUE_URL = re.compile(r"^https://github\.com/Svyable/human-kind/issues/[0-9]+$")
+SELECTION_EXCEPTIONS = {
+    "new-human-activity",
+    "materially-new-evidence",
+    "ci-or-safety-regression",
+    "explicit-maintainer-request",
+}
 
 
 def error(message: str) -> None:
@@ -107,6 +113,46 @@ def main() -> int:
             error(f"work queue policy.{key} must be {expected!r}")
             failures += 1
 
+    selection = queue.get("selection")
+    if not isinstance(selection, dict):
+        error("work queue selection must be a mapping")
+        failures += 1
+        selection = {}
+    if selection.get("strategy") != "breadth-before-depth":
+        error("work queue selection.strategy must be 'breadth-before-depth'")
+        failures += 1
+    max_cycles = selection.get("default_max_consecutive_cycles_per_dossier")
+    if not isinstance(max_cycles, int) or not 1 <= max_cycles <= 4:
+        error("work queue selection.default_max_consecutive_cycles_per_dossier must be an integer from 1 to 4")
+        failures += 1
+    exceptions = selection.get("exceptions")
+    if not isinstance(exceptions, list) or set(exceptions) != SELECTION_EXCEPTIONS:
+        error("work queue selection.exceptions must contain the four documented override conditions")
+        failures += 1
+    if selection.get("decision_authority") != "none":
+        error("work queue selection.decision_authority must be 'none'")
+        failures += 1
+    if selection.get("human_verification_required") is not True:
+        error("work queue selection.human_verification_required must be true")
+        failures += 1
+
+    seed_corpus = selection.get("seed_corpus")
+    if not isinstance(seed_corpus, dict):
+        error("work queue selection.seed_corpus must be a mapping")
+        failures += 1
+        seed_corpus = {}
+    min_dossiers = seed_corpus.get("minimum_indexed_dossiers")
+    min_domains = seed_corpus.get("minimum_distinct_domains")
+    if not isinstance(min_dossiers, int) or min_dossiers < 2:
+        error("work queue selection.seed_corpus.minimum_indexed_dossiers must be at least 2")
+        failures += 1
+    if not isinstance(min_domains, int) or min_domains < 2:
+        error("work queue selection.seed_corpus.minimum_distinct_domains must be at least 2")
+        failures += 1
+    if seed_corpus.get("when_below_floor") != "surface-bounded-intake-candidate":
+        error("work queue selection.seed_corpus.when_below_floor must be 'surface-bounded-intake-candidate'")
+        failures += 1
+
     indexed: dict[str, dict] = {}
     if not isinstance(index, dict) or not isinstance(index.get("ideas"), list):
         error("data/idea-index.yaml must contain an ideas list")
@@ -123,6 +169,7 @@ def main() -> int:
     seen_ids: set[str] = set()
     seen_role_targets: set[tuple[str, str]] = set()
     landed = landed_review_roles()
+    active_targets: set[str] = set()
 
     for offset, item in enumerate(work, start=1):
         prefix = f"work[{offset}]"
@@ -202,6 +249,9 @@ def main() -> int:
             error(f"{prefix}.entrypoint must be a Human Kind Issue URL when status=open-issue")
             failures += 1
 
+        if status in ACTIVE_STATUSES and idea_id:
+            active_targets.add(idea_id)
+
         if status in ACTIVE_STATUSES and role in landed.get(idea_id, set()):
             warning(
                 f"{prefix} is still {status!r}, but a {role} review has landed for {idea_id}; "
@@ -211,6 +261,26 @@ def main() -> int:
         if status == "completed" and role not in landed.get(idea_id, set()):
             warning(
                 f"{prefix} is marked completed, but no landed {role} review was found for {idea_id}"
+            )
+
+    indexed_domains = {
+        domain
+        for item in indexed.values()
+        for domain in item.get("domains", [])
+        if isinstance(domain, str) and domain.strip()
+    }
+    if isinstance(min_dossiers, int) and isinstance(min_domains, int):
+        if len(indexed) < min_dossiers or len(indexed_domains) < min_domains:
+            warning(
+                "Seed corpus is below the breadth floor "
+                f"({len(indexed)}/{min_dossiers} dossiers, {len(indexed_domains)}/{min_domains} domains). "
+                "Prefer a bounded, sourced intake candidate over another unprompted deepening cycle "
+                "unless a documented selection exception applies."
+            )
+        elif len(active_targets) == 1 and len(indexed) > 1:
+            warning(
+                "All active work-queue items target one dossier despite a broader indexed corpus; "
+                "check the breadth-before-depth selection policy."
             )
 
     if failures:
