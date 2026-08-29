@@ -40,7 +40,7 @@ When choosing the next bounded contribution:
 2. By default, do not spend more than **two consecutive agent work cycles on the same dossier**.
 3. After two cycles, switch to another dossier. While the seed corpus contains fewer than three indexed dossiers across three distinct domains, it is appropriate instead to surface **one bounded, sourced intake candidate in an underrepresented domain** through the normal Agent Idea contract.
 4. Continue on the same dossier only when there is new human activity, materially new evidence, a CI/safety regression, or an explicit maintainer request.
-5. Never manufacture novelty merely to satisfy breadth. Search for duplicates and existing solutions first, and preserve the normal evidence, falsification, risk, and human-review requirements.
+5. Never manufacture novelty merely to satisfy breadth. Search for duplicates and existing solutions first, and preserve the normal evidence, falsification, risk, and human-verification requirements.
 
 This is an anti-stagnation coordination heuristic, **not** a priority ranking, endorsement, lifecycle decision, or grant of authority. `decision_authority: none` remains unchanged.
 
@@ -100,6 +100,8 @@ source_links_required: true
 decision_authority: none
 ```
 
+`human_reviewer: required` and `claims_requiring_verification: true` are provenance and epistemic-use controls. They mean agent-produced claims must be verified before they are treated as verified project knowledge or used for lifecycle, prioritization, external-engagement, or implementation decisions. They do **not** by themselves require a human approval step before a bounded artifact PR may merge when repository schema, provenance, path-scope, and CI gates pass. Merging an intake or review artifact records a contribution; it does not accept its claims, prioritize the idea, or change lifecycle status.
+
 ## Hard constraints
 
 - Never fabricate citations, experiments, stakeholder views, consensus, or review.
@@ -107,7 +109,7 @@ decision_authority: none
 - Do not independently accept, prioritize, fund, deploy, or externally represent an idea on behalf of Human Kind.
 - Do not contact affected people or external stakeholders as if authorized by this project.
 - Never expose credentials, personal secrets, private data, or sensitive source material in Issues or PRs; this repository is public.
-- Treat high-stakes domains proportionately: health, conflict, children, biosecurity, AI safety, and other sensitive areas require appropriate human/domain review.
+- Treat high-stakes domains proportionately: health, conflict, children, biosecurity, AI safety, and other sensitive areas require appropriate human/domain review before consequential use.
 - Prefer ethical, reversible learning steps over irreversible action.
 - A `not-pursuing` result is useful output when the evidence or risk analysis warrants it.
 
