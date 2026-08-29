@@ -33,7 +33,7 @@ If caregivers receive accurate, timely attendance information that they may not 
 
 - U.S. Department of Education chronic absenteeism overview: https://www.ed.gov/teaching-and-administration/supporting-students/chronic-absenteeism
 - Institute of Education Sciences impact evaluation of parent messaging strategies: https://ies.ed.gov/use-work/evaluations/impact-evaluation-parent-messaging-strategies-student-attendance
-- Harvard CEPR summary of a multi-site randomized rural attendance messaging trial: https://cepr.harvard.edu/resource/lifting-attendance-rural-districts-multi-site-trial-personalized-messaging-campaign
+- ERIC record for the multi-site randomized rural attendance messaging trial: https://eric.ed.gov/?id=ED673996
 - American Institutes for Research summary of the earlier federal randomized elementary-school messaging study: https://www.air.org/news/press-release/new-federal-study-finds-text-messages-parents-can-reduce-chronic-school-absences
 - Recent multi-district evidence reports modest average reductions in absences, not elimination of chronic absenteeism. The 2026 rural trial also reports implementation failures, substantial negative caregiver feedback in responding districts, and a subgroup estimate for Black students that the authors say warrants caution and further study. These limitations are material counterevidence against treating messaging as universally benign or sufficient.
 
