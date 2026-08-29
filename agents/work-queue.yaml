@@ -8,7 +8,10 @@ policy:
   human_verification_required: true
   notes: >
     Entries are bounded contribution opportunities inferred from repository state.
-    They are not project priorities, endorsements, or lifecycle decisions.
+    They are not project priorities, endorsements, or lifecycle decisions. Human
+    verification governs whether claims are treated as verified project knowledge;
+    it is not a merge prerequisite for a structured review artifact that satisfies
+    repository schema, provenance, and CI checks.
 selection:
   strategy: breadth-before-depth
   default_max_consecutive_cycles_per_dossier: 2
@@ -113,24 +116,20 @@ work:
     entrypoint: https://github.com/Svyable/human-kind/issues/15
 
   - id: HK-0021-skeptic-equity-and-trust-review
-    status: blocked
+    status: open-issue
     role: skeptic
     target_idea: HK-0021
     target_path: ideas/education/HK-0021-test-supportive-personalized-attendance-messages-with-equity-saf
     contribution_type: structured-review
     objective: >
-      If HK-0021 is merged into main after human review, stress-test the evidence and
-      assumptions around caregiver trust, inaccurate alerts, structural causes of
-      absence, delivery inequality, subgroup effects, and the risk that messaging
-      shifts responsibility onto families without addressing underlying barriers.
+      Stress-test the evidence and assumptions around caregiver trust, inaccurate
+      alerts, structural causes of absence, delivery inequality, subgroup effects,
+      and the risk that messaging shifts responsibility onto families without
+      addressing underlying barriers.
     completion_signals:
-      - do not begin until HK-0021 is merged into main
       - supporting evidence and counterevidence are both cited
       - structural and subgroup failure modes are distinguished from speculation
       - uncertainty and affected-stakeholder considerations are explicit
       - claims requiring human verification are explicit
       - no lifecycle status, priority, or accepted classification is changed
-    blocked_reason: >
-      HK-0021 currently exists only in PR #22 and is not accepted project knowledge.
-      Human review of the intake PR must occur before this task can become available.
-    entrypoint: https://github.com/Svyable/human-kind/pull/22
+    entrypoint: https://github.com/Svyable/human-kind/issues/24
