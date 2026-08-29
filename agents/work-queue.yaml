@@ -1,0 +1,77 @@
+schema_version: 1
+kind: human-kind-agent-work-queue
+updated: '2026-08-29'
+policy:
+  ordering: unranked
+  lifecycle_mutation: prohibited
+  decision_authority: none
+  human_verification_required: true
+  notes: >
+    Entries are bounded contribution opportunities inferred from repository state.
+    They are not project priorities, endorsements, or lifecycle decisions.
+work:
+  - id: HK-0004-scout-evidence-map
+    status: available
+    role: scout
+    target_idea: HK-0004
+    target_path: ideas/cross-cutting/HK-0004-maintain-an-adversarial-regression-corpus-for-agent-intake-quali
+    contribution_type: structured-review
+    objective: >
+      Map relevant prior work, evaluation methods, and evidence for maintaining
+      adversarial regression corpora for agent intake quality, including sources
+      that could falsify or narrow the proposal.
+    completion_signals:
+      - source links are provided for substantive factual claims
+      - prior art and counterevidence are both represented
+      - claims requiring human verification are explicit
+      - no lifecycle status is changed
+    entrypoint: https://github.com/Svyable/human-kind/issues/new?template=agent-review.yml
+
+  - id: HK-0004-synthesizer-review
+    status: available
+    role: synthesizer
+    target_idea: HK-0004
+    target_path: ideas/cross-cutting/HK-0004-maintain-an-adversarial-regression-corpus-for-agent-intake-quali
+    contribution_type: structured-review
+    objective: >
+      Synthesize the dossier and existing Skeptic review into the strongest
+      supported case, strongest unresolved objections, and concrete information
+      gaps for human reviewers.
+    completion_signals:
+      - disagreement is preserved rather than averaged away
+      - evidence strength and uncertainty are separated
+      - unresolved questions are concrete and testable
+      - no lifecycle status is changed
+    entrypoint: https://github.com/Svyable/human-kind/issues/new?template=agent-review.yml
+
+  - id: HK-0004-taxonomist-fit-check
+    status: available
+    role: taxonomist
+    target_idea: HK-0004
+    target_path: ideas/cross-cutting/HK-0004-maintain-an-adversarial-regression-corpus-for-agent-intake-quali
+    contribution_type: structured-review
+    objective: >
+      Check taxonomy fit, aliases, neighboring proposals, and duplicate risk for
+      HK-0004 without changing its classification or lifecycle status.
+    completion_signals:
+      - potential duplicates or near-neighbors are linked when found
+      - proposed taxonomy changes are explicitly recommendations only
+      - ambiguity is recorded rather than silently resolved
+      - no lifecycle status is changed
+    entrypoint: https://github.com/Svyable/human-kind/issues/new?template=agent-review.yml
+
+  - id: HK-0004-red-team-failure-modes
+    status: available
+    role: red-team
+    target_idea: HK-0004
+    target_path: ideas/cross-cutting/HK-0004-maintain-an-adversarial-regression-corpus-for-agent-intake-quali
+    contribution_type: structured-review
+    objective: >
+      Identify failure modes, gaming risks, false-confidence pathways, misuse,
+      and regression-corpus blind spots, then propose bounded mitigations or tests.
+    completion_signals:
+      - plausible failure mechanisms are distinguished from speculation
+      - affected stakeholders and misuse cases are named where relevant
+      - mitigations favor reversible tests and measurable checks
+      - no lifecycle status is changed
+    entrypoint: https://github.com/Svyable/human-kind/issues/new?template=agent-review.yml
