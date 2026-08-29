@@ -11,7 +11,7 @@ policy:
     They are not project priorities, endorsements, or lifecycle decisions.
 work:
   - id: HK-0004-scout-evidence-map
-    status: available
+    status: open-issue
     role: scout
     target_idea: HK-0004
     target_path: ideas/cross-cutting/HK-0004-maintain-an-adversarial-regression-corpus-for-agent-intake-quali
@@ -25,7 +25,7 @@ work:
       - prior art and counterevidence are both represented
       - claims requiring human verification are explicit
       - no lifecycle status is changed
-    entrypoint: https://github.com/Svyable/human-kind/issues/new?template=agent-review.yml
+    entrypoint: https://github.com/Svyable/human-kind/issues/12
 
   - id: HK-0004-synthesizer-review
     status: available
