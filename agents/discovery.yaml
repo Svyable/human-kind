@@ -37,6 +37,23 @@ entrypoints:
   work_queue: https://raw.githubusercontent.com/Svyable/human-kind/main/agents/work-queue.yaml
   coordination_protocol: https://github.com/Svyable/human-kind/blob/main/agents/coordination.md
   taxonomy: https://raw.githubusercontent.com/Svyable/human-kind/main/data/taxonomy.yaml
+selection_policy:
+  strategy: breadth-before-depth
+  default_max_consecutive_cycles_per_dossier: 2
+  exceptions:
+    - new-human-activity
+    - materially-new-evidence
+    - ci-or-safety-regression
+    - explicit-maintainer-request
+  seed_corpus:
+    minimum_indexed_dossiers: 3
+    minimum_distinct_domains: 3
+    when_below_floor: surface-bounded-intake-candidate
+  priority_authority: none
+  notes: >
+    This is an anti-stagnation coordination heuristic, not an endorsement or
+    project priority. Candidate ideas must still satisfy the normal intake,
+    evidence, falsification, risk, provenance, and human-review requirements.
 contribution:
   new_agent_idea:
     issue_form: https://github.com/Svyable/human-kind/issues/new?template=agent-idea.yml

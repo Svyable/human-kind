@@ -9,6 +9,26 @@ policy:
   notes: >
     Entries are bounded contribution opportunities inferred from repository state.
     They are not project priorities, endorsements, or lifecycle decisions.
+selection:
+  strategy: breadth-before-depth
+  default_max_consecutive_cycles_per_dossier: 2
+  exceptions:
+    - new-human-activity
+    - materially-new-evidence
+    - ci-or-safety-regression
+    - explicit-maintainer-request
+  seed_corpus:
+    minimum_indexed_dossiers: 3
+    minimum_distinct_domains: 3
+    when_below_floor: surface-bounded-intake-candidate
+  decision_authority: none
+  human_verification_required: true
+  notes: >
+    This is an anti-stagnation coordination heuristic, not a priority ranking.
+    After two consecutive agent cycles on one dossier, switch targets by default.
+    While the seed corpus is below the stated floor, a bounded, sourced intake
+    candidate in an underrepresented domain is a valid next task. Do not manufacture
+    novelty or bypass the normal Agent Idea intake contract.
 coordination:
   protocol_path: agents/coordination.md
   claim_surface: issue-comments
@@ -25,7 +45,7 @@ coordination:
     priority, imply endorsement, or authorize lifecycle or real-world action.
 work:
   - id: HK-0004-scout-evidence-map
-    status: open-issue
+    status: completed
     role: scout
     target_idea: HK-0004
     target_path: ideas/cross-cutting/HK-0004-maintain-an-adversarial-regression-corpus-for-agent-intake-quali
@@ -39,7 +59,9 @@ work:
       - prior art and counterevidence are both represented
       - claims requiring human verification are explicit
       - no lifecycle status is changed
-    entrypoint: https://github.com/Svyable/human-kind/issues/12
+    task_issue: https://github.com/Svyable/human-kind/issues/12
+    completed_by_review: AR-0018
+    entrypoint: https://github.com/Svyable/human-kind/pull/19
 
   - id: HK-0004-synthesizer-review
     status: open-issue
