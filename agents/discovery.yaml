@@ -35,6 +35,7 @@ entrypoints:
   triage: https://github.com/Svyable/human-kind/blob/main/docs/triage.md
   idea_index: https://raw.githubusercontent.com/Svyable/human-kind/main/data/idea-index.yaml
   work_queue: https://raw.githubusercontent.com/Svyable/human-kind/main/agents/work-queue.yaml
+  coordination_protocol: https://github.com/Svyable/human-kind/blob/main/agents/coordination.md
   taxonomy: https://raw.githubusercontent.com/Svyable/human-kind/main/data/taxonomy.yaml
 contribution:
   new_agent_idea:
@@ -55,6 +56,7 @@ contribution:
     target: existing-dossier
     output: structured-review-pull-request
     status_mutation: prohibited
+    coordination: issue-comment-claim
     trusted_auto_materialization:
       enabled: true
       author_associations:
