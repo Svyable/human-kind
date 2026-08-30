@@ -1,0 +1,78 @@
+id: HK-0055
+title: Pre-commit disaster cash before forecasts cross the danger threshold
+status: intake
+domains:
+- disaster-resilience
+geography:
+- regions with forecastable floods
+- droughts
+- cyclones
+- or heat shocks
+time_horizon: short
+problem_statement: Humanitarian assistance often arrives after households have already
+  lost assets, income, food security, or safe mobility. Evidence from anticipatory-action
+  programs and a Bangladesh/Nepal randomized trial supports testing whether faster
+  delivery can improve welfare, while the reliability of any particular forecast-trigger
+  and financing architecture remains context-specific.
+beneficiaries:
+- Households exposed to predictable extreme-weather shocks
+- Humanitarian responders
+- Food-insecure communities
+- Local disaster-management institutions
+theory_of_change: If finance and delivery are prepared before a predictable shock
+  and released on a validated forecast trigger, households may protect assets, evacuate,
+  buy essentials, and avoid harmful coping strategies earlier than under post-disaster
+  assistance. This depends on forecast skill, useful delivery lead time, inclusive
+  targeting, functioning payment rails and markets, and acceptable false-alarm and
+  miss costs.
+intervention_type:
+- financing
+maturity: concept
+evidence_level: hypothesis
+expected_impact: unknown
+cost_band: unknown
+reversibility: high
+key_risks:
+- Forecast false positives can spend scarce funds before events that do not materialize.
+- False negatives can exclude people who are harmed.
+- Recipient lists may be stale or politically captured.
+- Digital payments can fail during disasters or exclude people without accounts or
+  connectivity.
+- Cash can be ineffective where markets fail.
+- Rigid triggers may ignore local knowledge and compound hazards.
+- Optimizing forecast accuracy alone can hide the asymmetric welfare and opportunity
+  costs of false alarms and misses.
+equity_considerations: Trigger and targeting design must include people living in
+  exposed areas, especially those without formal IDs, bank accounts, stable housing,
+  or historical administrative visibility. False-negative harm must be measured, not
+  hidden behind average forecast accuracy.
+success_metrics:
+- Lead time of assistance before hazard impact
+- Food security and asset-loss outcomes versus comparison groups where ethical
+- Hit, false-alarm, miss, and correct-rejection rates for predeclared trigger thresholds
+- Payment success and access parity
+- Approximate activation cost and cost per household protected
+- Use of harmful coping strategies
+- Recipient complaints and correction time
+next_action: 'Choose one historical hazard and geography with accessible forecast,
+  impact, and delivery data. Predeclare several candidate thresholds and retrospectively
+  calculate hits, false alarms, misses, correct rejections, lead time, population reached,
+  and approximate activation cost. Overlay those results with available welfare evidence
+  on earlier versus later cash. No money is moved and no recipient list is created.'
+owners: []
+sources:
+- 'WFP evidence base on anticipatory action 2015-2024: https://www.wfp.org/publications/wfps-evidence-base-anticipatory-action-2015-2024'
+- 'WFP Bangladesh anticipatory cash review: https://www.wfp.org/publications/acting-flood-protect-most-vulnerable-independent-review-wfps-anticipatory-cash'
+- 'WFP Nepal impact evaluation: https://www.wfp.org/publications/nepal-anticipatory-action-impact-evaluation'
+- 'WFP global strategy 2026-2029: https://www.wfp.org/publications/forecasts-action-wfps-global-anticipatory-action-strategy-2026-2029'
+- 'Christian et al., Fast Action for Floods, NBER Working Paper 34414 (2025): https://www.nber.org/papers/w34414'
+- 'World Bank reproducibility package for Fast Action for Floods: https://reproducibility.worldbank.org/index.php/catalog/374/'
+- 'Red Cross Red Crescent forecast-based-financing practitioner methodology: https://www.anticipation-hub.org/learn/methodology/red-cross-red-crescent-fbf-practitioner-manual'
+last_reviewed: '2026-08-30'
+generated_by: agent
+human_reviewer: required
+claims_requiring_verification: true
+source_links_required: true
+decision_authority: none
+source_issue: https://github.com/Svyable/human-kind/issues/55
+source_agent: chatgpt-gpt-5.6-sol
