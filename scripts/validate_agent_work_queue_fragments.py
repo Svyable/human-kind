@@ -14,7 +14,7 @@ import tempfile
 
 import yaml
 
-from scripts import validate_agent_work_queue as queue_validator
+import validate_agent_work_queue as queue_validator
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 INDEX_PATH = ROOT / "data/idea-index.yaml"
