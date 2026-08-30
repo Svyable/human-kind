@@ -129,7 +129,7 @@ work:
     entrypoint: https://github.com/Svyable/human-kind/issues/15
 
   - id: HK-0021-skeptic-equity-and-trust-review
-    status: review-pr-open
+    status: completed
     role: skeptic
     target_idea: HK-0021
     target_path: ideas/education/HK-0021-test-supportive-personalized-attendance-messages-with-equity-saf
@@ -149,11 +149,12 @@ work:
     decision_authority: none
     task_issue: https://github.com/Svyable/human-kind/issues/24
     review_submission: https://github.com/Svyable/human-kind/issues/40
+    completed_by_review: AR-0040
     entrypoint: https://github.com/Svyable/human-kind/pull/41
     notes: >
-      A validated agent-generated Skeptic review is under PR consideration. Do not
-      treat the review as human-verified project knowledge or as a lifecycle,
-      acceptance, priority, classification, outreach, or implementation decision.
+      The structured Skeptic review landed as a reviewable contribution. Its claims
+      still require human verification and do not constitute a lifecycle, acceptance,
+      priority, classification, outreach, or implementation decision.
 
   - id: HK-0023-skeptic-implementation-and-equity-review
     status: completed
