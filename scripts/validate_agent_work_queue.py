@@ -23,9 +23,10 @@ INDEX_PATH = ROOT / "data/idea-index.yaml"
 IDEAS = ROOT / "ideas"
 
 ROLES = {"scout", "skeptic", "synthesizer", "taxonomist", "pilot-designer", "red-team"}
-STATUSES = {"available", "open-issue", "claimed", "completed", "blocked"}
-ACTIVE_STATUSES = {"available", "open-issue", "claimed"}
+STATUSES = {"available", "open-issue", "claimed", "review-pr-open", "completed", "blocked"}
+ACTIVE_STATUSES = {"available", "open-issue", "claimed", "review-pr-open"}
 ISSUE_URL = re.compile(r"^https://github\.com/Svyable/human-kind/issues/[0-9]+$")
+PR_URL = re.compile(r"^https://github\.com/Svyable/human-kind/pull/[0-9]+$")
 SELECTION_EXCEPTIONS = {
     "new-human-activity",
     "materially-new-evidence",
@@ -248,6 +249,22 @@ def main() -> int:
         if status == "open-issue" and not ISSUE_URL.fullmatch(entrypoint):
             error(f"{prefix}.entrypoint must be a Human Kind Issue URL when status=open-issue")
             failures += 1
+        if status == "review-pr-open":
+            if not PR_URL.fullmatch(entrypoint):
+                error(f"{prefix}.entrypoint must be a Human Kind PR URL when status=review-pr-open")
+                failures += 1
+            if not ISSUE_URL.fullmatch(str(item.get("task_issue", "")).strip()):
+                error(f"{prefix}.task_issue must be a Human Kind Issue URL when status=review-pr-open")
+                failures += 1
+            if not ISSUE_URL.fullmatch(str(item.get("review_submission", "")).strip()):
+                error(f"{prefix}.review_submission must be a Human Kind Issue URL when status=review-pr-open")
+                failures += 1
+            if item.get("human_verification_required") is not True:
+                error(f"{prefix}.human_verification_required must be true when status=review-pr-open")
+                failures += 1
+            if item.get("decision_authority") != "none":
+                error(f"{prefix}.decision_authority must be 'none' when status=review-pr-open")
+                failures += 1
 
         if status in ACTIVE_STATUSES and idea_id:
             active_targets.add(idea_id)
