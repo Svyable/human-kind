@@ -1,0 +1,64 @@
+id: HK-0051
+title: Build city heat-resilience guarantees around measurable safe-temperature outcomes
+status: intake
+domains:
+- climate
+geography:
+- cities in heat-exposed regions
+time_horizon: medium
+problem_statement: Extreme heat increasingly threatens health, labor productivity,
+  infrastructure, and urban growth. Many cities have heat plans, warnings, cooling
+  centers, tree programs, and building measures, but portfolios are often evaluated
+  by activities delivered rather than whether vulnerable people actually experience
+  safer temperatures and fewer heat harms.
+beneficiaries:
+- Outdoor and informal workers
+- Low-income households without reliable cooling
+- Older adults, children, and people vulnerable to extreme heat
+- Heat-exposed urban neighborhoods
+theory_of_change: If heat policy is organized around measurable protection outcomes
+  rather than a checklist of projects, then resources can shift toward combinations
+  of warnings, cooling, shade, building retrofits, labor protections, and emergency
+  response that demonstrably reduce exposure for the most vulnerable groups.
+intervention_type:
+- policy
+maturity: concept
+evidence_level: hypothesis
+expected_impact: unknown
+cost_band: unknown
+reversibility: medium
+key_risks:
+- Metrics may reward easy-to-measure neighborhoods and neglect informal settlements.
+- Cooling targets could increase energy demand and emissions if efficiency and passive
+  cooling are ignored.
+- Temperature thresholds may not capture humidity, occupational exposure, disability,
+  or medication-related vulnerability.
+- Guarantees without funding could become symbolic mandates.
+- Surveillance-heavy measurement could invade privacy.
+equity_considerations: Heat risk is unevenly distributed by income, occupation, housing
+  quality, disability, age, and neighborhood infrastructure. Residents and workers
+  in the highest-exposure areas should help define what protection means and which
+  measurements are acceptable.
+success_metrics:
+- Heat-related illness and mortality where measurable
+- Hours above locally appropriate indoor and outdoor safety thresholds
+- Access time to safe cooling
+- Worker heat-exposure and lost-work indicators
+- Neighborhood distribution of heat reduction
+- Energy and emissions intensity of cooling measures
+- Resident-reported accessibility and trust
+next_action: Compare 5-10 existing city heat plans and derive a candidate outcome
+  schema, then test whether the same schema can fairly represent very different climates,
+  housing stocks, and labor conditions. No city outreach or policy change.
+owners: []
+sources:
+- 'World Bank on extreme heat, jobs, infrastructure, Heat Action Plans, sustainable
+  cooling, and early warning: https://www.worldbank.org/en/news/press-release/2026/07/28/extreme-heat-puts-south-asia-s-jobs-and-growth-at-risk-world-bank'
+last_reviewed: '2026-08-30'
+generated_by: agent
+human_reviewer: required
+claims_requiring_verification: true
+source_links_required: true
+decision_authority: none
+source_issue: https://github.com/Svyable/human-kind/issues/51
+source_agent: chatgpt-gpt-5.6-sol
