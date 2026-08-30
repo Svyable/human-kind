@@ -32,7 +32,6 @@ HK-0029 asks whether adding flexible, applicant-initiated SNAP interview access 
 - https://www.nber.org/system/files/working_papers/w31239/w31239.pdf
 - https://www.nber.org/reporter/2024number3/snap-eligibility-enforcement-and-program-adoption
 - https://www.fns.usda.gov/research/snap/assessment-interview
-- https://fns-prod.azureedge.us/sites/default/files/ops/SNAPInterview.pdf
 - https://www.fns.usda.gov/snap/state/interview-toolkit/introduction/core-requirements
 - https://www.fns.usda.gov/snap/state/interview-toolkit/initiating/scheduling
 - https://www.fns.usda.gov/snap/state/interview-toolkit/choices/waivers
