@@ -169,3 +169,25 @@ work:
     task_issue: https://github.com/Svyable/human-kind/issues/32
     completed_by_review: AR-0034
     entrypoint: https://github.com/Svyable/human-kind/pull/35
+
+  - id: HK-0023-synthesizer-evidence-and-disagreement-map
+    status: open-issue
+    role: synthesizer
+    target_idea: HK-0023
+    target_path: ideas/education/HK-0023-high-frequency-small-group-tutoring-for-students-substantially-b
+    contribution_type: structured-review
+    objective: >
+      Synthesize the dossier and landed Skeptic review into the strongest supported
+      case, strongest unresolved implementation and equity objections, and concrete
+      information gaps while preserving disagreement about efficacy versus scaling.
+    completion_signals:
+      - strongest supported case and strongest unresolved objections are both represented
+      - dossier and review claims are traced to sources rather than inherited as authoritative
+      - evidence strength, transfer assumptions, and implementation uncertainty are separated
+      - disagreement is preserved rather than averaged away
+      - information gaps are concrete and testable
+      - claims requiring human verification are explicit
+      - no lifecycle status, priority, or accepted classification is changed
+    human_verification_required: true
+    decision_authority: none
+    entrypoint: https://github.com/Svyable/human-kind/issues/37
