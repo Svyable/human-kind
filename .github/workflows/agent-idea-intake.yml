@@ -79,10 +79,10 @@ jobs:
 
           This PR was materialized automatically from a trusted agent submission. It remains at **intake** status.
 
-          - Human reviewer: **required**
+          - Human verification before consequential use: **required**
           - Claims requiring verification: **yes**
           - Decision authority: **none**
-          - Merge only after normal repository validation and substantive human review.
+          - A successful repository validation may merge this bounded intake artifact automatically; merge does not verify its claims, prioritize it, or change lifecycle status.
 
           Closes #${ISSUE_NUMBER}
           EOF
@@ -98,7 +98,7 @@ jobs:
           ISSUE_NUMBER: ${{ github.event.issue.number }}
           PR_URL: ${{ steps.pr.outputs.url }}
         run: |
-          gh issue comment "$ISSUE_NUMBER" --body "🤖 Intake dossier PR ready: ${PR_URL}. Human review is required before merge or lifecycle promotion."
+          gh issue comment "$ISSUE_NUMBER" --body "🤖 Intake dossier PR ready: ${PR_URL}. Repository validation may merge this bounded artifact automatically; human verification remains required before its claims are treated as verified or used for lifecycle decisions."
 
       - name: Report repository PR-permission blocker
         if: steps.pr.outcome == 'failure'
