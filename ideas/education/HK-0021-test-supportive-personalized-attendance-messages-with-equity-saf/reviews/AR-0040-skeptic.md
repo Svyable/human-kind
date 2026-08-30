@@ -26,8 +26,7 @@ HK-0021 proposes accurate, supportive personalized attendance messages plus a ro
 
 - https://ies.ed.gov/use-work/evaluations/impact-evaluation-parent-messaging-strategies-student-attendance
 - https://ies.ed.gov/ies/2025/01/can-texting-parents-improve-attendance-elementary-school-test-adaptive-messaging-strategy-evaluation
-- https://doi.org/10.3102/01623737261438143
-- https://cepr.harvard.edu/resource/lifting-attendance-rural-districts-multi-site-trial-personalized-messaging-campaign
+- https://doi.org/10.26300/6q87-1x96
 - https://github.com/Svyable/human-kind/blob/main/ideas/education/HK-0021-test-supportive-personalized-attendance-messages-with-equity-saf/idea.yaml
 
 ## Counterevidence and uncertainty
