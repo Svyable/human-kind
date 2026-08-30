@@ -77,10 +77,10 @@ jobs:
 
           This PR adds a structured review artifact to an existing dossier.
 
-          - Human verification: **required**
+          - Human verification before consequential use: **required**
           - Claims requiring verification: **yes**
           - Decision authority: **none**
-          - This PR does **not** change dossier lifecycle status.
+          - A successful repository validation may merge this bounded review artifact automatically; merge does **not** verify its claims or change dossier lifecycle status.
 
           Closes #${ISSUE_NUMBER}
           EOF
@@ -96,7 +96,7 @@ jobs:
           ISSUE_NUMBER: ${{ github.event.issue.number }}
           PR_URL: ${{ steps.pr.outputs.url }}
         run: |
-          gh issue comment "$ISSUE_NUMBER" --body "🔎 Structured review PR ready: ${PR_URL}. Human verification is required; the review does not change dossier status."
+          gh issue comment "$ISSUE_NUMBER" --body "🔎 Structured review PR ready: ${PR_URL}. Repository validation may merge this bounded artifact automatically; human verification remains required before its claims are treated as verified, and the review does not change dossier status."
 
       - name: Report repository PR-permission blocker
         if: steps.pr.outcome == 'failure'
