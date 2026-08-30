@@ -1,0 +1,98 @@
+id: HK-0074
+title: Make essential-medicine stockout risk visible before patients lose access
+status: intake
+domains:
+- health
+geography:
+- global
+- beginning with health systems that already publish procurement
+- inventory
+- shortage
+- or facility-availability data
+time_horizon: short
+problem_statement: WHO defines essential medicines as products that should be available
+  in functioning health systems at all times, in sufficient quantities, appropriate
+  dosage forms, assured quality, and at affordable prices. WHO also identifies shortages
+  and stock-outs of essential medicines as an ongoing barrier to access, and has previously
+  published both early-warning indicators for procurement/supply systems and guidance
+  on shortage-notification systems. The unresolved opportunity is therefore not to
+  invent shortage monitoring, but to test whether fragmented signals can be combined
+  into an interoperable, uncertainty-aware warning and response layer that helps systems
+  act earlier without creating false alarms or distorting procurement.
+beneficiaries:
+- Patients who depend on continuously available essential medicines
+- Clinicians and pharmacists managing shortages
+- Public procurement and supply-chain teams
+- Health systems in fragile or resource-constrained settings
+- People with chronic conditions who are harmed by interrupted treatment
+theory_of_change: If existing supply-chain warning signals are made comparable and
+  linked to explicit response states, health systems may identify preventable shortages
+  earlier, distinguish real risk from noisy inventory fluctuations, coordinate redistribution
+  or procurement sooner, and learn which warnings actually predicted loss of access.
+intervention_type:
+- standards
+maturity: concept
+evidence_level: hypothesis
+expected_impact: unknown
+cost_band: unknown
+reversibility: high
+key_risks:
+- False-positive warnings could trigger hoarding, emergency purchasing, unnecessary
+  substitution, or price pressure.
+- Publicly exposing granular inventory or supplier data could create security, market-manipulation,
+  or commercial harms.
+- Facilities with weaker digital systems could appear safer simply because their data
+  are missing.
+- Average national stock can hide local shortages and access inequities.
+- Forecasts may overfit routine demand and fail during disasters, epidemics, conflict,
+  or sudden policy changes.
+- Substitution recommendations can be clinically inappropriate or create new shortages
+  elsewhere.
+- A new data layer could duplicate existing logistics systems and add reporting burden
+  without improving decisions.
+- Metrics could reward maintaining inventory rather than reliable patient access,
+  leading to waste or overstocking.
+equity_considerations: The system should treat missing data as uncertainty, not as
+  absence of need. Rural facilities, fragile settings, small buyers, and populations
+  with less administrative visibility must not be systematically deprioritized by
+  a model trained on richer supply chains. Patient-level data are unnecessary for
+  the first validation stage and should not be collected. Any future operational use
+  would require local governance over what supply information can be shared, at what
+  granularity, and with whom.
+success_metrics:
+- Lead time from credible warning to observed stockout or shortage resolution
+- Precision and recall of warning states against historical stockout events
+- False-alarm rate and estimated operational cost of false positives
+- Time from warning to procurement, redistribution, or justified closure where such
+  actions are recorded
+- Share of alerts with traceable evidence, explicit uncertainty, and resolution status
+- Performance across rural/urban, high/low-data, and fragile/stable settings
+- Reduction in unexplained or untracked shortage episodes in retrospective simulations
+- Reporting burden required to produce each useful warning
+next_action: Do **not** build a live supply system. First produce a Scout/Taxonomist
+  crosswalk of WHO early-warning indicators, shortage-notification guidance, and 3-5
+  public national or institutional shortage systems. Identify which fields and response
+  states are already covered, partially covered, meaningfully absent, or unclear.
+  Then test a minimal candidate schema retrospectively on public or synthetic shortage
+  timelines, measuring predictive lead time, false alarms, missing-data failure modes,
+  and whether any proposed field adds decision-relevant information. Do not contact
+  suppliers, facilities, patients, or governments and do not make procurement or substitution
+  recommendations.
+owners: []
+sources:
+- 'WHO essential medicines overview (updated 2026): https://www.who.int/news-room/fact-sheets/detail/essential-medicines'
+- 'WHO work on medicines supply systems: https://www.who.int/teams/health-product-policy-and-standards/medicines-selection-ip-and-affordability/medicines-policy/medicines-supply'
+- 'WHO harmonized procurement/supply indicators, including early-warning indicators
+  for stock-outs and overstocking: https://www.who.int/publications/i/item/9789241500814'
+- 'WHO technical consultation on notification systems for shortages and stockouts
+  of medicines and vaccines: https://www.who.int/publications/i/item/WHO-EMP-IAU-2017.15'
+- 'WHO access-to-medicines work noting shortages and stock-outs as barriers to access:
+  https://www.who.int/our-work/access-to-medicines-and-health-products'
+last_reviewed: '2026-08-30'
+generated_by: agent
+human_reviewer: required
+claims_requiring_verification: true
+source_links_required: true
+decision_authority: none
+source_issue: https://github.com/Svyable/human-kind/issues/74
+source_agent: chatgpt-gpt-5.6-sol
