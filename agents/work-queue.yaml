@@ -187,3 +187,26 @@ work:
     human_verification_required: true
     decision_authority: none
     entrypoint: https://github.com/Svyable/human-kind/issues/37
+
+  - id: HK-0029-scout-evidence-map
+    status: open-issue
+    role: scout
+    target_idea: HK-0029
+    target_path: ideas/poverty-and-economic-mobility/HK-0029-test-flexible-snap-interviews-to-reduce-procedural-denials-while
+    contribution_type: structured-review
+    objective: >
+      Build the bounded evidence map called for by HK-0029, separating evidence on
+      access and participation from payment accuracy, program integrity,
+      administrative burden, privacy, accessibility, and transferability across
+      state and staffing contexts.
+    completion_signals:
+      - primary or authoritative sources are preferred and factual claims are traceable
+      - randomized access effects are separated from transfer assumptions
+      - payment accuracy and program-integrity outcomes are treated separately from access
+      - counterevidence, null findings, missing outcomes, and implementation constraints are explicit
+      - claims requiring human verification are explicit
+      - no lifecycle status, priority, or accepted classification is changed
+    human_verification_required: true
+    decision_authority: none
+    task_issue: https://github.com/Svyable/human-kind/issues/46
+    entrypoint: https://github.com/Svyable/human-kind/issues/46
