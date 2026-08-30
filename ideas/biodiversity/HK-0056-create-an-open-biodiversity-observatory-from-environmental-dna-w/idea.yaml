@@ -1,0 +1,64 @@
+id: HK-0056
+title: Create an open biodiversity observatory from environmental DNA with uncertainty
+  built in
+status: intake
+domains:
+- biodiversity
+geography:
+- initially aquatic ecosystems; extensible globally
+time_horizon: medium
+problem_statement: Biodiversity monitoring is often sparse, expensive, methodologically
+  inconsistent, and too slow to detect ecological change early. USGS describes environmental
+  DNA as a scalable tool for detecting rare, invasive, and threatened species and
+  argues for coordinated national strategy, but eDNA measurements carry sampling,
+  interpretation, contamination, and governance uncertainties.
+beneficiaries:
+- Threatened species and ecosystems
+- Indigenous and local communities managing natural resources
+- Conservation agencies
+- Researchers and restoration practitioners
+theory_of_change: If eDNA observations become comparable across places and time while
+  preserving uncertainty and confirmation requirements, then conservation systems
+  may detect ecological change earlier and allocate scarce field-survey effort more
+  intelligently.
+intervention_type:
+- infrastructure
+maturity: concept
+evidence_level: hypothesis
+expected_impact: unknown
+cost_band: unknown
+reversibility: high
+key_risks:
+- Contamination can create false detections.
+- DNA presence does not always establish viable local populations.
+- Reference databases can be incomplete or biased.
+- Publishing precise locations can endanger rare species or culturally sensitive sites.
+- Sampling intensity may favor wealthy jurisdictions.
+- Managers may over-trust molecular signals and underfund field ecology.
+equity_considerations: Indigenous nations and local communities may have sovereignty,
+  cultural, and benefit-sharing interests in biological data from their lands and
+  waters. Sensitive species and location data require tiered access rather than automatic
+  openness.
+success_metrics:
+- Detection lead time versus conventional surveys
+- False-positive and false-negative rates on validation datasets
+- Cross-laboratory reproducibility
+- Coverage of under-monitored ecosystems
+- Share of records with complete provenance and uncertainty
+- Time from signal to appropriate confirmatory survey
+- Sensitive-data governance compliance
+next_action: Build a benchmark schema from existing USGS eDNA use cases and test it
+  on published datasets, focusing on provenance, uncertainty, repeatability, and sensitive-location
+  handling. No new field sampling.
+owners: []
+sources:
+- 'USGS eDNA science overview: https://www.usgs.gov/science/science-topics/edna'
+- 'USGS publication Toward a national eDNA strategy for the United States: https://www.usgs.gov/publications/toward-a-national-edna-strategy-united-states'
+last_reviewed: '2026-08-30'
+generated_by: agent
+human_reviewer: required
+claims_requiring_verification: true
+source_links_required: true
+decision_authority: none
+source_issue: https://github.com/Svyable/human-kind/issues/56
+source_agent: chatgpt-gpt-5.6-sol
