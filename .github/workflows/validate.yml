@@ -24,8 +24,10 @@ jobs:
         run: python scripts/test_agent_harness.py
       - name: Test conflict-resistant intake index helper
         run: python scripts/test_index_intake_fragment.py
+      - name: Test fragment-aware agent work queue validation
+        run: python scripts/test_validate_agent_work_queue_fragments.py
       - name: Validate machine-readable agent work queue
-        run: python scripts/validate_agent_work_queue.py
+        run: python scripts/validate_agent_work_queue_fragments.py
       - name: Validate pending intake queue state
         run: python scripts/validate_pending_intake.py
       - name: Validate conflict-resistant idea-index fragments
