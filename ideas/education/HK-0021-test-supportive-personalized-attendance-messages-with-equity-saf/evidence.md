@@ -13,7 +13,7 @@
 
 ## Sources and comparable work supplied at intake
 
-- U.S. Department of Education chronic absenteeism overview: https://www.ed.gov/teaching-and-administration/supporting-students/chronic-absenteeism
+- Institute of Education Sciences chronic absenteeism handout with national 2022-23 rate: https://ies.ed.gov/rel-appalachia/2025/01/handout-1-understanding-chronic-absenteeism
 - Institute of Education Sciences impact evaluation of parent messaging strategies: https://ies.ed.gov/use-work/evaluations/impact-evaluation-parent-messaging-strategies-student-attendance
 - ERIC record for the multi-site randomized rural attendance messaging trial: https://eric.ed.gov/?id=ED673996
 - American Institutes for Research summary of the earlier federal randomized elementary-school messaging study: https://www.air.org/news/press-release/new-federal-study-finds-text-messages-parents-can-reduce-chronic-school-absences
