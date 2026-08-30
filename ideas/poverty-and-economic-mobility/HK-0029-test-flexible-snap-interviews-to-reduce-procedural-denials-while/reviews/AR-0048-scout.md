@@ -35,7 +35,7 @@ HK-0029 asks whether adding flexible, applicant-initiated SNAP interview access 
 - https://www.fns.usda.gov/snap/state/interview-toolkit/introduction/core-requirements
 - https://www.fns.usda.gov/snap/state/interview-toolkit/initiating/scheduling
 - https://www.fns.usda.gov/snap/state/interview-toolkit/choices/waivers
-- https://www.fns.usda.gov/snap/fr-010625a
+- https://www.govinfo.gov/content/pkg/FR-2025-01-06/pdf/2024-31627.pdf
 - https://www.fns.usda.gov/research/snap/understanding-rates-causes-and-costs-churning-supplemental-nutrition-assistance-program-snap
 - https://github.com/Svyable/human-kind/issues/46
 - https://github.com/Svyable/human-kind/blob/main/ideas/poverty-and-economic-mobility/HK-0029-test-flexible-snap-interviews-to-reduce-procedural-denials-while/idea.yaml
