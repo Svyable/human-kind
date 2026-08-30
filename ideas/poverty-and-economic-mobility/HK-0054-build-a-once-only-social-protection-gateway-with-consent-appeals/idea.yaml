@@ -1,0 +1,66 @@
+id: HK-0054
+title: Build a once-only social protection gateway with consent, appeals, and offline
+  fallback
+status: intake
+domains:
+- poverty-and-economic-mobility
+geography:
+- countries with multiple fragmented social-protection programs
+time_horizon: medium
+problem_statement: People often have to repeat registration, eligibility, documentation,
+  and payment setup across fragmented social programs. The World Bank describes interoperable
+  social registries and digital delivery systems as a way to reduce fragmentation,
+  but integration can also concentrate surveillance, exclusion, and data-governance
+  risks.
+beneficiaries:
+- People eligible for multiple social programs
+- Low-income households facing repeated paperwork
+- People with disabilities or limited digital access
+- Public agencies administering benefits
+theory_of_change: If repeated administrative steps are consolidated while preserving
+  program-specific due process, consent, correction, and non-digital access, then
+  eligible households may receive support faster with less paperwork and agencies
+  may reduce duplicate processing.
+intervention_type:
+- infrastructure
+maturity: concept
+evidence_level: hypothesis
+expected_impact: unknown
+cost_band: unknown
+reversibility: medium
+key_risks:
+- Bad source data can propagate errors across programs.
+- Centralization can increase privacy and security harm.
+- Automated matching can create opaque denial pathways.
+- People without IDs, connectivity, stable addresses, or documents may be excluded.
+- Consent can become nominal when benefits are essential.
+- A shared gateway can become a catastrophic single point of failure.
+equity_considerations: No one should lose an existing access path because a digital
+  gateway exists. Applicants need understandable consent, correction, appeal, and
+  data-use visibility. People commonly excluded by digital identity and documentation
+  systems must shape the design.
+success_metrics:
+- Applications completed per household per year
+- Time and steps from first contact to benefit decision
+- Eligible non-participation and procedural-denial rates
+- Correction and appeal resolution time
+- Offline-path completion parity
+- Data-sharing consent comprehension
+- Security and privacy incident rate
+- Administrative processing cost per successful enrollment
+next_action: Map 3-5 real multi-program delivery systems and identify which data and
+  steps are safely reusable, which must remain program-specific, and where consent,
+  correction, appeal, and offline fallback are mandatory. Do not build or connect
+  a live registry.
+owners: []
+sources:
+- 'World Bank Digital Delivery Systems for Social Protection: https://www.worldbank.org/en/brief/2025/09/19/digital-delivery-systems'
+- 'World Bank on social registries as platforms for inclusive service delivery: https://www.worldbank.org/en/results/2025/11/19/social-registries-digital-platforms-inclusive-service-delivery'
+last_reviewed: '2026-08-30'
+generated_by: agent
+human_reviewer: required
+claims_requiring_verification: true
+source_links_required: true
+decision_authority: none
+source_issue: https://github.com/Svyable/human-kind/issues/54
+source_agent: chatgpt-gpt-5.6-sol
