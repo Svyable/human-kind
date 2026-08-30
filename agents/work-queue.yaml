@@ -189,7 +189,7 @@ work:
     entrypoint: https://github.com/Svyable/human-kind/issues/37
 
   - id: HK-0029-scout-evidence-map
-    status: open-issue
+    status: review-pr-open
     role: scout
     target_idea: HK-0029
     target_path: ideas/poverty-and-economic-mobility/HK-0029-test-flexible-snap-interviews-to-reduce-procedural-denials-while
@@ -209,4 +209,9 @@ work:
     human_verification_required: true
     decision_authority: none
     task_issue: https://github.com/Svyable/human-kind/issues/46
-    entrypoint: https://github.com/Svyable/human-kind/issues/46
+    review_submission: https://github.com/Svyable/human-kind/issues/48
+    entrypoint: https://github.com/Svyable/human-kind/pull/49
+    notes: >
+      The Scout review is open as a reviewable PR. Its claims require human verification;
+      the open review does not constitute lifecycle, acceptance, priority, classification,
+      outreach, implementation, or real-world SNAP process authority.
