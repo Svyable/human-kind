@@ -43,8 +43,17 @@ jobs:
           ISSUE_UPDATED_AT: ${{ github.event.issue.updated_at }}
         run: python scripts/agent_issue_to_dossier.py
 
-      - name: Validate generated dossier
-        run: python scripts/validate_ideas.py
+      - name: Write conflict-resistant idea-index fragment
+        env:
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+        run: |
+          python scripts/index_intake_fragment.py
+          git checkout -- data/idea-index.yaml
+
+      - name: Validate generated dossier and index fragment
+        run: |
+          python scripts/validate_ideas.py
+          python scripts/validate_idea_index_fragments.py
 
       - name: Commit generated intake branch
         env:
@@ -55,7 +64,7 @@ jobs:
           git config user.name "human-kind-agent-intake[bot]"
           git config user.email "human-kind-agent-intake[bot]@users.noreply.github.com"
           git checkout -B "$branch"
-          git add ideas data/idea-index.yaml
+          git add ideas data/idea-index.d
           git commit -m "Materialize agent idea #${ISSUE_NUMBER}"
           git push --force-with-lease origin "$branch"
           echo "BRANCH=$branch" >> "$GITHUB_ENV"

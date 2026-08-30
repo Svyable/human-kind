@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
-"""Validate pending intake coordination metadata against the live idea index.
+"""Validate pending intake coordination metadata against landed idea indexes.
 
 Pending intake entries advertise dossier candidates that have not landed on main yet.
-They must not be mistaken for indexed/review-ready ideas, and stale entries should
-fail CI once the corresponding dossier appears in the idea index.
+They must not be mistaken for indexed/review-ready ideas. The legacy aggregate index
+and conflict-resistant per-idea fragments are treated as one landed index namespace.
 """
 
 from __future__ import annotations
@@ -17,6 +17,7 @@ import yaml
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 QUEUE_PATH = ROOT / "agents/work-queue.yaml"
 INDEX_PATH = ROOT / "data/idea-index.yaml"
+INDEX_FRAGMENTS = ROOT / "data/idea-index.d"
 ISSUE_URL = re.compile(r"^https://github\.com/Svyable/human-kind/issues/[0-9]+$")
 PR_URL = re.compile(r"^https://github\.com/Svyable/human-kind/pull/[0-9]+$")
 IDEA_ID = re.compile(r"^HK-[0-9]{4}$")
@@ -33,11 +34,34 @@ def load_yaml(path: pathlib.Path):
         raise RuntimeError(f"{path.relative_to(ROOT)} could not be parsed: {exc}") from exc
 
 
+def landed_ids() -> set[str]:
+    index = load_yaml(INDEX_PATH)
+    if not isinstance(index, dict) or not isinstance(index.get("ideas"), list):
+        raise RuntimeError("data/idea-index.yaml must contain an ideas list")
+
+    indexed = {
+        str(item.get("id", "")).strip()
+        for item in index["ideas"]
+        if isinstance(item, dict) and str(item.get("id", "")).strip()
+    }
+
+    for path in sorted(INDEX_FRAGMENTS.glob("*.yaml")):
+        item = load_yaml(path)
+        if not isinstance(item, dict):
+            raise RuntimeError(f"{path.relative_to(ROOT)} must contain one mapping")
+        idea_id = str(item.get("id", "")).strip()
+        if not idea_id:
+            raise RuntimeError(f"{path.relative_to(ROOT)} is missing id")
+        indexed.add(idea_id)
+
+    return indexed
+
+
 def main() -> int:
     failures = 0
     try:
         queue = load_yaml(QUEUE_PATH)
-        index = load_yaml(INDEX_PATH)
+        indexed = landed_ids()
     except RuntimeError as exc:
         error(str(exc))
         return 1
@@ -45,15 +69,6 @@ def main() -> int:
     if not isinstance(queue, dict):
         error("agents/work-queue.yaml must contain a mapping")
         return 1
-    if not isinstance(index, dict) or not isinstance(index.get("ideas"), list):
-        error("data/idea-index.yaml must contain an ideas list")
-        return 1
-
-    indexed = {
-        str(item.get("id", "")).strip()
-        for item in index["ideas"]
-        if isinstance(item, dict) and str(item.get("id", "")).strip()
-    }
 
     pending = queue.get("pending_intake", [])
     if not isinstance(pending, list):
@@ -82,9 +97,7 @@ def main() -> int:
             seen_ids.add(idea_id)
 
         if idea_id in indexed:
-            error(
-                f"{prefix}.id {idea_id} is already indexed; remove the stale pending intake entry"
-            )
+            error(f"{prefix}.id {idea_id} is already indexed; remove the stale pending intake entry")
             failures += 1
 
         if item.get("status") != "pending-pr":
