@@ -1,0 +1,65 @@
+# AR-0034 — Skeptic review
+
+**Idea:** HK-0023 — High-frequency small-group tutoring for students substantially behind learning goals  
+**Agent:** `chatgpt-gpt-5.6-sol`  
+**Source Issue:** https://github.com/Svyable/human-kind/issues/34  
+**Created:** 2026-08-30  
+**Decision authority:** none
+
+> Agent-produced review. Human verification is required before this review influences lifecycle promotion or consequential action.
+
+## Review summary
+
+HK-0023 proposes high-frequency, targeted small-group tutoring for students substantially behind learning goals. The central mechanism is plausible and supported by randomized tutoring evidence, but average efficacy should not be treated as evidence that a specific school implementation will preserve effect size, equity, or cost-effectiveness. The strongest reason for caution is heterogeneity: effects vary with tutor model, age, subject, group size, dosage, and implementation context, while scaling strategies can change the mechanism itself. This review recommends keeping the dossier at `needs-evidence` until the proposed evidence map separates efficacy from implementation and scaling assumptions.
+
+## Findings
+
+- SOURCED — The Nickow, Oreopoulos, and Quan meta-analysis reports a pooled tutoring effect around 0.37 SD, but also reports meaningful variation by tutor type, grade, subject, timing, and program context; teacher/paraprofessional tutoring and in-school delivery tend to perform better on average.
+- SOURCED — Fryer and Howard-Noveck's randomized high-dosage reading study found positive but statistically insignificant mean ELA effects, no math effect, and substantial heterogeneity across student groups, illustrating that high dosage alone does not guarantee uniform academic gains.
+- SOURCED — Bhatt et al. show that a lower-cost model combining tutor time with computer-assisted learning produced a 0.23 SD math gain, while explicitly identifying staffing and cost as central scaling constraints. This supports scalability potential but also shows that scale requires changing delivery design rather than simply reproducing intensive tutoring.
+- SOURCED — Carlana and La Ferrara find positive effects from online tutoring, with higher dosage producing stronger effects and group tutoring producing smaller effects than individual tutoring. Group size and dosage therefore appear consequential rather than interchangeable implementation details.
+- SOURCED — Cortes et al. report strong effects from short-burst 1:1 early-reading tutoring in kindergarten, which is encouraging but materially different from the dossier's broader target population and reinforces the need to avoid transferring one age/subject/model result wholesale.
+- SOURCED — Oreopoulos and Low's 2026 randomized Khanmigo study found only modest gains and very limited substantive AI-tutor engagement; the authors identify engagement as a binding constraint. Technology-assisted scaling can therefore alter utilization and mechanism, not merely lower cost.
+- INFERENCE — A school can implement something called “high-frequency tutoring” while varying the active ingredients enough that the evidence base becomes only weakly predictive. The dossier should pre-specify which features are treated as mechanism-critical versus adaptable.
+- INFERENCE — Opportunity cost should be evaluated as an outcome, not only a narrative risk: tutoring that raises tested achievement while displacing valued instruction, electives, rest, or support services may have ambiguous net benefit.
+- INFERENCE — Average treatment effects can conceal unequal access or unequal realized dosage. Eligibility, attendance, disability accommodation, language access, tutor assignment, and scheduling should be measured as distributional implementation outcomes.
+
+## Sources and evidence
+
+- https://www.nber.org/papers/w27476
+- https://www.nber.org/papers/w23792
+- https://www.nber.org/papers/w32510
+- https://www.nber.org/papers/w32272
+- https://www.nber.org/papers/w32039
+- https://www.nber.org/papers/w35620
+- ideas/education/HK-0023-high-frequency-small-group-tutoring-for-students-substantially-b/evidence.md
+- ideas/education/HK-0023-high-frequency-small-group-tutoring-for-students-substantially-b/risks.md
+
+## Counterevidence and uncertainty
+
+- The tutoring meta-analysis provides substantial positive evidence, so the relevant uncertainty is not whether tutoring can work but whether a chosen local implementation preserves the conditions associated with those effects.
+- The lower-cost technology-assisted tutoring RCT demonstrates that some delivery changes can retain substantial effects, so staffing and cost constraints do not by themselves imply that scaling will fail.
+- The early-reading trial reports strong results in a scalable short-burst model, which is counterevidence to a blanket claim that lower-intensity or operationally simpler models necessarily sacrifice effectiveness.
+- The dossier currently spans multiple ages, subjects, tutor types, group sizes, and delivery modes; it is uncertain which evidence should be considered directly transportable to any future target setting.
+- The subgroup heterogeneity observed in some studies may reflect tutor characteristics, context, chance, or other mechanisms; it should not be generalized to demographic groups without further evidence.
+- The 2026 AI-tutoring evidence concerns an AI-supported remedial math context, not the dossier's core human small-group model; it is relevant specifically to the dossier's technology-assisted scaling risk, not as a direct test of the central intervention.
+
+## Risks and safety
+
+- Scaling pressure could favor easier-to-staff or technology-heavy models that no longer instantiate the mechanism responsible for the strongest evidence.
+- Students with unstable attendance may receive systematically lower dosage while still being counted as offered tutoring, potentially widening gaps in realized benefit.
+- Scheduling tutoring during the school day can displace core instruction, electives, disability services, meals, rest, or peer activities; those opportunity costs may differ across students.
+- Need-based targeting can stigmatize participants or create opaque eligibility thresholds unless selection rules and appeals are transparent.
+- Average outcome reporting can mask access, dosage, attrition, or effect differences for multilingual learners, students with disabilities, or other locally relevant groups.
+- Short-term standardized-test gains may not persist or may fail to capture broader educational costs and benefits.
+- This review is literature-based and does not establish stakeholder preferences, local feasibility, or implementation acceptability.
+
+## Recommended status
+
+`needs-evidence`
+
+This is a recommendation only. It does not change `idea.yaml`.
+
+## Smallest responsible next step
+
+Complete the dossier's proposed evidence map before any pilot design. Pre-register comparison dimensions for at least: age/grade, subject, tutor type and training, group size, sessions per week, minutes per session, delivery mode, whether tutoring occurs during school, comparator condition, realized dosage/attendance, effect size, durability, cost, and reported subgroup effects. Add an explicit column distinguishing direct evidence from implementation inference, and include at least one null/heterogeneous result and one scaled or technology-assisted model. Use that map to identify a narrow target population and a small set of mechanism-critical design features for later human review; do not recruit students or deploy a program.
