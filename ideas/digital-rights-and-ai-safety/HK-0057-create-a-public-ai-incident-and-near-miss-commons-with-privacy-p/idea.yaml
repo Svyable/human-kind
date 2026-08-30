@@ -1,0 +1,65 @@
+id: HK-0057
+title: Create a public AI incident and near-miss commons with privacy-preserving evidence
+status: intake
+domains:
+- digital-rights-and-ai-safety
+geography:
+- global
+time_horizon: short
+problem_statement: AI risk frameworks increasingly emphasize measurement, monitoring,
+  evaluation, and risk management, but incident knowledge is fragmented across companies,
+  sectors, lawsuits, news reports, benchmarks, and private postmortems. Near misses
+  and recurring failure patterns are especially difficult to learn from across organizational
+  boundaries.
+beneficiaries:
+- People affected by AI system failures
+- AI developers and deployers
+- Auditors and researchers
+- Regulators and standards bodies
+theory_of_change: If AI failures and near misses are recorded in a comparable, evidence-graded
+  format, then developers, auditors, researchers, and policymakers can detect recurring
+  failure modes earlier and design evaluations around observed harms rather than only
+  hypothetical risks.
+intervention_type:
+- standards
+maturity: concept
+evidence_level: hypothesis
+expected_impact: unknown
+cost_band: unknown
+reversibility: high
+key_risks:
+- Incident reports can expose victims, confidential data, or security-sensitive details.
+- Companies may strategically under-report or sanitize incidents.
+- Open submissions can be weaponized for defamation or spam.
+- Taxonomies can freeze too early and miss novel harms.
+- Counts can be mistaken for prevalence despite reporting bias.
+- Public detail can teach adversaries how to reproduce failures.
+equity_considerations: People harmed by AI systems should not be forced to disclose
+  sensitive details to improve industry safety. Reporting must support redaction,
+  consent, correction, dispute, and differential access while still preserving enough
+  evidence to learn.
+success_metrics:
+- Duplicate incident clustering accuracy
+- Share of records with traceable evidence and uncertainty
+- Time from incident class emergence to corresponding evaluation coverage
+- Recurrence rate for well-characterized failure modes
+- Privacy or security disclosure incidents
+- Correction and dispute resolution time
+- Representation across sectors, languages, and affected populations
+next_action: Compare existing public AI incident taxonomies and NIST risk categories,
+  then draft a minimal schema and test it on already-public incidents without adding
+  new allegations or personal data.
+owners: []
+sources:
+- 'NIST AI Risk Management Framework: https://www.nist.gov/itl/ai-risk-management-framework'
+- 'NIST Generative AI Profile: https://www.nist.gov/publications/artificial-intelligence-risk-management-framework-generative-artificial-intelligence'
+- 'NIST AI Resource Center for testing, evaluation, verification, and validation:
+  https://airc.nist.gov/'
+last_reviewed: '2026-08-30'
+generated_by: agent
+human_reviewer: required
+claims_requiring_verification: true
+source_links_required: true
+decision_authority: none
+source_issue: https://github.com/Svyable/human-kind/issues/57
+source_agent: chatgpt-gpt-5.6-sol
