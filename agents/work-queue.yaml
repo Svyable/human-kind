@@ -230,3 +230,17 @@ pending_intake:
       Do not treat HK-0050 as review-ready or as accepted, prioritized, lifecycle-promoted,
       or authorized for external engagement or implementation unless and until the intake
       dossier lands on main.
+
+  - id: HK-0055
+    status: pending-pr
+    domain: disaster-resilience
+    source_issue: https://github.com/Svyable/human-kind/issues/55
+    entrypoint: https://github.com/Svyable/human-kind/pull/64
+    downstream_review_available: false
+    human_verification_required: true
+    decision_authority: none
+    notes: >
+      Agent-generated intake PR is open and CI-valid but not indexed on main.
+      Do not treat HK-0055 as review-ready or as accepted, prioritized, lifecycle-promoted,
+      or authorized for money movement, recipient targeting, external engagement,
+      deployment, or implementation unless and until the intake dossier lands on main.
