@@ -1,5 +1,5 @@
 version: 1
-last_generated: '2026-08-29'
+last_generated: '2026-08-30'
 ideas:
 - id: HK-0004
   title: Maintain an adversarial regression corpus for agent intake quality
@@ -39,3 +39,13 @@ ideas:
   last_reviewed: '2026-08-29'
   path: ideas/poverty-and-economic-mobility/HK-0029-test-flexible-snap-interviews-to-reduce-procedural-denials-while
   source_issue: https://github.com/Svyable/human-kind/issues/29
+- id: HK-0058
+  title: Make provenance visible by default for high-impact public media without treating
+    provenance as truth
+  status: intake
+  domains:
+  - information-integrity
+  evidence_level: hypothesis
+  last_reviewed: '2026-08-30'
+  path: ideas/information-integrity/HK-0058-make-provenance-visible-by-default-for-high-impact-public-media
+  source_issue: https://github.com/Svyable/human-kind/issues/58

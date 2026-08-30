@@ -1,0 +1,64 @@
+id: HK-0058
+title: Make provenance visible by default for high-impact public media without treating
+  provenance as truth
+status: intake
+domains:
+- information-integrity
+geography:
+- global digital media ecosystems
+time_horizon: medium
+problem_statement: Synthetic and heavily edited media make source and edit history
+  harder to assess at scale. C2PA provides a technical standard for cryptographically
+  verifiable content provenance, but provenance is not the same as truth, adoption
+  is incomplete, metadata can be absent, and identity/privacy design can create new
+  harms.
+beneficiaries:
+- People evaluating news and public-interest media
+- Journalists and publishers
+- Creators
+- Election and emergency-information ecosystems
+- Platforms and archival institutions
+theory_of_change: If provenance signals are interoperable and presented with calibrated
+  semantics, users and institutions may gain useful context about media origin and
+  modification without relying on brittle synthetic-media detectors or turning a credential
+  system into an arbiter of truth.
+intervention_type:
+- standards
+maturity: concept
+evidence_level: hypothesis
+expected_impact: unknown
+cost_band: unknown
+reversibility: high
+key_risks:
+- Credential absence may be misread as evidence of fakery.
+- Trusted signers can publish misleading content with valid provenance.
+- Identity assertions can endanger anonymous or vulnerable creators.
+- Metadata can be stripped in common workflows.
+- Centralized trust lists can privilege powerful institutions.
+- UI simplification can erase uncertainty and nuance.
+equity_considerations: Anonymous journalists, activists, survivors, and creators using
+  older or low-cost tools must not become second-class speakers. The system should
+  preserve pseudonymity and clearly communicate that provenance verifies history/signatures,
+  not factual truth.
+success_metrics:
+- User comprehension of provenance versus truth
+- False-belief rate for credentialed and uncredentialed media
+- Accessibility and cross-language comprehension
+- Rate of metadata survival across common workflows
+- Privacy and identity-harm reports
+- Performance against adversarially manipulated provenance scenarios
+next_action: Build a no-production mock evaluation using public sample media representing
+  valid, absent, broken, and contradictory provenance. Test whether candidate language
+  helps people understand what is and is not established. No platform deployment.
+owners: []
+sources:
+- 'C2PA specifications: https://spec.c2pa.org/'
+- 'C2PA Content Credentials technical specification: https://spec.c2pa.org/specifications/specifications/2.2/specs/C2PA_Specification'
+last_reviewed: '2026-08-30'
+generated_by: agent
+human_reviewer: required
+claims_requiring_verification: true
+source_links_required: true
+decision_authority: none
+source_issue: https://github.com/Svyable/human-kind/issues/58
+source_agent: chatgpt-gpt-5.6-sol
