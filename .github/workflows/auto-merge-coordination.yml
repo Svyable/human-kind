@@ -1,4 +1,4 @@
-name: Auto-merge coordination
+name: Auto-merge validated agent PRs
 
 on:
   workflow_run:
@@ -16,7 +16,7 @@ jobs:
       github.event.workflow_run.event == 'pull_request'
     runs-on: ubuntu-latest
     steps:
-      - name: Merge eligible coordination PR
+      - name: Merge eligible validated agent PR
         uses: actions/github-script@v8
         with:
           script: |
@@ -43,14 +43,13 @@ jobs:
               return;
             }
 
-            // Only branches deliberately created for bounded coordination work are eligible.
-            // agent-intake/* and agent-review/* are intentionally excluded.
-            if (!pr.head.ref.startsWith('agent/')) {
-              core.info(`PR #${pr.number} is not on an agent/ coordination branch; skipping.`);
-              return;
-            }
+            const files = await github.paginate(
+              github.rest.pulls.listFiles,
+              { owner, repo, pull_number: pr.number, per_page: 100 }
+            );
+            const paths = files.map(file => file.filename);
 
-            const allowedPaths = new Set([
+            const coordinationPaths = new Set([
               'AGENTS.md',
               'llms.txt',
               'agents/README.md',
@@ -59,18 +58,85 @@ jobs:
               'agents/work-queue.yaml'
             ]);
 
-            const files = await github.paginate(
-              github.rest.pulls.listFiles,
-              { owner, repo, pull_number: pr.number, per_page: 100 }
-            );
-            const changedPaths = files.map(file => file.filename);
+            function coordinationEligible() {
+              return pr.head.ref.startsWith('agent/') &&
+                paths.length > 0 &&
+                paths.every(path => coordinationPaths.has(path));
+            }
 
-            if (changedPaths.length === 0 || !changedPaths.every(path => allowedPaths.has(path))) {
-              core.info(`PR #${pr.number} changes paths outside the coordination allowlist: ${changedPaths.join(', ')}`);
+            function intakeEligible() {
+              if (!/^agent-intake\/issue-\d+$/.test(pr.head.ref)) return false;
+              if (paths.length < 2 || !paths.includes('data/idea-index.yaml')) return false;
+
+              const dossierFiles = files.filter(file => file.filename !== 'data/idea-index.yaml');
+              const allowedNames = new Set([
+                'README.md',
+                'evidence.md',
+                'idea.yaml',
+                'proposal.md',
+                'risks.md',
+                'updates.md'
+              ]);
+              const roots = new Set();
+              for (const file of dossierFiles) {
+                const match = file.filename.match(/^(ideas\/[^/]+\/HK-\d{4}-[^/]+)\/([^/]+)$/);
+                if (!match || !allowedNames.has(match[2]) || file.status !== 'added') return false;
+                roots.add(match[1]);
+              }
+              return roots.size === 1 && dossierFiles.some(file => file.filename.endsWith('/idea.yaml'));
+            }
+
+            function reviewEligible() {
+              if (!/^agent-review\/issue-\d+$/.test(pr.head.ref)) return false;
+              if (files.length !== 2) return false;
+
+              const roots = new Set();
+              const extensions = new Set();
+              for (const file of files) {
+                const match = file.filename.match(/^(ideas\/[^/]+\/HK-\d{4}-[^/]+)\/reviews\/[^/]+\.(md|yaml)$/);
+                if (!match || file.status !== 'added') return false;
+                roots.add(match[1]);
+                extensions.add(match[2]);
+              }
+              return roots.size === 1 && extensions.has('md') && extensions.has('yaml');
+            }
+
+            const lane = coordinationEligible()
+              ? 'coordination'
+              : intakeEligible()
+                ? 'intake'
+                : reviewEligible()
+                  ? 'review'
+                  : null;
+
+            if (!lane) {
+              core.info(`PR #${pr.number} is outside unattended agent path/branch scopes: ${paths.join(', ')}`);
               return;
             }
 
-            core.info(`Auto-merging coordination PR #${pr.number} after successful Validate commons.`);
+            const reviews = await github.paginate(
+              github.rest.pulls.listReviews,
+              { owner, repo, pull_number: pr.number, per_page: 100 }
+            );
+            const latestByUser = new Map();
+            for (const review of reviews) latestByUser.set(review.user?.login, review.state);
+            if ([...latestByUser.values()].includes('CHANGES_REQUESTED')) {
+              core.info(`PR #${pr.number} has an outstanding changes-requested review; skipping.`);
+              return;
+            }
+
+            const refreshed = await github.rest.pulls.get({ owner, repo, pull_number: pr.number });
+            if (
+              refreshed.data.state !== 'open' ||
+              refreshed.data.draft ||
+              refreshed.data.head.sha !== run.head_sha ||
+              refreshed.data.base.ref !== 'main'
+            ) {
+              core.info(`PR #${pr.number} moved after validation; skipping stale merge.`);
+              return;
+            }
+
+            core.info(`Auto-merging validated ${lane} PR #${pr.number}.`);
             const result = await github.rest.pulls.merge({
               owner,
               repo,
