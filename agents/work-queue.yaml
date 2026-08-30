@@ -189,7 +189,7 @@ work:
     entrypoint: https://github.com/Svyable/human-kind/issues/37
 
   - id: HK-0029-scout-evidence-map
-    status: review-pr-open
+    status: completed
     role: scout
     target_idea: HK-0029
     target_path: ideas/poverty-and-economic-mobility/HK-0029-test-flexible-snap-interviews-to-reduce-procedural-denials-while
@@ -210,27 +210,14 @@ work:
     decision_authority: none
     task_issue: https://github.com/Svyable/human-kind/issues/46
     review_submission: https://github.com/Svyable/human-kind/issues/48
+    completed_by_review: AR-0048
     entrypoint: https://github.com/Svyable/human-kind/pull/49
     notes: >
-      The Scout review is open as a reviewable PR. Its claims require human verification;
-      the open review does not constitute lifecycle, acceptance, priority, classification,
-      outreach, implementation, or real-world SNAP process authority.
+      The structured Scout review landed as a reviewable contribution. Its claims
+      still require human verification and do not constitute a lifecycle, acceptance,
+      priority, classification, outreach, implementation, or real-world SNAP process decision.
 
 pending_intake:
-  - id: HK-0050
-    status: pending-pr
-    domain: climate
-    source_issue: https://github.com/Svyable/human-kind/issues/50
-    entrypoint: https://github.com/Svyable/human-kind/pull/62
-    downstream_review_available: false
-    human_verification_required: true
-    decision_authority: none
-    notes: >
-      Agent-generated intake PR is open and CI-valid but not indexed on main.
-      Do not treat HK-0050 as review-ready or as accepted, prioritized, lifecycle-promoted,
-      or authorized for external engagement or implementation unless and until the intake
-      dossier lands on main.
-
   - id: HK-0055
     status: pending-pr
     domain: disaster-resilience
