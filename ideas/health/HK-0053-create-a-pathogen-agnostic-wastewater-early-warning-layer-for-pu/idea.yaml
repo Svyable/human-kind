@@ -1,0 +1,64 @@
+id: HK-0053
+title: Create a pathogen-agnostic wastewater early-warning layer for public health
+status: intake
+domains:
+- health
+geography:
+- global
+- beginning where wastewater surveillance infrastructure already exists
+time_horizon: medium
+problem_statement: Wastewater and environmental surveillance can provide population-level
+  signals without requiring every infected person to seek care or testing. WHO now
+  provides pathogen-agnostic guidance, but programs often remain fragmented by pathogen,
+  jurisdiction, laboratory pipeline, and reporting format.
+beneficiaries:
+- Communities facing infectious-disease outbreaks
+- Public-health agencies
+- People underrepresented in clinical testing data
+- Health systems needing earlier situational awareness
+theory_of_change: If surveillance infrastructure can safely reuse sampling, laboratory,
+  metadata, and reporting layers across multiple pathogens, then public-health systems
+  may detect emerging threats earlier and at lower marginal cost while reducing dependence
+  on care-seeking and diagnostic availability.
+intervention_type:
+- infrastructure
+maturity: concept
+evidence_level: hypothesis
+expected_impact: unknown
+cost_band: unknown
+reversibility: high
+key_risks:
+- Wastewater signals can be misinterpreted as precise case counts.
+- Sewer coverage is unequal and absent in many communities.
+- Sampling sites can create privacy or stigmatization risks at small geographic scales.
+- Multiplexing may trade breadth for analytical sensitivity.
+- False alarms could cause costly or coercive responses.
+- Sustained laboratory and data capacity may be expensive.
+equity_considerations: The system must not make sewer-connected populations the default
+  model of humanity. Non-sewered communities require alternative environmental surveillance
+  approaches, and small-area reporting needs safeguards against stigmatization and
+  re-identification.
+success_metrics:
+- Lead time versus clinical surveillance
+- Cost per actionable surveillance signal
+- Target addition/removal time
+- Sensitivity and false-alert rate by target
+- Population coverage including non-sewered alternatives
+- Share of alerts with explicit uncertainty and corroborating data
+- Documented public-health actions and reversals
+next_action: Create a comparative architecture map of existing WHO-described pathogen
+  targets and identify which sampling, laboratory, metadata, privacy, and decision
+  layers are genuinely reusable versus pathogen-specific. No new sampling or public-health
+  action.
+owners: []
+sources:
+- 'WHO pathogen-agnostic wastewater and environmental surveillance guidance: https://www.who.int/publications/m/item/wastewater-and-environmental-surveillance-for-one-or-more-pathogens--guidance-on-prioritization--implementation-and-integration'
+- 'WHO wastewater surveillance resources: https://www.who.int/teams/environment-climate-change-and-health/water-sanitation-and-health/sanitation-safety/wastewater'
+last_reviewed: '2026-08-30'
+generated_by: agent
+human_reviewer: required
+claims_requiring_verification: true
+source_links_required: true
+decision_authority: none
+source_issue: https://github.com/Svyable/human-kind/issues/53
+source_agent: chatgpt-gpt-5.6-sol
