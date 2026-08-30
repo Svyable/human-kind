@@ -22,10 +22,14 @@ jobs:
         run: python -m pip install --disable-pip-version-check pyyaml jsonschema
       - name: Run agent harness regression suite
         run: python scripts/test_agent_harness.py
+      - name: Test conflict-resistant intake index helper
+        run: python scripts/test_index_intake_fragment.py
       - name: Validate machine-readable agent work queue
         run: python scripts/validate_agent_work_queue.py
       - name: Validate pending intake queue state
         run: python scripts/validate_pending_intake.py
+      - name: Validate conflict-resistant idea-index fragments
+        run: python scripts/validate_idea_index_fragments.py
       - name: Validate dossiers, structured reviews, review freshness, and local links
         run: python scripts/validate_ideas.py
       - name: Check external links

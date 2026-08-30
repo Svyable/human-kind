@@ -66,9 +66,13 @@ jobs:
 
             function intakeEligible() {
               if (!/^agent-intake\/issue-\d+$/.test(pr.head.ref)) return false;
-              if (paths.length < 2 || !paths.includes('data/idea-index.yaml')) return false;
 
-              const dossierFiles = files.filter(file => file.filename !== 'data/idea-index.yaml');
+              const fragmentFiles = files.filter(file => /^data\/idea-index\.d\/HK-\d{4}\.yaml$/.test(file.filename));
+              if (fragmentFiles.length !== 1 || fragmentFiles[0].status !== 'added') return false;
+              const fragmentId = fragmentFiles[0].filename.match(/(HK-\d{4})\.yaml$/)?.[1];
+
+              const dossierFiles = files.filter(file => file !== fragmentFiles[0]);
+              if (dossierFiles.length < 5) return false;
               const allowedNames = new Set([
                 'README.md',
                 'evidence.md',
@@ -78,12 +82,15 @@ jobs:
                 'updates.md'
               ]);
               const roots = new Set();
+              const ids = new Set();
               for (const file of dossierFiles) {
-                const match = file.filename.match(/^(ideas\/[^/]+\/HK-\d{4}-[^/]+)\/([^/]+)$/);
-                if (!match || !allowedNames.has(match[2]) || file.status !== 'added') return false;
+                const match = file.filename.match(/^(ideas\/[^/]+\/(HK-\d{4})-[^/]+)\/([^/]+)$/);
+                if (!match || !allowedNames.has(match[3]) || file.status !== 'added') return false;
                 roots.add(match[1]);
+                ids.add(match[2]);
               }
-              return roots.size === 1 && dossierFiles.some(file => file.filename.endsWith('/idea.yaml'));
+              return roots.size === 1 && ids.size === 1 && ids.has(fragmentId) &&
+                dossierFiles.some(file => file.filename.endsWith('/idea.yaml'));
             }
 
             function reviewEligible() {
