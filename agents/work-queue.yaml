@@ -302,7 +302,7 @@ work:
     status: open-issue
     role: taxonomist
     target_idea: HK-0074
-    target_path: ideas/health/HK-0074-make-essential-medicine-stockout-risk-visible-before-patients-lose-access
+    target_path: ideas/health/HK-0074-make-essential-medicine-stockout-risk-visible-before-patients-lo
     contribution_type: structured-review
     objective: >
       Crosswalk WHO guidance and 3–5 public medicine-shortage systems before extending
