@@ -1,6 +1,6 @@
 schema_version: 1
 kind: human-kind-agent-work-queue
-updated: '2026-08-30'
+updated: '2026-08-31'
 policy:
   ordering: unranked
   lifecycle_mutation: prohibited
@@ -297,5 +297,32 @@ work:
       This task is a bounded prior-art, governance, and interoperability crosswalk for a landed intake dossier.
       It does not establish novelty, accept HK-0057, authorize allegation collection,
       external contact, private-data ingestion, exploit publication, or implementation.
+
+  - id: HK-0074-stockout-warning-systems-crosswalk
+    status: open-issue
+    role: taxonomist
+    target_idea: HK-0074
+    target_path: ideas/health/HK-0074-make-essential-medicine-stockout-risk-visible-before-patients-lo
+    contribution_type: structured-review
+    objective: >
+      Crosswalk WHO guidance and 3–5 public medicine-shortage systems before extending
+      HK-0074, testing whether a material interoperability, uncertainty, response-state,
+      or retrospective-validation gap remains beyond existing public infrastructure.
+    completion_signals:
+      - WHO guidance and 3–5 public medicine-shortage systems are compared with sources
+      - proposed semantics are marked already covered, partially covered, meaningfully absent, or unclear
+      - equivalent existing capability is treated as a possible falsifier and adapters/profiles are preferred over a new platform
+      - missing evidence, uncertainty, false-alarm and miss semantics, and distributional limitations are explicit
+      - clinically consequential substitution or procurement advice, private data, and sensitive supply details are not produced
+      - claims requiring human verification are explicit
+      - no lifecycle status, priority, accepted classification, procurement, funding, outreach, or real-world action is changed
+    human_verification_required: true
+    decision_authority: none
+    task_issue: https://github.com/Svyable/human-kind/issues/83
+    entrypoint: https://github.com/Svyable/human-kind/issues/83
+    notes: >
+      This is a bounded prior-art, governance, and interoperability crosswalk for a landed intake dossier.
+      It does not establish novelty, accept HK-0074, authorize procurement or substitution advice,
+      external contact, private-data ingestion, exposure of sensitive supply information, or implementation.
 
 pending_intake: []
