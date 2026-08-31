@@ -1,0 +1,84 @@
+# AR-0088 — Taxonomist review
+
+**Idea:** HK-0057 — Create a public AI incident and near-miss commons with privacy-preserving evidence  
+**Agent:** `chatgpt-gpt-5.6-sol`  
+**Source Issue:** https://github.com/Svyable/human-kind/issues/88  
+**Created:** 2026-08-31  
+**Decision authority:** none
+
+> Agent-produced review. Human verification is required before this review influences lifecycle promotion or consequential action.
+
+## Review summary
+
+HK-0057 proposes a public AI incident and near-miss commons with structured harms, evidence quality, uncertainty, privacy tiers, correction/dispute handling, recurrence, and links to evaluation coverage. Current public infrastructure now overlaps heavily with that scope. OECD's 2025 common reporting framework supplies 29 cross-jurisdictional reporting criteria and its AI Incidents and Hazards Monitor operationalizes incident/hazard classification and metadata. The AI Incident Database (AIID) already supports multiple non-canonical taxonomies, report-to-incident mapping, editorial qualification language, downloadable snapshots, and technical/harm classification. NIST AI RMF guidance already calls for post-deployment monitoring of incidents, errors and near-misses and for databases containing severity, responses, changes, and version history. The strongest remaining case for HK-0057 is therefore not a new incident repository: it is a narrow interoperability/crosswalk profile, if human review confirms material gaps around evidence state, correction/dispute semantics, restricted-detail/privacy tiers, and explicit incident-class-to-evaluation linkage.
+
+## Findings
+
+- SOURCED — OECD's February 2025 common reporting framework is explicitly intended as a global benchmark for AI incident reporting across jurisdictions and sectors and contains 29 criteria. This substantially covers the basic interoperability premise of HK-0057.
+- SOURCED — OECD distinguishes AI incidents (actual harms) from AI hazards (events/circumstances that could plausibly lead to those harms). Its operational AIM pipeline classifies public-media events as incidents, hazards, or unrelated, enriches them with fields including harm type, severity, affected stakeholders, country and industry, and clusters related reporting. This means incident-vs-hazard/near-harm semantics and several contextual fields are already substantially covered.
+- SOURCED — OECD's 2026 analysis explicitly warns that AIM is based on media-reported incidents and hazards. Counts therefore reflect reporting/coverage processes rather than underlying prevalence; this aligns with HK-0057's proposed reporting-bias warning but is not a reason to create a duplicate database.
+- SOURCED — AIID explicitly rejects a single canonical taxonomy: it supports multiple contributed taxonomies and multiple reports/perspectives on incidents. Its current applied taxonomies include CSET harm classification, Goals-Methods-Failures technical causal classification, and MIT AI Risk Repository categories. This already covers much of HK-0057's proposed harm/system/context taxonomy surface while preserving disagreement.
+- SOURCED — AIID's editor guide distinguishes incidents, variants, issues and irrelevant reports; uses qualifying language such as “allegedly” and “reportedly”; and instructs editors to guard against automation, confirmation and cultural bias. These practices partially cover verification uncertainty and duplicate/variant handling, but they are editorial conventions rather than a portable evidence-state schema.
+- SOURCED — AIID exposes weekly point-in-time database snapshots in JSON, MongoDB archive and CSV formats, supporting export and reproducibility. It also exposes report history pages, though the reviewed public documentation did not establish a comprehensive cross-system correction/dispute protocol.
+- SOURCED — NIST AI RMF Playbook Manage 4 calls for post-deployment mechanisms that capture errors, near-misses, incidents and negative impacts; recommends sharing such information with incident databases and stakeholders; and recommends maintaining databases with dates, report counts, impact/severity assessment, responses, system changes, and version history. NIST therefore already supplies a risk-management-side semantic bridge from incidents to response/recovery and continual monitoring.
+- SOURCED — NIST AI RMF is a voluntary risk-management framework, not a public incident registry or cross-registry exchange format. Treating NIST categories as a substitute for incident-report interoperability would therefore overstate its scope.
+- INFERENCE — Candidate HK-0057 field: incident vs hazard / near-harm / near-miss definitions — ALREADY/PARTIALLY COVERED. OECD provides incident/hazard definitions; NIST explicitly addresses near-misses; AIID has incident/issue/variant distinctions. A new vocabulary should not be invented unless a precise unmapped concept is demonstrated.
+- INFERENCE — Candidate field: source provenance and evidence quality — PARTIALLY COVERED. AIM retains source articles and AIID retains incident reports/editorial qualification, but the reviewed sources do not demonstrate a common portable evidence-grade vocabulary across AIID/OECD/NIST.
+- INFERENCE — Candidate field: corroboration / verification state — PARTIALLY COVERED/UNCLEAR. AIID supports multiple reports and qualifying language; AIM clusters multiple articles. I did not find a shared, explicit cross-system verification-state ontology comparable to alleged/corroborated/verified/disputed with normative semantics.
+- INFERENCE — Candidate field: affected populations and harms — ALREADY COVERED to a substantial degree by OECD metadata/reporting criteria and AIID harm taxonomies.
+- INFERENCE — Candidate field: system/deployment context — ALREADY/PARTIALLY COVERED through OECD criteria and AIID taxonomies/context fields.
+- INFERENCE — Candidate field: corrections, disputes and version history — PARTIALLY COVERED. NIST recommends version/history records and AIID exposes report history, but portable dispute/correction semantics across public incident systems remain unclear from reviewed documentation.
+- INFERENCE — Candidate field: privacy / redaction / restricted-detail handling — MEANINGFULLY UNCLEAR in the public crosswalk reviewed here. The systems have governance/privacy practices, but I did not find a shared public tier model for publishable vs restricted incident detail. This is a plausible interoperability gap but requires dedicated legal/privacy review before claiming novelty.
+- INFERENCE — Candidate field: duplicate clustering — ALREADY/PARTIALLY COVERED. AIM clusters events/articles and AIID has report-to-incident/variant rules. Cross-system persistent identifiers and deduplication between registries remain unclear.
+- INFERENCE — Candidate field: mitigation / recurrence — PARTIALLY COVERED. NIST explicitly covers response/recovery, change tracking and monitoring; AIID separately researches incident response. A standardized cross-registry recurrence/mitigation outcome field may still be useful, but novelty is not established.
+- INFERENCE — Candidate field: reporting-bias/prevalence warning — ALREADY COVERED conceptually by OECD's explicit framing of AIM as media-reported data and AIID's multi-perspective/bias-aware editorial model.
+- INFERENCE — Candidate field: interoperability/export identifiers — PARTIALLY COVERED. OECD provides a common reporting framework and AIID provides machine-readable snapshots, but I did not verify a shared identifier/crosswalk mechanism spanning OECD AIM, AIID and NIST-aligned organizational records.
+- INFERENCE — Candidate field: link from incident class to tests/evaluations — MEANINGFULLY UNCLEAR. NIST connects monitoring/TEVV to incidents and emergent risk management, but the reviewed incident repositories/frameworks do not clearly expose a portable relation from incident class to specific evaluation coverage. This is the strongest candidate for a narrow HK-0057 contribution if it survives further review.
+- INFERENCE — Overall taxonomy fit: POSSIBLE-OVERLAP / NEEDS-SCOPE. The repository concept should be narrowed away from “create a public commons” toward testing the smallest interoperable profile for demonstrably missing semantics, or shelved if the latest OECD/AIID work already covers them.
+
+## Sources and evidence
+
+- https://www.oecd.org/en/publications/towards-a-common-reporting-framework-for-ai-incidents_f326d4ac-en.html
+- https://oecd.ai/en/incidents-methodology
+- https://www.oecd.org/en/publications/trends-in-ai-incidents-and-hazards-reported-by-the-media_4f5ff43c-en.html
+- https://oecd.ai/en/site/incidents
+- https://incidentdatabase.ai/taxonomies/
+- https://incidentdatabase.ai/taxonomies/csetv1/
+- https://incidentdatabase.ai/taxonomies/gmf/
+- https://incidentdatabase.ai/editors-guide/
+- https://incidentdatabase.ai/research/snapshots/
+- https://incidentdatabase.ai/research/5-response/
+- https://www.nist.gov/itl/ai-risk-management-framework
+- https://airc.nist.gov/airmf-resources/playbook/manage/
+- https://airc.nist.gov/airmf-resources/playbook/measure/
+- https://github.com/Svyable/human-kind/issues/71
+- https://github.com/Svyable/human-kind/blob/main/ideas/digital-rights-and-ai-safety/HK-0057-create-a-public-ai-incident-and-near-miss-commons-with-privacy-p/idea.yaml
+
+## Counterevidence and uncertainty
+
+- The OECD common framework and AIM are evolving; the public documents reviewed here may not expose every field, API, governance rule, correction process, or planned submission capability.
+- AIID supports multiple taxonomies by design, so absence of one semantic in a reviewed taxonomy does not establish absence from AIID as a whole or from a contributed taxonomy not reviewed in depth.
+- NIST AI RMF 1.0 is currently being revised. Its Playbook provides voluntary risk-management practices rather than a mandatory incident-data schema, so mapping NIST fields directly to registry fields requires care.
+- The reviewed public materials do not establish whether OECD AIM and AIID already maintain internal or forthcoming restricted-detail/privacy tiers, dispute states, or cross-database identifiers not visible in their public documentation.
+- “Near-miss” and OECD “hazard” overlap but are not necessarily identical concepts; collapsing them without a formal semantic crosswalk could erase useful distinctions.
+- Media-derived systems have selection and coverage biases; interoperable schemas cannot make incident counts representative of prevalence.
+- No claim is made here that OECD, AIID, or NIST records are themselves verified ground truth. The crosswalk concerns documented schemas, governance semantics, and public methods, not the truth of individual incident allegations.
+
+## Risks and safety
+
+- A new public incident database would duplicate existing infrastructure, fragment identifiers, increase moderation burden, and create another surface for allegations, privacy harms and exploit-sensitive disclosure.
+- A forced universal taxonomy could erase legitimate disagreement among harm models, legal regimes and affected communities; interoperability should preserve source vocabularies and provenance rather than normalize them away.
+- Evidence-grade labels can create false confidence if they are treated as adjudications of disputed allegations rather than transparent descriptions of available evidence and review state.
+- Cross-system deduplication can accidentally join records about different events or people; any future test should use already-public records and reversible mappings only.
+- Linking incident classes to evaluations could expose security-sensitive test gaps if implemented incautiously; the first step should remain a public-schema mapping, not publication of exploitable weaknesses.
+- This review uses public documentation only. It does not contact affected people, companies, maintainers, regulators or other external organizations, and it does not add allegations or personal data.
+
+## Recommended status
+
+`needs-scope`
+
+This is a recommendation only. It does not change `idea.yaml`.
+
+## Smallest responsible next step
+
+Do not build a new incident repository. Produce a versioned, source-backed crosswalk table for OECD common-reporting criteria, OECD AIM fields/methods, AIID core/report fields plus its CSET/GMF taxonomy fields, and NIST AI RMF Manage/Measure incident-monitoring concepts. Limit the candidate extension to four questions: (1) is there a portable evidence/corroboration-state vocabulary; (2) are correction/dispute/version semantics interoperable; (3) is there a public restricted-detail/privacy-tier semantic; and (4) is there an explicit, non-sensitive relation from incident class to evaluation coverage? For every proposed field, require a source and mark already covered, partially covered, meaningfully absent, or unclear. If all four are adequately covered, recommend shelving the standalone HK-0057 commons concept for human consideration. Use public documentation and public sample metadata only; do not ingest allegations, personal data, exploit details, or create a production database.
