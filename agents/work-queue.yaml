@@ -217,4 +217,31 @@ work:
       still require human verification and do not constitute a lifecycle, acceptance,
       priority, classification, outreach, implementation, or real-world SNAP process decision.
 
+  - id: HK-0056-edna-standards-crosswalk
+    status: open-issue
+    role: taxonomist
+    target_idea: HK-0056
+    target_path: ideas/biodiversity/HK-0056-create-an-open-biodiversity-observatory-from-environmental-dna-w
+    contribution_type: structured-review
+    objective: >
+      Crosswalk existing eDNA standards and infrastructure before extending HK-0056,
+      testing whether any distinct value remains in uncertainty, confirmation thresholds,
+      provenance, decision-use semantics, sensitive-location controls, governance, or
+      routing signals to conventional surveys.
+    completion_signals:
+      - USGS, GBIF, OBIS, and relevant FAIR/FAIRe eDNA guidance are compared with sources
+      - proposed semantics are marked already covered, partially covered, meaningfully absent, or unclear
+      - overlap is treated as a possible falsifier and adapters/profiles are preferred over a new database
+      - sensitive species locations and community or Indigenous consent are not inferred or exposed
+      - disagreement, uncertainty, and claims requiring human verification are explicit
+      - no lifecycle status, priority, or accepted classification is changed
+    human_verification_required: true
+    decision_authority: none
+    task_issue: https://github.com/Svyable/human-kind/issues/75
+    entrypoint: https://github.com/Svyable/human-kind/issues/75
+    notes: >
+      This task is a bounded prior-art and governance crosswalk for a landed intake dossier.
+      It does not establish novelty, accept HK-0056, authorize field sampling, publication
+      of sensitive locations, or any operational conservation action.
+
 pending_intake: []
