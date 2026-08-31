@@ -217,6 +217,33 @@ work:
       still require human verification and do not constitute a lifecycle, acceptance,
       priority, classification, outreach, implementation, or real-world SNAP process decision.
 
+  - id: HK-0055-skeptic-trigger-stress-test
+    status: open-issue
+    role: skeptic
+    target_idea: HK-0055
+    target_path: ideas/disaster-resilience/HK-0055-pre-commit-disaster-cash-before-forecasts-cross-the-danger-thres
+    contribution_type: structured-review
+    objective: >
+      Stress-test whether a retrospective, predeclared forecast-trigger analysis can
+      distinguish useful anticipatory cash from apparent performance created by post-hoc
+      threshold, event, outcome, or subgroup selection.
+    completion_signals:
+      - supporting evidence and counterevidence are both traceable to primary or authoritative sources where available
+      - forecast skill is separated from welfare value, implementation reliability, and asymmetric error costs
+      - hits, false alarms, misses, correct rejections, useful lead time, and approximate activation cost are considered
+      - targeting, payment rails, market functioning, and transfer assumptions are treated explicitly
+      - post-hoc selection risk, missing evidence, and distributional failures are preserved rather than inferred away
+      - claims requiring human verification are explicit
+      - no lifecycle status, priority, accepted classification, funding, targeting, or real-world action is changed
+    human_verification_required: true
+    decision_authority: none
+    task_issue: https://github.com/Svyable/human-kind/issues/80
+    entrypoint: https://github.com/Svyable/human-kind/issues/80
+    notes: >
+      This is a bounded retrospective evidence stress-test for a landed intake dossier.
+      It does not authorize a live trigger, money movement, recipient-list creation,
+      external contact, operational deployment, or any humanitarian intervention.
+
   - id: HK-0056-edna-standards-crosswalk
     status: open-issue
     role: taxonomist
