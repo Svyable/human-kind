@@ -31,11 +31,10 @@ HK-0056 proposes an open eDNA biodiversity observatory with provenance, uncertai
 - https://www.usgs.gov/centers/upper-midwest-environmental-sciences-center/science/edna-best-practices-resource-managers
 - https://www.usgs.gov/centers/upper-midwest-environmental-sciences-center/science/resource-managers-edna-toolbox
 - https://www.usgs.gov/publications/miem-guidelines-minimum-information-reporting-environmental-metabarcoding-data
-- https://www.gbif.org/metabarcoding
 - https://mdt.gbif.org/
-- https://onlinelibrary.wiley.com/doi/10.1002/edn3.70100
-- https://obisnew.obis.org/2026/07/06/edna-event-core/
-- https://obisnew.obis.org/2026/07/10/edna-workshop/
+- https://www.usgs.gov/publications/a-metadata-checklist-and-data-formatting-guidelines-make-edna-fair-findable-accessible
+- https://portal.obis.org/2026/07/06/edna-event-core/
+- https://portal.obis.org/2026/07/10/edna-workshop/
 - https://docs.gbif.org/sensitive-species-best-practices/master/en/
 - https://docs.gbif.org/guide-publishing-survey-data/en/
 - https://www.gida-global.org/careprinciples
