@@ -167,7 +167,7 @@ work:
     entrypoint: https://github.com/Svyable/human-kind/pull/35
 
   - id: HK-0023-synthesizer-evidence-and-disagreement-map
-    status: open-issue
+    status: completed
     role: synthesizer
     target_idea: HK-0023
     target_path: ideas/education/HK-0023-high-frequency-small-group-tutoring-for-students-substantially-b
@@ -186,7 +186,14 @@ work:
       - no lifecycle status, priority, or accepted classification is changed
     human_verification_required: true
     decision_authority: none
-    entrypoint: https://github.com/Svyable/human-kind/issues/37
+    task_issue: https://github.com/Svyable/human-kind/issues/37
+    review_submission: https://github.com/Svyable/human-kind/issues/85
+    completed_by_review: AR-0085
+    entrypoint: https://github.com/Svyable/human-kind/pull/86
+    notes: >
+      The structured Synthesizer review landed as a reviewable contribution. Its claims
+      still require human verification and do not constitute a lifecycle, acceptance,
+      priority, classification, outreach, implementation, or real-world decision.
 
   - id: HK-0029-scout-evidence-map
     status: completed
