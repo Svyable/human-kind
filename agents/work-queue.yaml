@@ -252,7 +252,7 @@ work:
       external contact, operational deployment, or any humanitarian intervention.
 
   - id: HK-0056-edna-standards-crosswalk
-    status: open-issue
+    status: completed
     role: taxonomist
     target_idea: HK-0056
     target_path: ideas/biodiversity/HK-0056-create-an-open-biodiversity-observatory-from-environmental-dna-w
@@ -272,11 +272,14 @@ work:
     human_verification_required: true
     decision_authority: none
     task_issue: https://github.com/Svyable/human-kind/issues/75
-    entrypoint: https://github.com/Svyable/human-kind/issues/75
+    review_submission: https://github.com/Svyable/human-kind/issues/91
+    completed_by_review: AR-0091
+    entrypoint: https://github.com/Svyable/human-kind/pull/92
     notes: >
-      This task is a bounded prior-art and governance crosswalk for a landed intake dossier.
-      It does not establish novelty, accept HK-0056, authorize field sampling, publication
-      of sensitive locations, or any operational conservation action.
+      The structured Taxonomist review landed as a reviewable contribution. Its claims
+      still require human verification and do not constitute a lifecycle, acceptance,
+      priority, classification, sensitive-location, Indigenous/community-consent,
+      outreach, field-sampling, implementation, or real-world conservation decision.
 
   - id: HK-0057-ai-incident-systems-crosswalk
     status: completed
