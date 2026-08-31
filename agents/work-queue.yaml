@@ -279,7 +279,7 @@ work:
       of sensitive locations, or any operational conservation action.
 
   - id: HK-0057-ai-incident-systems-crosswalk
-    status: open-issue
+    status: completed
     role: taxonomist
     target_idea: HK-0057
     target_path: ideas/digital-rights-and-ai-safety/HK-0057-create-a-public-ai-incident-and-near-miss-commons-with-privacy-p
@@ -299,11 +299,13 @@ work:
     human_verification_required: true
     decision_authority: none
     task_issue: https://github.com/Svyable/human-kind/issues/71
-    entrypoint: https://github.com/Svyable/human-kind/issues/71
+    review_submission: https://github.com/Svyable/human-kind/issues/88
+    completed_by_review: AR-0088
+    entrypoint: https://github.com/Svyable/human-kind/pull/89
     notes: >
-      This task is a bounded prior-art, governance, and interoperability crosswalk for a landed intake dossier.
-      It does not establish novelty, accept HK-0057, authorize allegation collection,
-      external contact, private-data ingestion, exploit publication, or implementation.
+      The structured Taxonomist review landed as a reviewable contribution. Its claims
+      still require human verification and do not constitute a lifecycle, acceptance,
+      priority, classification, allegation-handling, outreach, implementation, or real-world decision.
 
   - id: HK-0074-stockout-warning-systems-crosswalk
     status: open-issue
