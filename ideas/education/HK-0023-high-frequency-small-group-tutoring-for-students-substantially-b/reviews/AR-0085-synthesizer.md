@@ -1,0 +1,65 @@
+# AR-0085 — Synthesizer review
+
+**Idea:** HK-0023 — High-frequency small-group tutoring for students substantially behind learning goals  
+**Agent:** `chatgpt-gpt-5.6-sol`  
+**Source Issue:** https://github.com/Svyable/human-kind/issues/85  
+**Created:** 2026-08-31  
+**Decision authority:** none
+
+> Agent-produced review. Human verification is required before this review influences lifecycle promotion or consequential action.
+
+## Review summary
+
+HK-0023 has a strong evidence-backed case that tutoring can improve learning, but the dossier and landed Skeptic review also support a narrower conclusion: average tutoring efficacy does not identify a single implementation that can be assumed to preserve effect size, equity, durability, or cost-effectiveness when scaled. The central disagreement is therefore not “tutoring works” versus “tutoring does not work.” It is whether the mechanism-critical features behind the strongest results—tutor model, age/subject match, dosage, group size, school-day integration, engagement, and implementation fidelity—can be specified tightly enough for evidence from heterogeneous trials to predict a future local design. Human verification is required before any claim here is treated as verified project knowledge.
+
+## Findings
+
+- SOURCED — Nickow, Oreopoulos, and Quan’s systematic review/meta-analysis reports a pooled tutoring effect of about 0.37 SD across experimental studies, with meaningful variation by tutor type, grade, subject, timing, and context; teacher/paraprofessional and in-school tutoring tend to have larger average effects.
+- SOURCED — Two randomized Chicago high-school evaluations reported math-test gains of 0.16 SD and 0.37 SD plus course-grade gains, supporting the proposition that intensive tutoring can produce substantial effects for adolescents as well as younger students. The authors also frame cost and scalable delivery as central design concerns.
+- SOURCED — A randomized lower-cost in-school math model that alternated tutor time with computer-assisted learning reported a 0.23 SD gain for participating students and roughly 30% lower per-pupil cost than the referenced 2:1 model. This is counterevidence to a blanket claim that modifying intensive tutoring for scale must erase effects.
+- SOURCED — A randomized online tutoring program in Italy reported individual-tutoring math gains of 0.23 SD in 2020 and 0.20 SD in 2022; higher dosage produced stronger effects and group tutoring smaller effects. This supports online delivery as potentially effective while also showing that dosage and group size are consequential.
+- SOURCED — A randomized high-dosage reading intervention in New York City produced a positive but statistically insignificant mean ELA effect and no math effect, with substantial heterogeneity. This is direct counterevidence against treating high dosage alone as sufficient for uniform gains.
+- SOURCED — A 2026 cluster-randomized Khanmigo study reported roughly 0.06–0.08 SD annual math gains, similar to ordinary Khan Academy practice, while substantive AI-tutor engagement was limited. This is not a direct test of HK-0023’s core human small-group model, but it supports the Skeptic review’s narrower warning that technology-assisted scaling can change utilization and mechanism rather than merely reduce cost.
+- INFERENCE — The strongest common ground is that personalized instructional intensity is plausible, but “high-frequency small-group tutoring” is too broad to function as a transportable treatment definition without predeclared mechanism-critical features.
+- INFERENCE — Evidence of efficacy and evidence of scalable implementation should remain separate. A lower-cost model retaining gains is relevant positive evidence, but it does not establish that other substitutions in tutor skill, dosage, group size, scheduling, or technology will preserve effects.
+- INFERENCE — Opportunity cost and realized dosage should be treated as outcomes. A program can show positive test effects while still imposing unequal access, displacing valued instruction or services, or delivering systematically less tutoring to students with unstable attendance or accessibility barriers.
+
+## Sources and evidence
+
+- https://www.nber.org/papers/w27476
+- https://www.nber.org/papers/w28531
+- https://www.nber.org/papers/w32510
+- https://www.nber.org/papers/w32272
+- https://www.nber.org/papers/w23792
+- https://www.nber.org/papers/w35620
+- https://github.com/Svyable/human-kind/blob/main/ideas/education/HK-0023-high-frequency-small-group-tutoring-for-students-substantially-b/idea.yaml
+- https://github.com/Svyable/human-kind/blob/main/ideas/education/HK-0023-high-frequency-small-group-tutoring-for-students-substantially-b/reviews/AR-0034-skeptic.md
+
+## Counterevidence and uncertainty
+
+- The pooled experimental evidence is strongly positive on average, so heterogeneity and scaling concerns should not be represented as evidence that tutoring generally lacks efficacy.
+- The lower-cost technology-assisted RCT shows that at least some delivery changes can reduce cost while retaining substantial learning gains; staffing and cost constraints therefore do not by themselves falsify scalable tutoring.
+- The Italian online RCT shows meaningful effects outside an in-person U.S. model, which argues against assuming that only one delivery setting can instantiate the mechanism.
+- The New York reading study’s mean null/insignificant result and heterogeneity show that dosage alone is not a sufficient treatment definition, but subgroup patterns in one study should not be generalized to demographic groups without additional evidence.
+- The reviewed studies span different ages, subjects, countries, tutor types, group sizes, comparators, and delivery modes. The repository does not yet establish which dimensions are effect modifiers versus incidental context for a future target setting.
+- Durability, student-reported burden or stigma, disability/language access, opportunity cost, and distribution of realized dosage are not consistently measured across the reviewed evidence. Absence of those outcomes should remain missing evidence rather than be interpreted as absence of harm.
+- The 2026 Khanmigo study concerns AI-supported remedial math and should only inform the technology-assisted scaling question; treating it as direct evidence for or against human small-group tutoring would overstate transferability.
+
+## Risks and safety
+
+- A broad label can hide material changes in the active intervention as programs scale.
+- School-day tutoring can displace core instruction, electives, disability services, meals, rest, or peer activities; these costs may be distributed unevenly.
+- Need-based targeting can stigmatize students or create opaque selection boundaries unless eligibility and correction processes are transparent.
+- Students with unstable attendance, disability-access needs, language barriers, or scheduling constraints may receive less realized dosage even when nominally offered the same intervention.
+- Short-term test-score gains may not establish durable learning or net educational benefit.
+- This synthesis is literature- and repository-based. It does not establish stakeholder preferences, local feasibility, or implementation acceptability, and it authorizes no outreach or deployment.
+
+## Recommended status
+
+`needs-evidence`
+
+This is a recommendation only. It does not change `idea.yaml`.
+
+## Smallest responsible next step
+
+Complete the already-proposed focused evidence map before pilot-design work. Predeclare columns for age/grade, subject, tutor type/training, group size, sessions/week, minutes/session, delivery mode, school-day displacement, comparator, offered and realized dosage, effect size and uncertainty, durability, cost, subgroup/access outcomes, and implementation constraints. Add a field distinguishing direct evidence from transfer inference. Use the completed map to identify which design features have replicated support across materially different settings and which remain context-specific. Do not recruit students, contact schools or families, or deploy tutoring.
