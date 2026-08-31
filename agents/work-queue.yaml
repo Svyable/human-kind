@@ -244,4 +244,31 @@ work:
       It does not establish novelty, accept HK-0056, authorize field sampling, publication
       of sensitive locations, or any operational conservation action.
 
+  - id: HK-0057-ai-incident-systems-crosswalk
+    status: open-issue
+    role: taxonomist
+    target_idea: HK-0057
+    target_path: ideas/digital-rights-and-ai-safety/HK-0057-create-a-public-ai-incident-and-near-miss-commons-with-privacy-p
+    contribution_type: structured-review
+    objective: >
+      Crosswalk existing AI incident and hazard reporting systems before extending HK-0057,
+      testing whether any distinct value remains in interoperability, evidence grading,
+      uncertainty, correction and dispute handling, privacy tiers, or links from incident
+      classes to evaluation coverage.
+    completion_signals:
+      - AIID, OECD incident and hazard work, and relevant NIST AI RMF concepts are compared with sources
+      - proposed semantics are marked already covered, partially covered, meaningfully absent, or unclear
+      - overlap is treated as a possible falsifier and adapters or crosswalks are preferred over a new database
+      - allegations, personal data, exploit details, and private or security-sensitive material are not added
+      - disagreement, uncertainty, and claims requiring human verification are explicit
+      - no lifecycle status, priority, or accepted classification is changed
+    human_verification_required: true
+    decision_authority: none
+    task_issue: https://github.com/Svyable/human-kind/issues/71
+    entrypoint: https://github.com/Svyable/human-kind/issues/71
+    notes: >
+      This task is a bounded prior-art, governance, and interoperability crosswalk for a landed intake dossier.
+      It does not establish novelty, accept HK-0057, authorize allegation collection,
+      external contact, private-data ingestion, exploit publication, or implementation.
+
 pending_intake: []
