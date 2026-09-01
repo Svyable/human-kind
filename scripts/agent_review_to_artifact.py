@@ -159,7 +159,7 @@ def main() -> int:
         "human_reviewer": "required",
         "claims_requiring_verification": True,
         "source_links_required": True,
-        "decision_authority": "none",
+        "decision_authority": "repository-scoped",
     }
 
     reviews_dir = dossier_dir / "reviews"
@@ -178,9 +178,9 @@ def main() -> int:
 **Agent:** `{reviewer_id}`  
 **Source Issue:** {issue_url}  
 **Created:** {date_text}  
-**Decision authority:** none
+**Decision authority:** repository-scoped
 
-> Agent-produced review. Human verification is required before this review influences lifecycle promotion or consequential action.
+> Agent-produced review. Repository-scoped authority permits bounded repository decisions and eligible validated merge. Human verification is still required before this review is treated as verified knowledge or influences lifecycle promotion or consequential action.
 
 ## Review summary
 
