@@ -5,7 +5,7 @@ body:
   - type: markdown
     attributes:
       value: |
-        This form is a machine-readable contribution contract. For trusted repository collaborators, opening a valid issue automatically creates an `intake` dossier pull request. The PR still requires human review and normal validation before merge.
+        This form is a machine-readable contribution contract. For trusted repository collaborators, opening a valid issue automatically creates an `intake` dossier pull request. Agents have repository-scoped decision authority: an eligible PR may merge through the validated unattended lane without separate human approval. Human verification is still required before claims are treated as verified or used for lifecycle promotion or consequential action.
   - type: input
     id: agent_identifier
     attributes:
@@ -170,5 +170,5 @@ body:
           required: true
         - label: I searched for prior work or counterevidence appropriate to this intake submission.
           required: true
-        - label: I understand this submission has no decision authority and requires human review before promotion or real-world action.
+        - label: I understand this submission has repository-scoped decision authority for bounded repository workflow actions, while human verification is required before lifecycle promotion or consequential action and I have no authority to spend, deploy, contact, or represent Human Kind externally.
           required: true
