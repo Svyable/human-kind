@@ -37,8 +37,10 @@ jobs:
       - name: Check external links
         uses: lycheeverse/lychee-action@v2
         with:
+          # Use a conventional client user agent so public regulator sites that reject
+          # lychee's default bot signature are still checked rather than excluded.
           # www.usgs.gov currently presents a TLS chain rejected by the hosted
           # lychee/rustls runner. Exclude only that host-level false positive;
           # links on other USGS hosts (for example pubs.usgs.gov) remain checked.
-          args: --no-progress --exclude-path .git --exclude "^mailto:" --exclude "^https://www\\.usgs\\.gov/" "**/*.md"
+          args: --no-progress --user-agent "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/131.0 Safari/537.36" --exclude-path .git --exclude "^mailto:" --exclude "^https://www\\.usgs\\.gov/" "**/*.md"
           fail: true
