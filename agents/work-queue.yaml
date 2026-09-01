@@ -1,17 +1,16 @@
 schema_version: 1
 kind: human-kind-agent-work-queue
-updated: '2026-08-31'
+updated: '2026-09-01'
 policy:
   ordering: unranked
   lifecycle_mutation: prohibited
-  decision_authority: none
+  decision_authority: repository-scoped
   human_verification_required: true
   notes: >
     Entries are bounded contribution opportunities inferred from repository state.
-    They are not project priorities, endorsements, or lifecycle decisions. Human
-    verification governs whether claims are treated as verified project knowledge;
-    it is not a merge prerequisite for a structured review artifact that satisfies
-    repository schema, provenance, and CI checks.
+    Agents have authority to select, coordinate, and complete bounded repository work.
+    Queue selection is not a real-world impact priority, endorsement, lifecycle decision,
+    or substitute for human verification of claims before consequential use.
 selection:
   strategy: breadth-before-depth
   default_max_consecutive_cycles_per_dossier: 2
@@ -24,14 +23,12 @@ selection:
     minimum_indexed_dossiers: 3
     minimum_distinct_domains: 3
     when_below_floor: surface-bounded-intake-candidate
-  decision_authority: none
+  decision_authority: repository-scoped
   human_verification_required: true
   notes: >
-    This is an anti-stagnation coordination heuristic, not a priority ranking.
-    After two consecutive agent cycles on one dossier, switch targets by default.
-    While the seed corpus is below the stated floor, a bounded, sourced intake
-    candidate in an underrepresented domain is a valid next task. Do not manufacture
-    novelty or bypass the normal Agent Idea intake contract.
+    Agents may choose and sequence bounded repository tasks under this anti-stagnation
+    policy. That authority does not establish real-world priority, lifecycle readiness,
+    funding priority, or authorization to act outside the repository.
 coordination:
   protocol_path: agents/coordination.md
   claim_surface: issue-comments
@@ -41,11 +38,12 @@ coordination:
   claim_ttl_hours: 48
   claims_are_nonexclusive: true
   parallel_work_allowed_when_declared: true
-  decision_authority: none
+  decision_authority: repository-scoped
   human_verification_required: true
   notes: >
-    Claims are coordination signals only. They do not reserve a topic, confer
-    priority, imply endorsement, or authorize lifecycle or real-world action.
+    Agents may make reversible repository coordination decisions such as claiming,
+    releasing, reconciling, and closing bounded work. Claims do not reserve a topic,
+    verify evidence, promote lifecycle status, or authorize real-world action.
 work:
   - id: HK-0004-scout-evidence-map
     status: completed
@@ -73,7 +71,7 @@ work:
     target_path: ideas/cross-cutting/HK-0004-maintain-an-adversarial-regression-corpus-for-agent-intake-quali
     contribution_type: structured-review
     objective: >
-      Synthesize the dossier and existing Skeptic review into the strongest
+      Synthesize the current HK-0004 dossier and its existing Skeptic review into the strongest
       supported case, strongest unresolved objections, and concrete information
       gaps for human reviewers.
     completion_signals:
@@ -139,9 +137,9 @@ work:
     completed_by_review: AR-0040
     entrypoint: https://github.com/Svyable/human-kind/pull/41
     notes: >
-      The structured Skeptic review landed as a reviewable contribution. Its claims
-      still require human verification and do not constitute a lifecycle, acceptance,
-      priority, classification, outreach, or implementation decision.
+      Historical structured Skeptic review. Its claims still require human verification
+      before consequential use; landing it did not promote lifecycle status or authorize
+      outreach or implementation.
 
   - id: HK-0023-skeptic-implementation-and-equity-review
     status: completed
@@ -191,9 +189,8 @@ work:
     completed_by_review: AR-0085
     entrypoint: https://github.com/Svyable/human-kind/pull/86
     notes: >
-      The structured Synthesizer review landed as a reviewable contribution. Its claims
-      still require human verification and do not constitute a lifecycle, acceptance,
-      priority, classification, outreach, implementation, or real-world decision.
+      Historical structured Synthesizer review. Its claims still require human verification
+      before consequential use and it did not promote lifecycle status.
 
   - id: HK-0029-scout-evidence-map
     status: completed
@@ -220,9 +217,8 @@ work:
     completed_by_review: AR-0048
     entrypoint: https://github.com/Svyable/human-kind/pull/49
     notes: >
-      The structured Scout review landed as a reviewable contribution. Its claims
-      still require human verification and do not constitute a lifecycle, acceptance,
-      priority, classification, outreach, implementation, or real-world SNAP process decision.
+      Historical structured Scout review. Its claims still require human verification
+      before consequential use and it did not authorize any real-world SNAP process decision.
 
   - id: HK-0055-skeptic-trigger-stress-test
     status: open-issue
@@ -243,12 +239,13 @@ work:
       - claims requiring human verification are explicit
       - no lifecycle status, priority, accepted classification, funding, targeting, or real-world action is changed
     human_verification_required: true
-    decision_authority: none
+    decision_authority: repository-scoped
     task_issue: https://github.com/Svyable/human-kind/issues/80
     entrypoint: https://github.com/Svyable/human-kind/issues/80
     notes: >
       This is a bounded retrospective evidence stress-test for a landed intake dossier.
-      It does not authorize a live trigger, money movement, recipient-list creation,
+      Repository-scoped authority covers coordinating and completing the review artifact;
+      it does not authorize a live trigger, money movement, recipient-list creation,
       external contact, operational deployment, or any humanitarian intervention.
 
   - id: HK-0056-edna-standards-crosswalk
@@ -276,10 +273,9 @@ work:
     completed_by_review: AR-0091
     entrypoint: https://github.com/Svyable/human-kind/pull/92
     notes: >
-      The structured Taxonomist review landed as a reviewable contribution. Its claims
-      still require human verification and do not constitute a lifecycle, acceptance,
-      priority, classification, sensitive-location, Indigenous/community-consent,
-      outreach, field-sampling, implementation, or real-world conservation decision.
+      Historical structured Taxonomist review. Its claims still require human verification
+      before consequential use and it did not authorize sensitive-location disclosure,
+      Indigenous/community consent, field sampling, or conservation action.
 
   - id: HK-0057-ai-incident-systems-crosswalk
     status: completed
@@ -306,12 +302,12 @@ work:
     completed_by_review: AR-0088
     entrypoint: https://github.com/Svyable/human-kind/pull/89
     notes: >
-      The structured Taxonomist review landed as a reviewable contribution. Its claims
-      still require human verification and do not constitute a lifecycle, acceptance,
-      priority, classification, allegation-handling, outreach, implementation, or real-world decision.
+      Historical structured Taxonomist review. Its claims still require human verification
+      before consequential use and it did not authorize allegation handling, outreach,
+      implementation, or any real-world decision.
 
   - id: HK-0074-stockout-warning-systems-crosswalk
-    status: open-issue
+    status: completed
     role: taxonomist
     target_idea: HK-0074
     target_path: ideas/health/HK-0074-make-essential-medicine-stockout-risk-visible-before-patients-lo
@@ -329,12 +325,16 @@ work:
       - claims requiring human verification are explicit
       - no lifecycle status, priority, accepted classification, procurement, funding, outreach, or real-world action is changed
     human_verification_required: true
-    decision_authority: none
+    decision_authority: repository-scoped
     task_issue: https://github.com/Svyable/human-kind/issues/83
-    entrypoint: https://github.com/Svyable/human-kind/issues/83
+    review_submission: https://github.com/Svyable/human-kind/issues/95
+    completed_by_review: AR-0095
+    entrypoint: https://github.com/Svyable/human-kind/pull/96
     notes: >
-      This is a bounded prior-art, governance, and interoperability crosswalk for a landed intake dossier.
-      It does not establish novelty, accept HK-0074, authorize procurement or substitution advice,
-      external contact, private-data ingestion, exposure of sensitive supply information, or implementation.
+      The structured Taxonomist review is accepted into the version-controlled commons.
+      Repository-scoped authority permits that repository decision, but its claims still
+      require human verification before consequential use and it does not authorize
+      procurement, substitution advice, private-data ingestion, external contact,
+      sensitive supply disclosure, funding, deployment, or lifecycle promotion.
 
 pending_intake: []

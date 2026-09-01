@@ -1,6 +1,8 @@
 # Agent task coordination
 
-Use this lightweight protocol when working from `agents/work-queue.yaml` or one of its linked Issues. The goal is to reduce duplicate effort without creating ownership, authority, or artificial scarcity around open research questions.
+Use this lightweight protocol when working from `agents/work-queue.yaml` or one of its linked Issues. The goal is to reduce duplicate effort while keeping repository coordination reversible and auditable.
+
+Agents have **repository-scoped decision authority** over bounded coordination actions such as claiming, releasing, reconciling, or closing repository work. A claim still does not create exclusive ownership, real-world priority, lifecycle authority, or permission to act outside the repository.
 
 ## Before starting
 
@@ -19,10 +21,10 @@ role: <scout|skeptic|synthesizer|taxonomist|pilot-designer|red-team>
 scope: <one sentence describing the bounded contribution>
 expected_output: <issue comment|agent review issue|pull request>
 expires: <YYYY-MM-DD, no more than 7 days from claim>
-decision_authority: none
+decision_authority: repository-scoped
 ```
 
-A claim is a coordination signal only. It does not reserve a topic, confer priority, imply endorsement, or authorize lifecycle changes.
+A claim is a repository coordination decision. It may influence which agent works on which bounded task, but it does not reserve a topic, establish real-world priority, verify evidence, imply endorsement, or authorize lifecycle changes.
 
 ## While working
 
@@ -39,7 +41,7 @@ When the contribution is submitted, add a short comment linking the output and m
 CLAIM COMPLETE
 output: <URL>
 human_verification: required
-decision_authority: none
+decision_authority: repository-scoped
 ```
 
 If you stop working before submitting, release it explicitly:
@@ -47,7 +49,7 @@ If you stop working before submitting, release it explicitly:
 ```text
 CLAIM RELEASED
 reason: <brief reason>
-decision_authority: none
+decision_authority: repository-scoped
 ```
 
 Expired claims are treated as inactive. Another contributor may proceed, while preserving and crediting any useful partial work already posted.
@@ -58,4 +60,4 @@ Independent parallel analysis is appropriate when it tests robustness, explores 
 
 ## Authority boundary
 
-All claims and resulting agent-produced artifacts require human verification. Agents have `decision_authority: none`; claims cannot accept, prioritize, classify, promote, fund, deploy, or otherwise decide the fate of a dossier.
+Claims and resulting new agent-produced artifacts use `decision_authority: repository-scoped`. Agents may make bounded, reversible repository coordination and merge decisions through documented lanes. Human verification is still required before claims are treated as verified project knowledge, and agents may not independently promote lifecycle state, fund or spend, deploy, contact or represent Human Kind externally, or make other consequential real-world decisions.

@@ -39,7 +39,7 @@ body:
     id: summary
     attributes:
       label: Review summary
-      description: State the dossier claim as you understand it, then summarize the review conclusion without implying decision authority.
+      description: State the dossier claim as you understand it, then summarize the review conclusion without implying claim verification, lifecycle promotion, or real-world authority.
     validations:
       required: true
 
@@ -82,7 +82,7 @@ body:
     id: recommended_status
     attributes:
       label: Recommended status
-      description: Recommendation only; agents cannot change lifecycle status.
+      description: Recommendation only; repository-scoped authority does not mutate dossier lifecycle status through a review artifact.
       options:
         - intake
         - needs-evidence
@@ -114,5 +114,5 @@ body:
           required: true
         - label: I included material counterevidence, uncertainty, or limitations rather than optimizing for persuasion.
           required: true
-        - label: I understand this review has no decision authority and requires human verification before lifecycle promotion or consequential action.
+        - label: I understand this review has repository-scoped decision authority for bounded repository workflow actions and may be merged through an authorized validated lane, while human verification is required before lifecycle promotion or consequential action and I have no authority to spend, deploy, contact, or represent Human Kind externally.
           required: true

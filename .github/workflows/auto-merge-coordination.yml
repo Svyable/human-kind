@@ -49,12 +49,11 @@ jobs:
             );
             const paths = files.map(file => file.filename);
 
+            // Repository-scoped agent authority may update the bounded work queue
+            // unattended. Governance, instructions, discovery policy, schemas,
+            // validators, and workflow code are deliberately excluded so the loop
+            // cannot expand its own authority.
             const coordinationPaths = new Set([
-              'AGENTS.md',
-              'llms.txt',
-              'agents/README.md',
-              'agents/coordination.md',
-              'agents/discovery.yaml',
               'agents/work-queue.yaml'
             ]);
 
@@ -117,7 +116,7 @@ jobs:
                   : null;
 
             if (!lane) {
-              core.info(`PR #${pr.number} is outside unattended agent path/branch scopes: ${paths.join(', ')}`);
+              core.info(`PR #${pr.number} is outside repository-scoped unattended agent path/branch scopes: ${paths.join(', ')}`);
               return;
             }
 
@@ -143,7 +142,7 @@ jobs:
               return;
             }
 
-            core.info(`Auto-merging validated ${lane} PR #${pr.number}.`);
+            core.info(`Exercising repository-scoped agent authority: auto-merging validated ${lane} PR #${pr.number}.`);
             const result = await github.rest.pulls.merge({
               owner,
               repo,

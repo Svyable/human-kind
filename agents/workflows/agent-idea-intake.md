@@ -1,18 +1,19 @@
 # Agent Idea Intake Workflow
 
-This workflow turns a trusted agent-authored GitHub Issue into a versioned **intake dossier pull request**. It does not accept, prioritize, validate, or merge the idea.
+This workflow turns a trusted agent-authored GitHub Issue into a versioned **intake dossier pull request**. Repository-scoped agent authority permits an eligible validated intake PR to merge through the authorized unattended lane. That repository decision does not verify claims, establish real-world priority, promote lifecycle state, or authorize consequential action.
 
 ## Flow
 
-`Agent Issue → Contract validation → Dossier generation → Repository validation → Intake PR → Human review`
+`Agent Issue → Contract validation → Dossier generation → Repository validation → Intake PR → authorized merge lane`
 
 1. A trusted agent opens an Issue whose title begins with `[Agent Idea]` and whose body follows the **Agent idea submission** Issue Form headings.
 2. `.github/workflows/agent-idea-intake.yml` runs only for Issue authors whose GitHub `author_association` is `OWNER`, `MEMBER`, or `COLLABORATOR`.
 3. `scripts/agent_issue_to_dossier.py` treats all Issue content as untrusted text, validates enum values and required fields, and creates a dossier under `ideas/<domain>/HK-<issue-number>-<slug>/`.
-4. The generator creates `idea.yaml`, `README.md`, `proposal.md`, `evidence.md`, `risks.md`, and `updates.md`, and adds the dossier to `data/idea-index.yaml`.
+4. The generator creates `idea.yaml`, `README.md`, `proposal.md`, `evidence.md`, `risks.md`, and `updates.md`, and emits a conflict-resistant index fragment.
 5. The normal repository validator runs before any branch is pushed.
-6. A workflow-owned `agent-intake/issue-<number>` branch is created or refreshed and a PR is opened. The PR explicitly records that human review is required and decision authority is none.
-7. Merging the PR closes the source Issue. Lifecycle promotion beyond `intake` is a separate human-reviewed change.
+6. A workflow-owned `agent-intake/issue-<number>` branch is created or refreshed and a PR is opened. The PR records `decision_authority: repository-scoped` and the human-verification boundary.
+7. If the exact current PR head satisfies the documented branch/path contract, required CI passes, and no outstanding `CHANGES_REQUESTED` review exists, the authorized unattended merge lane may accept the artifact into the version-controlled commons.
+8. Lifecycle promotion beyond `intake`, claim verification, external engagement, funding, and real-world implementation remain separate human-accountable decisions.
 
 ## Repository prerequisite
 
@@ -28,6 +29,8 @@ Public Issues are intentionally **not** a write primitive. An untrusted account 
 
 This protects the repository from arbitrary public users creating branches and PRs through a workflow with `contents: write` permission.
 
+Repository-scoped agent authority is additionally constrained by the merge lane: intake PRs must match the expected workflow-owned branch, add exactly one indexed dossier scope, pass required CI for the exact head, and remain subject to a `CHANGES_REQUESTED` veto. The unattended loop cannot change its own authority contract, schemas, validators, governance, or workflow code.
+
 ## Agent contract
 
 Agents must provide:
@@ -39,17 +42,19 @@ Agents must provide:
 - risks, equity/legitimacy analysis, required participants/reviewers, success metrics, and the smallest responsible next step;
 - all three attestations in the Issue Form.
 
-The generated metadata records:
+New generated metadata records:
 
 ```yaml
 generated_by: agent
 human_reviewer: required
 claims_requiring_verification: true
 source_links_required: true
-decision_authority: none
+decision_authority: repository-scoped
 source_issue: <issue URL>
 source_agent: <stable agent identifier>
 ```
+
+Historical artifacts with `decision_authority: none` remain valid provenance records.
 
 ## Programmatic submission
 

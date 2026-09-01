@@ -247,7 +247,7 @@ def main() -> int:
         "human_reviewer": "required",
         "claims_requiring_verification": True,
         "source_links_required": True,
-        "decision_authority": "none",
+        "decision_authority": "repository-scoped",
         "source_issue": issue_url,
         "source_agent": agent_id,
     }
@@ -264,7 +264,7 @@ def main() -> int:
 - Human reviewer: **required**
 - Claims requiring verification: **true**
 - Source links required: **true**
-- Decision authority: **none**
+- Decision authority: **repository-scoped**
 """
 
     (dossier_dir / "README.md").write_text(
@@ -297,7 +297,7 @@ def main() -> int:
         "## Evidence calibration\n\nThis dossier enters with `evidence_level: hypothesis`. "
         "Inclusion of a source here does not mean Human Kind has verified the source, "
         "the interpretation, or the causal claim. A human reviewer must verify material "
-        "claims before lifecycle promotion.\n\n"
+        "claims before consequential use or lifecycle promotion.\n\n"
         f"## Central falsifier\n\n{falsifier}\n"
     )
 
@@ -307,15 +307,16 @@ def main() -> int:
         f"## Equity and legitimacy\n\n{equity}\n\n"
         f"## People who need a voice before action\n\n{markdown_list(participants)}\n\n"
         f"## Reversibility\n\nDeclared at intake: **{reversibility}**. "
-        "This rating is provisional and requires human review.\n"
+        "This rating is provisional and requires human verification before consequential use.\n"
     )
 
     (dossier_dir / "updates.md").write_text(
         f"# Updates: {title}\n\n"
         f"## {review_date.isoformat()} — automated intake\n\n"
         f"Materialized from {issue_url} for agent `{agent_id}` in role "
-        f"**{agent_role}**. Status set to `intake`; no decision authority or validation "
-        "is implied.\n"
+        f"**{agent_role}**. Status set to `intake`. Repository-scoped authority permits "
+        "bounded repository workflow decisions and eligible validated merge; it does not "
+        "verify claims, promote lifecycle state, or authorize real-world action.\n"
     )
 
     index = yaml.safe_load(INDEX.read_text()) or {"version": 1, "ideas": []}

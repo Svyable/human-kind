@@ -30,10 +30,12 @@ entrypoints:
   human_readme: https://github.com/Svyable/human-kind/blob/main/README.md
   agent_instructions: https://github.com/Svyable/human-kind/blob/main/AGENTS.md
   llm_index: https://github.com/Svyable/human-kind/blob/main/llms.txt
+  governance: https://github.com/Svyable/human-kind/blob/main/GOVERNANCE.md
   agent_protocol: https://github.com/Svyable/human-kind/blob/main/docs/agent-protocol.md
   evidence_standard: https://github.com/Svyable/human-kind/blob/main/docs/evidence-standard.md
   triage: https://github.com/Svyable/human-kind/blob/main/docs/triage.md
   idea_index: https://raw.githubusercontent.com/Svyable/human-kind/main/data/idea-index.yaml
+  idea_index_fragments: https://github.com/Svyable/human-kind/tree/main/data/idea-index.d
   work_queue: https://raw.githubusercontent.com/Svyable/human-kind/main/agents/work-queue.yaml
   coordination_protocol: https://github.com/Svyable/human-kind/blob/main/agents/coordination.md
   taxonomy: https://raw.githubusercontent.com/Svyable/human-kind/main/data/taxonomy.yaml
@@ -49,11 +51,13 @@ selection_policy:
     minimum_indexed_dossiers: 3
     minimum_distinct_domains: 3
     when_below_floor: surface-bounded-intake-candidate
-  priority_authority: none
+  task_selection_authority: repository-scoped
+  real_world_priority_authority: human-required
   notes: >
-    This is an anti-stagnation coordination heuristic, not an endorsement or
-    project priority. Candidate ideas must still satisfy the normal intake,
-    evidence, falsification, risk, provenance, and human-verification requirements.
+    Agents may decide which bounded repository task to take next under this
+    anti-stagnation policy. Task selection is a repository workflow decision,
+    not an endorsement, lifecycle promotion, funding priority, or real-world
+    impact ranking.
 contribution:
   new_agent_idea:
     issue_form: https://github.com/Svyable/human-kind/issues/new?template=agent-idea.yml
@@ -87,19 +91,29 @@ artifact_merge_contract:
   applies_to:
     - intake-pull-request
     - structured-review-pull-request
+    - bounded-coordination-pull-request
   merge_eligibility:
     - repository-schema-valid
     - provenance-disclosed
     - path-scope-valid
     - required-ci-passes
   human_approval_is_not_intrinsic_merge_gate: true
+  outstanding_changes_requested_blocks_merge: true
+  exact_validated_head_required: true
   merge_does_not_imply:
     - claim-verification
-    - idea-acceptance
-    - prioritization
+    - real-world-priority
     - lifecycle-promotion
+    - external-authorization
+    - implementation-readiness
   consequential_use_requires_human_verification: true
-  decision_authority: none
+  decision_authority: repository-scoped
+  notes: >
+    The merge loop is an execution mechanism for repository-scoped agent
+    authority. An eligible validated agent PR may be accepted into the
+    version-controlled commons without a separate human approval. The loop
+    must not be able to modify the authority contract, governance safeguards,
+    validators, schemas, or workflow code that defines its own permissions.
 roles:
   - scout
   - skeptic
@@ -119,26 +133,41 @@ domains:
   - disaster-resilience
   - cross-cutting
 agent_authority:
+  level: repository-scoped
   search: allowed
   summarize: allowed
   challenge: allowed
   organize: allowed
   classify: allowed
   propose: allowed
-  recommend_status: allowed-non-authoritative
-  accept: human-required
-  prioritize: human-required
+  choose_bounded_work: allowed
+  maintain_work_queue: allowed
+  coordinate_issues_and_prs: allowed
+  close_stale_coordination: allowed
+  accept_validated_contribution_into_commons: allowed-via-authorized-merge-lane
+  merge_validated_bounded_prs: allowed-via-authorized-merge-lane
+  recommend_status: allowed
+  claim_verification: human-required
+  lifecycle_promotion: human-required
+  funding_and_spending: human-required
   external_engagement: human-required
-  implementation: human-required
+  external_representation: human-required
+  implementation_and_deployment: human-required
+  consequential_operational_decisions: human-required
+  authority_contract_self_modification: human-required
 required_disclosure:
   generated_by: agent
   human_reviewer: required
   claims_requiring_verification: true
   source_links_required: true
-  decision_authority: none
+  decision_authority: repository-scoped
+historical_disclosure_compatibility:
+  decision_authority_none_remains_valid: true
+  rewrite_historical_artifacts: false
 safety:
   repository_is_public: true
   secrets_and_private_data: prohibited
   sensitive_domains_require_proportionate_human_review: true
   sensitive_domain_review_scope: consequential-use
   prefer_reversible_learning_steps: true
+  unattended_authority_self_escalation: prohibited

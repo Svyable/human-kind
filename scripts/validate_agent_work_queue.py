@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
 """Validate the machine-readable agent work queue against repository state.
 
-The queue is coordination metadata, not a priority ranking or decision surface.
-Structural violations fail CI. Potential staleness caused by newly landed reviews or
-breadth concentration is reported as a warning so useful agent PRs are not blocked
-solely because queue synchronization has not happened yet.
+The queue is repository coordination and task-selection metadata, not a real-world
+priority ranking. Agents have repository-scoped authority over bounded queue and
+coordination decisions. Structural violations fail CI. Potential staleness caused by
+newly landed reviews or breadth concentration is reported as a warning so useful agent
+PRs are not blocked solely because queue synchronization has not happened yet.
 """
 
 from __future__ import annotations
@@ -33,6 +34,7 @@ SELECTION_EXCEPTIONS = {
     "ci-or-safety-regression",
     "explicit-maintainer-request",
 }
+REPOSITORY_AUTHORITY = "repository-scoped"
 
 
 def error(message: str) -> None:
@@ -102,7 +104,7 @@ def main() -> int:
     expected_policy = {
         "ordering": "unranked",
         "lifecycle_mutation": "prohibited",
-        "decision_authority": "none",
+        "decision_authority": REPOSITORY_AUTHORITY,
         "human_verification_required": True,
     }
     if not isinstance(policy, dict):
@@ -130,11 +132,23 @@ def main() -> int:
     if not isinstance(exceptions, list) or set(exceptions) != SELECTION_EXCEPTIONS:
         error("work queue selection.exceptions must contain the four documented override conditions")
         failures += 1
-    if selection.get("decision_authority") != "none":
-        error("work queue selection.decision_authority must be 'none'")
+    if selection.get("decision_authority") != REPOSITORY_AUTHORITY:
+        error(f"work queue selection.decision_authority must be {REPOSITORY_AUTHORITY!r}")
         failures += 1
     if selection.get("human_verification_required") is not True:
         error("work queue selection.human_verification_required must be true")
+        failures += 1
+
+    coordination = queue.get("coordination")
+    if not isinstance(coordination, dict):
+        error("work queue coordination must be a mapping")
+        failures += 1
+        coordination = {}
+    if coordination.get("decision_authority") != REPOSITORY_AUTHORITY:
+        error(f"work queue coordination.decision_authority must be {REPOSITORY_AUTHORITY!r}")
+        failures += 1
+    if coordination.get("human_verification_required") is not True:
+        error("work queue coordination.human_verification_required must be true")
         failures += 1
 
     seed_corpus = selection.get("seed_corpus")
@@ -262,9 +276,19 @@ def main() -> int:
             if item.get("human_verification_required") is not True:
                 error(f"{prefix}.human_verification_required must be true when status=review-pr-open")
                 failures += 1
-            if item.get("decision_authority") != "none":
-                error(f"{prefix}.decision_authority must be 'none' when status=review-pr-open")
+            if item.get("decision_authority") != REPOSITORY_AUTHORITY:
+                error(
+                    f"{prefix}.decision_authority must be {REPOSITORY_AUTHORITY!r} "
+                    "when status=review-pr-open"
+                )
                 failures += 1
+
+        if status in ACTIVE_STATUSES and item.get("decision_authority") not in (None, REPOSITORY_AUTHORITY):
+            error(
+                f"{prefix}.decision_authority must be omitted or {REPOSITORY_AUTHORITY!r} "
+                "for active work"
+            )
+            failures += 1
 
         if status in ACTIVE_STATUSES and idea_id:
             active_targets.add(idea_id)

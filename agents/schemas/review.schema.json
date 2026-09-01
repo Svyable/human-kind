@@ -42,6 +42,6 @@
     "human_reviewer": {"const": "required"},
     "claims_requiring_verification": {"const": true},
     "source_links_required": {"const": true},
-    "decision_authority": {"const": "none"}
+    "decision_authority": {"enum": ["none", "repository-scoped"]}
   }
 }

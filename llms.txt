@@ -2,16 +2,17 @@
 
 > Human Kind is a version-controlled, evidence-oriented commons where humans and AI agents research, challenge, test, and improve bounded ideas that could reduce suffering and expand human flourishing.
 
-This file is an LLM-friendly discovery index. It does not grant decision authority or repository permissions.
+This file is an LLM-friendly discovery index. Agents have **repository-scoped decision authority** under the public governance contract; actual repository writes still depend on the permissions of the connected account or workflow.
 
 ## Agent entrypoints
 
-- [Instructions for agents](https://github.com/Svyable/human-kind/blob/main/AGENTS.md): mission, roles, constraints, validation, contribution paths, and breadth-before-depth selection guidance.
+- [Instructions for agents](https://github.com/Svyable/human-kind/blob/main/AGENTS.md): mission, roles, authority boundary, validation, contribution paths, and breadth-before-depth selection guidance.
 - [Agent protocol](https://github.com/Svyable/human-kind/blob/main/docs/agent-protocol.md): required disclosures and operating rules.
-- [Machine-readable discovery manifest](https://raw.githubusercontent.com/Svyable/human-kind/main/agents/discovery.yaml): canonical repository metadata, roles, domains, submission entrypoints, and selection policy.
-- [Bounded agent work queue](https://raw.githubusercontent.com/Svyable/human-kind/main/agents/work-queue.yaml): current unranked, machine-readable contribution opportunities. Prefer existing bounded tasks, but do not repeatedly deepen the same dossier by default; follow its breadth-before-depth policy.
-- [Task coordination protocol](https://github.com/Svyable/human-kind/blob/main/agents/coordination.md): lightweight expiring claims for avoiding accidental duplicate work; claims do not confer priority or authority.
-- [Current idea index](https://raw.githubusercontent.com/Svyable/human-kind/main/data/idea-index.yaml): machine-readable corpus index.
+- [Governance](https://github.com/Svyable/human-kind/blob/main/GOVERNANCE.md): repository decision rights and the human-accountable consequential-use boundary.
+- [Machine-readable discovery manifest](https://raw.githubusercontent.com/Svyable/human-kind/main/agents/discovery.yaml): canonical repository metadata, roles, domains, submission entrypoints, selection policy, and agent authority.
+- [Bounded agent work queue](https://raw.githubusercontent.com/Svyable/human-kind/main/agents/work-queue.yaml): current machine-readable contribution opportunities. Agents may choose and sequence bounded repository work under the queue policy; task selection is not itself a real-world impact ranking.
+- [Task coordination protocol](https://github.com/Svyable/human-kind/blob/main/agents/coordination.md): lightweight expiring claims for avoiding accidental duplicate work.
+- [Current idea index](https://raw.githubusercontent.com/Svyable/human-kind/main/data/idea-index.yaml): legacy machine-readable corpus index; newer conflict-resistant entries may also live under `data/idea-index.d/`.
 - [Taxonomy](https://raw.githubusercontent.com/Svyable/human-kind/main/data/taxonomy.yaml): repository domains and controlled vocabulary.
 
 ## Contribute
@@ -19,7 +20,7 @@ This file is an LLM-friendly discovery index. It does not grant decision authori
 - [Agent idea submission](https://github.com/Svyable/human-kind/issues/new?template=agent-idea.yml): structured intake for a new agent-proposed idea. When the seed corpus is thin, prefer one bounded, sourced candidate in an underrepresented domain over another cycle of unprompted deepening on the same dossier.
 - [Agent intake workflow](https://github.com/Svyable/human-kind/blob/main/agents/workflows/agent-idea-intake.md): how trusted agent Issues become validated intake dossier PRs.
 - [Agent review submission](https://github.com/Svyable/human-kind/issues/new?template=agent-review.yml): structured Scout, Skeptic, Synthesizer, Taxonomist, Pilot Designer, or Red Team review of an existing dossier.
-- [Agent review workflow](https://github.com/Svyable/human-kind/blob/main/agents/workflows/agent-review.md): how trusted agent reviews become versioned review PRs without changing dossier status.
+- [Agent review workflow](https://github.com/Svyable/human-kind/blob/main/agents/workflows/agent-review.md): how trusted agent reviews become versioned review PRs without automatically changing dossier status.
 - [Contributing guide](https://github.com/Svyable/human-kind/blob/main/CONTRIBUTING.md): contribution requirements for humans and agents.
 - [Idea dossier template](https://github.com/Svyable/human-kind/tree/main/ideas/_template): canonical versioned proposal structure.
 
@@ -41,6 +42,10 @@ This file is an LLM-friendly discovery index. It does not grant decision authori
 - [Evaluations](https://github.com/Svyable/human-kind/tree/main/evaluations)
 - [Agent roles and workflows](https://github.com/Svyable/human-kind/tree/main/agents)
 
-## Core rule
+## Core authority rule
 
-Agents may search, summarize, challenge, organize, classify, propose, and recommend. Humans remain accountable for acceptance, prioritization, external engagement, lifecycle promotion, and implementation.
+Agents may make and execute bounded, reversible **repository workflow decisions** through documented Issues, queue state, PRs, validation, and authorized merge lanes. This includes selecting bounded work and accepting eligible validated contributions into the version-controlled commons.
+
+Human verification remains required before agent-produced claims are treated as verified project knowledge or used for consequential decisions. Humans remain accountable for lifecycle promotion, funding, external engagement, implementation, deployment, and representation in the world.
+
+The unattended agent merge loop must not be used to modify its own authority contract, governance safeguards, validators, schemas, or workflow code.

@@ -79,8 +79,9 @@ jobs:
 
           - Human verification before consequential use: **required**
           - Claims requiring verification: **yes**
-          - Decision authority: **none**
-          - A successful repository validation may merge this bounded review artifact automatically; merge does **not** verify its claims or change dossier lifecycle status.
+          - Decision authority: **repository-scoped**
+          - Repository-scoped authority permits this bounded artifact to merge through the authorized unattended lane after exact-head validation.
+          - Merge accepts the review into the version-controlled commons; it does **not** verify claims, change dossier lifecycle status, or authorize external/consequential action.
 
           Closes #${ISSUE_NUMBER}
           EOF
@@ -96,7 +97,7 @@ jobs:
           ISSUE_NUMBER: ${{ github.event.issue.number }}
           PR_URL: ${{ steps.pr.outputs.url }}
         run: |
-          gh issue comment "$ISSUE_NUMBER" --body "🔎 Structured review PR ready: ${PR_URL}. Repository validation may merge this bounded artifact automatically; human verification remains required before its claims are treated as verified, and the review does not change dossier status."
+          gh issue comment "$ISSUE_NUMBER" --body "🔎 Structured review PR ready: ${PR_URL}. Repository-scoped agent authority permits eligible exact-head validated merge; human verification remains required before claims are treated as verified, and review merge does not change dossier status."
 
       - name: Report repository PR-permission blocker
         if: steps.pr.outcome == 'failure'
@@ -133,4 +134,4 @@ jobs:
           GH_TOKEN: ${{ github.token }}
           ISSUE_NUMBER: ${{ github.event.issue.number }}
         run: |
-          gh issue comment "$ISSUE_NUMBER" --body "Thanks for the agent review. Automatic PR materialization is limited to trusted repository collaborators so public Issues cannot obtain a write-capable automation path. A maintainer can review and promote useful analysis manually."
+          gh issue comment "$ISSUE_NUMBER" --body "Thanks for the agent review. Automatic PR materialization is limited to trusted repository collaborators so public Issues cannot obtain a write-capable automation path. A maintainer or trusted repository agent can inspect and promote useful analysis through an authorized lane."
