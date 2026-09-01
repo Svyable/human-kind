@@ -1,0 +1,71 @@
+# AR-0101 — Skeptic review
+
+**Idea:** HK-0055 — Pre-commit disaster cash before forecasts cross the danger threshold  
+**Agent:** `chatgpt-gpt-5.6-sol`  
+**Source Issue:** https://github.com/Svyable/human-kind/issues/101  
+**Created:** 2026-09-01  
+**Decision authority:** repository-scoped
+
+> Agent-produced review. Repository-scoped authority permits bounded repository decisions and eligible validated merge. Human verification is still required before this review is treated as verified knowledge or influences lifecycle promotion or consequential action.
+
+## Review summary
+
+HK-0055 combines two claims that should not be treated as one: (1) earlier cash can improve welfare relative to substantially delayed assistance in some flood settings, and (2) a forecast threshold, financing rule, targeting system, and delivery rail can reliably trigger anticipatory cash with acceptable false-alarm, miss, lead-time, distributional, and opportunity-cost tradeoffs. The first claim has credible randomized evidence from Bangladesh and Nepal. The second remains substantially more context-dependent. The reviewed RCT documentation randomizes transfer timing after flood forecasts meet WFP country-office criteria and within pre-existing beneficiary/delivery systems; it does not randomize candidate forecast thresholds or estimate the generic precision, recall, false-alarm cost, miss harm, or portability of a trigger architecture. Existing humanitarian trigger practice already uses historical hindcasts, explicit thresholds, pre-arranged financing, and pre-agreed actions, and public OCHA examples show material lead-time/reliability limitations and actual missed activations. Recommendation: `needs-evidence` for human consideration, with any next work restricted to a predeclared retrospective validation protocol using public or synthetic data.
+
+## Findings
+
+- SOURCED — The World Bank reproducibility package for *Fast Action for Floods* describes a randomized controlled trial in Bangladesh and Nepal testing cash delivered within days of a flood versus the same assistance months later; it reports overall gains in food security and psychosocial well-being from timely cash. Computational reproducibility was verified by the World Bank Development Impact analytics team.
+- SOURCED — The Bangladesh 2024 microdata documentation states that the study randomized the timing of electronic transfers across three arms after forecast intensity met criteria set by WFP's country office. Transfers used bKash. The beneficiary list contained almost 90,000 people, and the phone-survey sample was drawn from beneficiary households whose active phone numbers were linked to their bKash accounts.
+- SOURCED — The Nepal 2022-2023 microdata documentation likewise states that the study randomized timing of physical cash transfers after forecast intensity met WFP country-office criteria, using a pre-existing list of potential beneficiaries and local remittance agents.
+- INFERENCE — These trials provide direct evidence about the welfare value of *timing conditional on activation and delivery infrastructure*. They do not identify whether a different forecast probability, hazard threshold, readiness/action split, financing rule, beneficiary-selection rule, or delivery rail would have produced better or worse trigger performance.
+- SOURCED — OCHA's Bangladesh trigger work historically evaluated flood models back to 1987, compared forecasts with observed events and false alarms, estimated activation thresholds, and evaluated the two-model readiness/activation system both independently and jointly before thresholds were revised.
+- SOURCED — OCHA's Nepal flood trigger uses explicit readiness/action thresholds and reports an inverse relationship between warning lead time and forecast reliability. Historical analysis examined false alarms, missed activations, and performance by lead time; at Chisapani, the historical forecast had never reached the relevant exceedance threshold at 4-7 days lead time in the analysis described.
+- SOURCED — OCHA's Philippines typhoon trigger work reports that Typhoon Rai intensified so rapidly that the forecast did not predict the scale of damage until too late and the trigger threshold was not reached. Its peer review explicitly identified false negatives and called for better threshold rationale, versioning, data provenance, and continued model review.
+- INFERENCE — Trigger validation therefore needs event-by-event hindcasts with predeclared thresholds and a confusion matrix (hits, false alarms, misses, correct rejections) plus lead-time and decision-cost analysis. Demonstrating that early cash can help after a correctly anticipated flood is insufficient evidence that a proposed trigger will activate reliably or at the right cost.
+- INFERENCE — HK-0055 is not novel simply because it links forecasts to pre-committed cash: mature anticipatory-action frameworks already combine predictive models or forecasts, pre-arranged financing, and pre-agreed actions. A distinct contribution would have to be a better, reproducible validation protocol or evidence layer rather than another generic trigger architecture.
+- INFERENCE — Any transfer claim must preserve the dependency on beneficiary identification and payment rails. The Bangladesh evidence is especially conditioned on a validated beneficiary list and bKash-linked phone/account access; this does not establish equal reach among people absent from administrative lists, without functional accounts/phones, or in settings with weaker payment and market infrastructure.
+
+## Sources and evidence
+
+- https://reproducibility.worldbank.org/index.php/catalog/374/
+- https://microdata.worldbank.org/catalog/8009
+- https://microdata.worldbank.org/index.php/catalog/8010/study-description
+- https://www.nber.org/papers/w34414
+- https://www.wfp.org/publications/nepal-anticipatory-action-impact-evaluation
+- https://www.wfp.org/publications/acting-flood-protect-most-vulnerable-independent-review-wfps-anticipatory-cash
+- https://www.wfp.org/publications/wfps-evidence-base-anticipatory-action-2015-2024
+- https://nhess.copernicus.org/articles/15/895/2015/nhess-15-895-2015.html
+- https://centre.humdata.org/anticipatory-action-in-bangladesh-before-peak-monsoon-flooding/
+- https://centre.humdata.org/triggering-anticipatory-action-for-floods-in-nepal/
+- https://centre.humdata.org/peer-review-of-510s-typhoon-model-and-its-use-in-the-philippines/
+- https://github.com/Svyable/human-kind/issues/80
+
+## Counterevidence and uncertainty
+
+- The randomized Bangladesh/Nepal evidence is meaningful positive evidence for the timing mechanism; trigger-architecture uncertainty should not be misrepresented as evidence that anticipatory cash itself is ineffective.
+- The public documentation reviewed here is not an exhaustive reconstruction of every forecast vintage, operational decision, beneficiary-selection process, payment failure, market condition, or humanitarian outcome across all anticipatory-action frameworks.
+- Historical hindcasts can themselves overfit if event definitions, forecast products, model versions, thresholds, lead times, loss functions, or evaluation windows are chosen after inspecting outcomes. A retrospective test is credible only if those choices are predeclared or evaluated transparently across a bounded grid without selecting only the best-performing configuration.
+- Forecast skill is not equivalent to humanitarian value. A technically accurate trigger can still fail if payment rails, beneficiary lists, markets, communications, staffing, or local access fail; conversely, acting on an imperfect forecast can still have positive expected value when the cost of acting in vain is low relative to the cost of a miss.
+- The Bangladesh bKash and Nepal remittance-agent delivery contexts are not evidence that the same delivery speed, inclusion, or welfare effects transfer to populations without accounts, active phones, administrative visibility, functioning markets, safe access, or comparable local institutions.
+- The reviewed RCT design compares earlier with later assistance; it does not by itself establish superiority over a well-prepared rapid post-shock transfer system in every setting.
+- Public historical data may be sufficient to score forecast trigger performance but insufficient to estimate distributional miss harms, household-level opportunity costs, market effects, or delivery failures. Those missing outcomes should remain missing rather than be imputed as success.
+
+## Risks and safety
+
+- Post-hoc threshold tuning can create false confidence by selecting the trigger that happens to fit a small historical event set.
+- False alarms can consume scarce pre-arranged funds, create acting-in-vain costs, strain payment systems, or distort markets; misses can create false reassurance and systematically exclude communities whose hazards are harder to forecast.
+- Longer lead time can trade off against forecast reliability, so optimizing only for earliest action can worsen missed or false activations.
+- Administrative beneficiary lists and digital payment rails can systematically omit people without formal IDs, accounts, stable phones, connectivity, housing, or prior program visibility.
+- Average welfare gains among reached beneficiaries can conceal distributional failures among people who were not eligible, not listed, unreachable, or unable to transact.
+- A trigger metric can become a Goodhart target: implementers may optimize measured forecast performance or activation compliance while ignoring last-mile delivery, market functioning, complaints, or welfare harm.
+- No result in this review authorizes a live trigger, movement of funds, creation of recipient lists, targeting decisions, outreach to communities or humanitarian organizations, or operational deployment.
+
+## Recommended status
+
+`needs-evidence`
+
+This is a recommendation only. It does not change `idea.yaml`.
+
+## Smallest responsible next step
+
+Create a repository-only retrospective validation specification for one already-public flood context, not a live trigger. Before looking at results, record: hazard and geography; forecast source and exact model/version where available; observation used to define the event; a small bounded grid of candidate readiness/action thresholds; lead times; event window; hits, false alarms, misses, and correct rejections; maximum pre-arranged activation cost or a clearly labeled proxy; the welfare/loss assumption assigned to a miss; observed or documented delivery latency; beneficiary-eligibility and payment-access coverage; known market/delivery constraints; and a realistic comparator such as rapid post-shock assistance. Report every tested threshold rather than only the best one. If public data cannot support a field—especially distributional reach, delivery failure, or welfare cost—mark it unavailable and stop short of claiming validation. Use only public or synthetic data. Do not create recipient lists, move money, contact external organizations or communities, recommend an operational threshold, or deploy anything.
