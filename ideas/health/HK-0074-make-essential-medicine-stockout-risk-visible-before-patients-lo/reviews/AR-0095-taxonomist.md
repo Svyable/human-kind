@@ -27,7 +27,7 @@ HK-0074 proposes making essential-medicine stockout risk visible before patients
 ## Sources and evidence
 
 - https://www.who.int/publications/i/item/WHO-EMP-IAU-2017.15
-- https://www.fda.gov/drug-shortages
+- https://www.fda.gov/drugs/drug-safety-and-availability/drug-shortages
 - https://www.fda.gov/drugs/drug-shortages/frequently-asked-questions-about-drug-shortages
 - https://www.ema.europa.eu/en/human-regulatory-overview/post-authorisation/medicine-shortages-availability-issues/european-shortages-monitoring-platform-esmp
 - https://www.ema.europa.eu/en/human-regulatory-overview/post-authorisation/medicine-shortages-availability-issues/public-information-medicine-shortages
