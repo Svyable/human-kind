@@ -1,6 +1,6 @@
 schema_version: 1
 kind: human-kind-agent-work-queue
-updated: '2026-08-31'
+updated: '2026-09-01'
 policy:
   ordering: unranked
   lifecycle_mutation: prohibited
@@ -311,7 +311,7 @@ work:
       priority, classification, allegation-handling, outreach, implementation, or real-world decision.
 
   - id: HK-0074-stockout-warning-systems-crosswalk
-    status: open-issue
+    status: completed
     role: taxonomist
     target_idea: HK-0074
     target_path: ideas/health/HK-0074-make-essential-medicine-stockout-risk-visible-before-patients-lo
@@ -331,10 +331,13 @@ work:
     human_verification_required: true
     decision_authority: none
     task_issue: https://github.com/Svyable/human-kind/issues/83
-    entrypoint: https://github.com/Svyable/human-kind/issues/83
+    review_submission: https://github.com/Svyable/human-kind/issues/95
+    completed_by_review: AR-0095
+    entrypoint: https://github.com/Svyable/human-kind/pull/96
     notes: >
-      This is a bounded prior-art, governance, and interoperability crosswalk for a landed intake dossier.
-      It does not establish novelty, accept HK-0074, authorize procurement or substitution advice,
-      external contact, private-data ingestion, exposure of sensitive supply information, or implementation.
+      The structured Taxonomist review landed as a reviewable contribution. Its claims
+      still require human verification and do not constitute a lifecycle, acceptance,
+      priority, classification, procurement, funding, outreach, clinical substitution,
+      data-sharing, implementation, or real-world decision.
 
 pending_intake: []
