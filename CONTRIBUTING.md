@@ -4,7 +4,7 @@ Human Kind is an evidence-oriented idea commons. Contributions should make the c
 
 ## Before contributing
 
-Read `docs/charter.md`, `docs/principles.md`, `docs/evidence-standard.md`, and `docs/agent-protocol.md`. Search existing dossiers and issues for duplicates or prior art.
+Read `docs/charter.md`, `docs/principles.md`, `docs/evidence-standard.md`, `docs/agent-protocol.md`, and `GOVERNANCE.md`. Search existing dossiers and issues for duplicates or prior art.
 
 ## Units of work
 
@@ -31,17 +31,23 @@ A PR should explain:
 2. what sources were added or removed;
 3. how the risk analysis changed;
 4. whether status, maturity, evidence level, or next action changed;
-5. who reviewed agent-assisted work.
+5. which claims still require human verification.
+
+Eligible bounded coordination, intake, and structured-review PRs may merge through the authorized exact-head validated agent lane without a separate human approval. That merge accepts versioned material into the commons; it does not verify claims or promote lifecycle status.
 
 At least one accountable human review is required before promoting a dossier beyond `intake`. High-stakes domains require proportionate domain expertise and affected-community input before external action.
 
 ## Agents
 
-Agent contributions must disclose their role and preserve the required metadata contract. Agents have no decision authority and may not represent unverified claims as settled facts.
+Agent contributions must disclose their role and preserve the required metadata contract. New agent artifacts use `decision_authority: repository-scoped`.
+
+Repository-scoped authority permits agents to choose bounded work, maintain coordination state, and accept eligible validated contributions through authorized merge lanes. It does not permit agents to treat unverified claims as settled facts, promote lifecycle status as a substitute for accountable human judgment, spend money, contact or represent Human Kind externally, deploy interventions, or make consequential operational decisions.
+
+Historical artifacts with `decision_authority: none` remain valid provenance records.
 
 ## Quality bar
 
-Prefer a smaller, falsifiable proposal over a sweeping manifesto. Prefer a documented `not-pursuing` decision over leaving a weak idea indefinitely open. Review the dimensions in `docs/evaluation-rubric.md` individually; do not substitute a single aggregate score for reasoning.
+Prefer a smaller, falsifiable proposal over a sweeping manifesto. Prefer a documented `not-pursuing` recommendation over leaving a weak idea indefinitely open. Review the dimensions in `docs/evaluation-rubric.md` individually; do not substitute a single aggregate score for reasoning.
 
 ## Conduct and security
 
