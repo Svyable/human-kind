@@ -17,7 +17,7 @@
 - https://www.nber.org/reporter/2024number3/snap-eligibility-enforcement-and-program-adoption — accessible summary of the Los Angeles flexible-interview experiment and the role of missed interviews in procedural denials.
 - https://www.fna.usda.gov/snap/state/interview-toolkit/introduction/core-requirements — current USDA description of SNAP interview requirements, privacy obligations, and state operational flexibilities.
 - https://www.fna.usda.gov/research/snap/assessment-interview — USDA study assessing the contribution of interviews to eligibility and benefit determinations; relevant prior work on the accuracy/access tradeoff.
-- https://www.federalregister.gov/d/2024-31632 — Federal Register notice for USDA's planned randomized evaluation of the SNAP interview requirement, explicitly including access, administrative efficiency, costs, and benefit accuracy.
+- https://www.fns.usda.gov/snap/fr-010625a — USDA Food and Nutrition Service notice for the planned randomized evaluation of the SNAP interview requirement, explicitly including access, administrative efficiency, costs, and benefit accuracy.
 - https://www.fna.usda.gov/snap/qc/caper — USDA case and procedural error-rate data, relevant to measuring both access failures and administrative accuracy.
 - https://www.fna.usda.gov/research/snap/understanding-rates-causes-and-costs-churning-supplemental-nutrition-assistance-program-snap — USDA research on SNAP churn and the burdens imposed on households and administering agencies when participants exit and re-enter.
 
