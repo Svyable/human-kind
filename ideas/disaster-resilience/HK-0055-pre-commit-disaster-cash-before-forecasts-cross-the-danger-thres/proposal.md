@@ -47,7 +47,7 @@ If finance and delivery are prepared before a predictable shock and released on 
 - WFP global strategy 2026-2029: https://www.wfp.org/publications/forecasts-action-wfps-global-anticipatory-action-strategy-2026-2029
 - Christian et al., *Fast Action for Floods: RCT Evidence on Forecast-based Cash Transfers from Bangladesh and Nepal*, NBER Working Paper 34414 (2025): https://www.nber.org/papers/w34414
 - World Bank reproducibility package for the Bangladesh/Nepal RCT: https://reproducibility.worldbank.org/index.php/catalog/374/
-- Red Cross Red Crescent forecast-based-financing practitioner methodology: https://www.anticipation-hub.org/learn/methodology/red-cross-red-crescent-fbf-practitioner-manual
+- UNDRR PreventionWeb record for the IFRC/German Red Cross *Forecast-based Financing practitioners manual*: https://www.preventionweb.net/publication/forecast-based-financing-practitioners-manual
 
 ## Novelty
 
