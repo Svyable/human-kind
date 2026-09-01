@@ -27,13 +27,12 @@ HK-0074 proposes making essential-medicine stockout risk visible before patients
 ## Sources and evidence
 
 - https://www.who.int/publications/i/item/WHO-EMP-IAU-2017.15
-- https://www.fda.gov/drugs/drug-safety-and-availability/drug-shortages
-- https://www.fda.gov/drugs/drug-shortages/frequently-asked-questions-about-drug-shortages
-- https://www.ema.europa.eu/en/human-regulatory-overview/post-authorisation/medicine-shortages-availability-issues/european-shortages-monitoring-platform-esmp
-- https://www.ema.europa.eu/en/human-regulatory-overview/post-authorisation/medicine-shortages-availability-issues/public-information-medicine-shortages
-- https://www.canada.ca/en/health-canada/services/drugs-health-products/drug-products/drug-shortages/regulations-guidance.html
-- https://www.canada.ca/en/health-canada/services/drugs-health-products/drug-products/drug-shortages.html
-- https://www.canada.ca/en/health-canada/services/drugs-health-products/compliance-enforcement/establishment-licences/drug-establishment-licensing-bulletin/new-website-health-product-shortages.html
+- https://www.fda.gov/drugs/drug-shortage-staff
+- https://www.fda.gov/drugs/drug-safety-and-availability
+- https://esmp.ema.europa.eu/
+- https://open.canada.ca/data/en/dataset/f6198ae6-ed66-4de5-b03f-7c347d8e850e
+- https://open.canada.ca/data/en/dataset/653f1530-b182-42e5-9953-5061ea521cf0
+- https://open.canada.ca/data/en/dataset/cad7007c-6352-480c-a3c5-8a176fe773b5
 - https://apps.tga.gov.au/shortages/search/Index
 - https://github.com/Svyable/human-kind/issues/83
 
