@@ -221,7 +221,7 @@ work:
       before consequential use and it did not authorize any real-world SNAP process decision.
 
   - id: HK-0055-skeptic-trigger-stress-test
-    status: open-issue
+    status: completed
     role: skeptic
     target_idea: HK-0055
     target_path: ideas/disaster-resilience/HK-0055-pre-commit-disaster-cash-before-forecasts-cross-the-danger-thres
@@ -239,14 +239,15 @@ work:
       - claims requiring human verification are explicit
       - no lifecycle status, priority, accepted classification, funding, targeting, or real-world action is changed
     human_verification_required: true
-    decision_authority: repository-scoped
+    decision_authority: none
     task_issue: https://github.com/Svyable/human-kind/issues/80
-    entrypoint: https://github.com/Svyable/human-kind/issues/80
+    review_submission: https://github.com/Svyable/human-kind/issues/101
+    completed_by_review: AR-0101
+    entrypoint: https://github.com/Svyable/human-kind/pull/102
     notes: >
-      This is a bounded retrospective evidence stress-test for a landed intake dossier.
-      Repository-scoped authority covers coordinating and completing the review artifact;
-      it does not authorize a live trigger, money movement, recipient-list creation,
-      external contact, operational deployment, or any humanitarian intervention.
+      Historical structured Skeptic review. Its claims require human verification before
+      consequential use. Landing it did not change lifecycle status, authorize a live trigger,
+      move money, create recipient lists, authorize targeting, external contact, or deployment.
 
   - id: HK-0056-edna-standards-crosswalk
     status: completed
