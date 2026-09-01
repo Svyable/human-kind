@@ -154,7 +154,7 @@ class AgentHarnessTests(unittest.TestCase):
         self.assertEqual(data["generated_by"], "agent")
         self.assertEqual(data["human_reviewer"], "required")
         self.assertIs(data["claims_requiring_verification"], True)
-        self.assertEqual(data["decision_authority"], "none")
+        self.assertEqual(data["decision_authority"], "repository-scoped")
         self.assertEqual(data["geography"], ["global", "Canada"])
         index = yaml.safe_load((self.root / "data" / "idea-index.yaml").read_text())
         self.assertEqual(index["ideas"][0]["id"], "HK-9001")
@@ -187,7 +187,7 @@ class AgentHarnessTests(unittest.TestCase):
         self.assertTrue(review_md.exists())
         review = yaml.safe_load(review_yaml.read_text())
         self.assertEqual(review["recommended_status"], "needs-evidence")
-        self.assertEqual(review["decision_authority"], "none")
+        self.assertEqual(review["decision_authority"], "repository-scoped")
         after = yaml.safe_load((dossier / "idea.yaml").read_text())
         self.assertEqual(after, before)
 
