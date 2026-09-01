@@ -326,15 +326,14 @@ work:
       - claims requiring human verification are explicit
       - no lifecycle status, priority, accepted classification, procurement, funding, outreach, or real-world action is changed
     human_verification_required: true
-    decision_authority: repository-scoped
+    decision_authority: none
     task_issue: https://github.com/Svyable/human-kind/issues/83
     review_submission: https://github.com/Svyable/human-kind/issues/95
     completed_by_review: AR-0095
     entrypoint: https://github.com/Svyable/human-kind/pull/96
     notes: >
-      The structured Taxonomist review is accepted into the version-controlled commons.
-      Repository-scoped authority permits that repository decision, but its claims still
-      require human verification before consequential use and it does not authorize
+      Historical structured Taxonomist review. Its claims still require human verification
+      before consequential use. Landing it did not change lifecycle status or authorize
       procurement, substitution advice, private-data ingestion, external contact,
       sensitive supply disclosure, funding, deployment, or lifecycle promotion.
 
