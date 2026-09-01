@@ -21,6 +21,7 @@ INDEX_FRAGMENTS = ROOT / "data/idea-index.d"
 ISSUE_URL = re.compile(r"^https://github\.com/Svyable/human-kind/issues/[0-9]+$")
 PR_URL = re.compile(r"^https://github\.com/Svyable/human-kind/pull/[0-9]+$")
 IDEA_ID = re.compile(r"^HK-[0-9]{4}$")
+REPOSITORY_AUTHORITY = "repository-scoped"
 
 
 def error(message: str) -> None:
@@ -135,8 +136,8 @@ def main() -> int:
         if item.get("human_verification_required") is not True:
             error(f"{prefix}.human_verification_required must be true")
             failures += 1
-        if item.get("decision_authority") != "none":
-            error(f"{prefix}.decision_authority must be 'none'")
+        if item.get("decision_authority") != REPOSITORY_AUTHORITY:
+            error(f"{prefix}.decision_authority must be {REPOSITORY_AUTHORITY!r}")
             failures += 1
 
         notes = str(item.get("notes", "")).strip()
