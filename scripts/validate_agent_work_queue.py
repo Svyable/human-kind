@@ -4,8 +4,8 @@
 The queue is repository coordination and task-selection metadata, not a real-world
 priority ranking. Agents have repository-scoped authority over bounded queue and
 coordination decisions. Structural violations fail CI. Potential staleness caused by
-newly landed reviews or breadth concentration is reported as a warning so useful agent
-PRs are not blocked solely because queue synchronization has not happened yet.
+reviews present in the current checkout or breadth concentration is reported as a warning
+so useful agent PRs are not blocked solely because queue synchronization has not happened yet.
 """
 
 from __future__ import annotations
@@ -52,7 +52,7 @@ def load_yaml(path: pathlib.Path):
         raise RuntimeError(f"{path.relative_to(ROOT)} could not be parsed: {exc}") from exc
 
 
-def landed_review_roles() -> dict[str, set[str]]:
+def review_roles_present_in_checkout() -> dict[str, set[str]]:
     roles: dict[str, set[str]] = defaultdict(set)
     for path in IDEAS.glob("*/*/reviews/*.yaml"):
         try:
@@ -183,7 +183,7 @@ def main() -> int:
 
     seen_ids: set[str] = set()
     seen_role_targets: set[tuple[str, str]] = set()
-    landed = landed_review_roles()
+    reviews_present = review_roles_present_in_checkout()
     active_targets: set[str] = set()
 
     for offset, item in enumerate(work, start=1):
@@ -293,15 +293,15 @@ def main() -> int:
         if status in ACTIVE_STATUSES and idea_id:
             active_targets.add(idea_id)
 
-        if status in ACTIVE_STATUSES and role in landed.get(idea_id, set()):
+        if status in ACTIVE_STATUSES and role in reviews_present.get(idea_id, set()):
             warning(
-                f"{prefix} is still {status!r}, but a {role} review has landed for {idea_id}; "
-                "consider marking the queue item completed or replacing it with a new bounded task"
+                f"{prefix} is still {status!r}, but a {role} review is present in the current checkout for {idea_id}; "
+                "if that review is already merged, consider marking the queue item completed or replacing it with a new bounded task"
             )
 
-        if status == "completed" and role not in landed.get(idea_id, set()):
+        if status == "completed" and role not in reviews_present.get(idea_id, set()):
             warning(
-                f"{prefix} is marked completed, but no landed {role} review was found for {idea_id}"
+                f"{prefix} is marked completed, but no {role} review was found in the current checkout for {idea_id}"
             )
 
     indexed_domains = {
