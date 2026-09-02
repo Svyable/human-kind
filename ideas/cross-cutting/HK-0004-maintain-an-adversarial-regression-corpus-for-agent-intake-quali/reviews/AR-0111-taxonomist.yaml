@@ -1,0 +1,75 @@
+review_id: AR-0111
+idea_id: HK-0004
+role: taxonomist
+reviewer_id: chatgpt-gpt-5.6-sol
+source_issue: https://github.com/Svyable/human-kind/issues/14
+created_at: '2026-09-02'
+summary: >-
+  HK-0004 fits the current `cross-cutting` domain because its object is the commons' own
+  intake/evaluation infrastructure rather than a substantive problem domain. No duplicate
+  dossier is visible in the current idea indexes. The closest repository neighbor is the
+  already-landed `agents/evals/` harness, which partially implements the dossier's proposed
+  mechanism and should be treated as implementation/provenance context rather than a separate
+  idea. Useful aliases are "agent intake regression corpus", "intake quality regression suite",
+  "adversarial intake fixtures", and "agent harness evaluation corpus". Human verification is
+  required before any taxonomy or dossier change is made.
+findings:
+  - >-
+    REPOSITORY-SOURCED — `cross-cutting` is an allowed top-level domain and HK-0004 is currently
+    indexed only there. Its problem statement concerns prompts, parsers, schemas, provenance,
+    safety handling, and agent workflows across the commons, so the current domain fit is coherent.
+  - >-
+    REPOSITORY-SOURCED — The current idea indexes contain no second dossier whose title or stated
+    mechanism is an agent-intake regression corpus. On the indexed corpus reviewed here, no dossier
+    duplicate was found.
+  - >-
+    REPOSITORY-SOURCED — `agents/evals/README.md` describes an executable harness for Agent Idea
+    and Agent Review contribution contracts, using canonical known-good bodies plus mutations and
+    explicitly distinguishing known-invariant regression protection from broader truth or safety.
+    This is a close implementation neighbor and partially realizes HK-0004's mechanism.
+  - >-
+    INFERENCE — Because `agents/evals/` is repository infrastructure rather than an independently
+    indexed intervention dossier, it should not be treated as a duplicate idea. Instead, future
+    HK-0004 work should cross-reference that harness so the dossier does not imply that the
+    regression mechanism is wholly unimplemented.
+  - >-
+    INFERENCE — The strongest search aliases are: `agent intake regression corpus`, `intake quality
+    regression suite`, `adversarial intake fixtures`, `agent harness evaluation corpus`, and
+    `agent contribution contract tests`. These improve findability without changing classification.
+  - >-
+    INFERENCE — `standards` remains a defensible intervention type because HK-0004 defines acceptance
+    criteria and reusable evaluation contracts. If the taxonomy later supports repository-tooling
+    or evaluation-infrastructure facets, those could be secondary descriptors; no taxonomy change
+    is needed for the current corpus.
+sources:
+  - data/taxonomy.yaml
+  - data/idea-index.yaml
+  - data/idea-index.d/
+  - agents/evals/README.md
+  - ideas/cross-cutting/HK-0004-maintain-an-adversarial-regression-corpus-for-agent-intake-quali/idea.yaml
+  - https://github.com/Svyable/human-kind/issues/14
+uncertainties:
+  - >-
+    This review checks the repository's current indexed corpus and public repository structure;
+    it does not establish that no conceptually similar proposal exists outside Human Kind.
+  - >-
+    The legacy index and fragment index are separate surfaces, so future duplicate detection should
+    continue to inspect both rather than treating either one alone as exhaustive.
+  - >-
+    Whether the landed harness has advanced HK-0004 beyond its current metadata maturity or next
+    action is not a Taxonomist decision and requires separate human-accountable dossier review.
+risks:
+  - Treating repository infrastructure as a duplicate dossier could erase useful provenance between an idea and its partial implementation.
+  - Treating the absence of an indexed duplicate as proof of external novelty would overstate the evidence.
+  - Adding a new taxonomy category for one dossier could create unnecessary schema churn and fragmentation.
+recommended_status: intake
+next_action: >-
+  For human consideration only, add discoverability aliases and an explicit cross-reference from
+  HK-0004 to `agents/evals/` during a future dossier-maintenance change, then reassess whether the
+  dossier's stated next action is stale relative to the already-landed harness. Do not change
+  lifecycle status or accepted classification as part of this review.
+generated_by: agent
+human_reviewer: required
+claims_requiring_verification: true
+source_links_required: true
+decision_authority: none
