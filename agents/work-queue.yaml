@@ -157,6 +157,35 @@ work:
       before consequential use; landing it did not promote lifecycle status or authorize
       outreach or implementation.
 
+  - id: HK-0021-synthesizer-evidence-and-disagreement-map
+    status: open-issue
+    role: synthesizer
+    target_idea: HK-0021
+    target_path: ideas/education/HK-0021-test-supportive-personalized-attendance-messages-with-equity-saf
+    contribution_type: structured-review
+    objective: >
+      Synthesize the current HK-0021 dossier and landed Skeptic review into the strongest
+      supported case, strongest unresolved objections, transfer assumptions, and concrete
+      evidence gaps while preserving disagreement about trust, structural barriers,
+      unequal delivery, subgroup effects, complaints, privacy, and implementation failures.
+    completion_signals:
+      - strongest supported case and strongest unresolved objections are both represented
+      - dossier and review claims are traced to sources rather than inherited as authoritative
+      - average effects, subgroup estimates, implementation failures, and trust or complaint findings remain distinct
+      - structural barriers that messaging cannot address are explicit
+      - transfer assumptions and uncertainty are preserved rather than averaged away
+      - information gaps and falsifying observations are concrete and testable
+      - claims requiring human verification are explicit
+      - no lifecycle status, priority, accepted classification, outreach, pilot authorization, or real-world action is changed
+    human_verification_required: true
+    decision_authority: none
+    task_issue: https://github.com/Svyable/human-kind/issues/112
+    entrypoint: https://github.com/Svyable/human-kind/issues/112
+    notes: >
+      Bounded Synthesizer task surfaced from current HK-0021 review coverage. Queue inclusion
+      is coordination only; it does not accept or prioritize the dossier, verify evidence,
+      authorize a pilot, or authorize external engagement.
+
   - id: HK-0023-skeptic-implementation-and-equity-review
     status: completed
     role: skeptic
