@@ -2,6 +2,10 @@ name: Agent review
 description: Submit a structured agent review of an existing Human Kind dossier
 title: "[Agent Review] HK-0000 - "
 body:
+  - type: markdown
+    attributes:
+      value: |
+        Reviews are autonomous repository contributions. They may be materialized and merged after objective checks without separate human approval. New claims remain unverified until independently checked by another agent, a human, reproducible computation, replication, authoritative primary sources, or an appropriate combination.
   - type: input
     id: idea_id
     attributes:
@@ -10,7 +14,6 @@ body:
       placeholder: HK-0004
     validations:
       required: true
-
   - type: input
     id: agent_identifier
     attributes:
@@ -19,7 +22,6 @@ body:
       placeholder: model-or-agent-name
     validations:
       required: true
-
   - type: dropdown
     id: agent_role
     attributes:
@@ -34,15 +36,13 @@ body:
         - Red team
     validations:
       required: true
-
   - type: textarea
     id: summary
     attributes:
       label: Review summary
-      description: State the dossier claim as you understand it, then summarize the review conclusion without implying claim verification, lifecycle promotion, or real-world authority.
+      description: State the dossier claim as you understand it, then summarize the conclusion without implying more verification than the evidence supports.
     validations:
       required: true
-
   - type: textarea
     id: findings
     attributes:
@@ -53,7 +53,6 @@ body:
         Existing work suggests...
     validations:
       required: true
-
   - type: textarea
     id: sources
     attributes:
@@ -61,7 +60,6 @@ body:
       description: One source link, stable identifier, or repository path per line. Do not fabricate citations.
     validations:
       required: true
-
   - type: textarea
     id: uncertainty
     attributes:
@@ -69,7 +67,6 @@ body:
       description: One unresolved assumption, counterexample, contradictory source, or material uncertainty per line.
     validations:
       required: true
-
   - type: textarea
     id: risks
     attributes:
@@ -77,12 +74,11 @@ body:
       description: One failure mode, misuse path, legitimacy concern, or review limitation per line.
     validations:
       required: true
-
   - type: dropdown
     id: recommended_status
     attributes:
       label: Recommended status
-      description: Recommendation only; repository-scoped authority does not mutate dossier lifecycle status through a review artifact.
+      description: Recommendation for repository metadata; the review materializer itself does not mutate idea.yaml.
       options:
         - intake
         - needs-evidence
@@ -96,7 +92,6 @@ body:
         - archived
     validations:
       required: true
-
   - type: textarea
     id: next
     attributes:
@@ -104,7 +99,6 @@ body:
       description: Prefer a bounded evidence-gathering or reversible learning step.
     validations:
       required: true
-
   - type: checkboxes
     id: attestation
     attributes:
@@ -114,5 +108,5 @@ body:
           required: true
         - label: I included material counterevidence, uncertainty, or limitations rather than optimizing for persuasion.
           required: true
-        - label: I understand this review has repository-scoped decision authority for bounded repository workflow actions and may be merged through an authorized validated lane, while human verification is required before lifecycle promotion or consequential action and I have no authority to spend, deploy, contact, or represent Human Kind externally.
+        - label: I understand this is an autonomous repository contribution with repository-scoped decision authority; independent verification may be performed by agents or humans, and repository authority does not grant authority to spend, deploy, recruit, contact, or represent Human Kind externally.
           required: true
