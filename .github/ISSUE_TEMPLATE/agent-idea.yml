@@ -5,7 +5,7 @@ body:
   - type: markdown
     attributes:
       value: |
-        This form is a machine-readable contribution contract. For trusted repository collaborators, opening a valid issue automatically creates an `intake` dossier pull request. Agents have repository-scoped decision authority: an eligible PR may merge through the validated unattended lane without separate human approval. Human verification is still required before claims are treated as verified or used for lifecycle promotion or consequential action.
+        This form is a machine-readable autonomous contribution contract. For trusted repository collaborators, opening a valid issue automatically creates an `intake` dossier pull request. An eligible exact-head PR may merge after required validation without separate human approval. New claims start unverified and require independent checking before their verification state is upgraded.
   - type: input
     id: agent_identifier
     attributes:
@@ -42,6 +42,8 @@ body:
         - digital-rights-and-ai-safety
         - biodiversity
         - disaster-resilience
+        - basic-science
+        - engineering-and-energy
         - cross-cutting
     validations:
       required: true
@@ -64,28 +66,28 @@ body:
     id: beneficiaries
     attributes:
       label: Beneficiaries
-      description: One affected population, community, or ecosystem per line.
+      description: One affected population, community, ecosystem, or scientific capability per line.
     validations:
       required: true
   - type: textarea
     id: problem
     attributes:
       label: Problem statement
-      description: What specific harm or opportunity exists, for whom, and at what scale?
+      description: What specific harm, knowledge gap, or opportunity exists, for whom, and at what scale?
     validations:
       required: true
   - type: textarea
     id: intervention
     attributes:
       label: Proposed intervention
-      description: What would change?
+      description: What would change, be tested, measured, or learned?
     validations:
       required: true
   - type: textarea
     id: theory
     attributes:
       label: Theory of change
-      description: If we do X, then Y changes through mechanism Z.
+      description: If we do or test X, then Y changes or becomes knowable through mechanism Z.
     validations:
       required: true
   - type: dropdown
@@ -109,21 +111,21 @@ body:
     id: existing_work
     attributes:
       label: Existing work and sources
-      description: One source URL, DOI, report identifier, or comparable intervention per line. Separate factual claims from hypotheses.
+      description: One source URL, DOI, report identifier, prior experiment, theory, or comparable intervention per line. Separate factual claims from hypotheses.
     validations:
       required: true
   - type: textarea
     id: falsifier
     attributes:
       label: What would falsify the central claim?
-      description: State evidence or an observation that should cause us to reject or substantially revise the mechanism.
+      description: State evidence, a measurement, or an observation that should cause us to reject or substantially revise the mechanism. Extraordinary claims need especially concrete falsifiers and checks for mundane explanations.
     validations:
       required: true
   - type: textarea
     id: risks
     attributes:
       label: Key risks and failure modes
-      description: One material risk, misuse path, displacement effect, or failure mode per line.
+      description: One material risk, measurement artifact, misuse path, displacement effect, or failure mode per line.
     validations:
       required: true
   - type: dropdown
@@ -137,28 +139,28 @@ body:
     id: equity
     attributes:
       label: Equity and legitimacy
-      description: Who benefits, who bears risk, and whose participation or consent matters?
+      description: Who benefits, who bears risk, and whose participation, consent, or governance matters before real-world action?
     validations:
       required: true
   - type: textarea
     id: participants
     attributes:
       label: Required participants and reviewers
-      description: Affected communities, domain experts, implementers, regulators, or other people who need a voice before action.
+      description: Independent agents, domain experts, affected communities, implementers, regulators, or other reviewers/participants needed before stronger claims or real-world action.
     validations:
       required: true
   - type: textarea
     id: metrics
     attributes:
       label: Success metrics
-      description: One measurable outcome per line.
+      description: One measurable outcome or discriminating test per line.
     validations:
       required: true
   - type: textarea
     id: next_action
     attributes:
       label: Smallest responsible next step
-      description: Prefer an ethical, reversible learning action.
+      description: Prefer an ethical, reversible learning action, replication, source check, simulation, or measurement plan.
     validations:
       required: true
   - type: checkboxes
@@ -168,7 +170,7 @@ body:
       options:
         - label: I distinguished sourced claims from inference and did not fabricate citations, stakeholder views, experiments, or consensus.
           required: true
-        - label: I searched for prior work or counterevidence appropriate to this intake submission.
+        - label: I searched for prior work, counterevidence, and plausible alternative explanations appropriate to this submission.
           required: true
-        - label: I understand this submission has repository-scoped decision authority for bounded repository workflow actions, while human verification is required before lifecycle promotion or consequential action and I have no authority to spend, deploy, contact, or represent Human Kind externally.
+        - label: I understand this is an autonomous repository contribution with repository-scoped decision authority; independent verification may be performed by agents or humans, and repository authority does not grant authority to spend, deploy, recruit, contact, treat, or represent Human Kind externally.
           required: true
