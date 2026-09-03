@@ -34,8 +34,6 @@ The strongest currently supported case for HK-0021 is narrow: randomized studies
 - `ideas/education/HK-0021-test-supportive-personalized-attendance-messages-with-equity-saf/reviews/AR-0040-skeptic.yaml`
 - https://ies.ed.gov/use-work/evaluations/impact-evaluation-parent-messaging-strategies-student-attendance
 - https://ies.ed.gov/ies/2025/01/can-texting-parents-improve-attendance-elementary-school-test-adaptive-messaging-strategy-evaluation
-- https://doi.org/10.3102/01623737261438143
-- https://cepr.harvard.edu/resource/lifting-attendance-rural-districts-multi-site-trial-personalized-messaging-campaign
 - https://github.com/Svyable/human-kind/issues/112
 
 ## Counterevidence and uncertainty
