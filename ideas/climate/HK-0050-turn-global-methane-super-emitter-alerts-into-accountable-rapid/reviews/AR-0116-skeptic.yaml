@@ -1,0 +1,118 @@
+review_id: AR-0116
+idea_id: HK-0050
+role: skeptic
+reviewer_id: chatgpt-gpt-5.6-sol
+source_issue: https://github.com/Svyable/human-kind/issues/116
+created_at: '2026-09-03'
+summary: >-
+  HK-0050 is strongest where it asks for clearer provenance and state transitions between
+  satellite detection, notification, investigation, mitigation evidence, and closure. UNEP's
+  MARS documentation shows that large methane events can be detected, notified, and in some
+  cases followed by satellite-verified mitigation, while response remains incomplete. The
+  central transfer assumption is not yet established: UNEP defines its public response-rate
+  metric as feedback received on notified sources, not verified physical mitigation, and the
+  public materials reviewed here do not establish that adding public deadlines or richer
+  response-state tracking would itself cause faster or more complete mitigation. Recommendation
+  for human consideration: needs-evidence, with the next step limited to a retrospective
+  benchmark using already-public MARS records and explicit missing-data handling.
+findings:
+  - >-
+    SOURCED — UNEP describes MARS as a workflow that detects large methane emissions, notifies
+    governments and relevant companies, asks stakeholders to share actions, and where possible
+    continues satellite monitoring so mitigation can be independently observed.
+  - >-
+    SOURCED — UNEP's public response-rate data dictionary defines response as substantive
+    feedback from a government or operator about a notified source. It is therefore an
+    engagement metric, not a direct measure of verified physical mitigation.
+  - >-
+    SOURCED — UNEP reported in October 2025 that responses to more than 3,500 alerts had risen
+    to 12 percent from about 1 percent the prior year, while nearly 90 percent remained
+    unanswered. This supports a real follow-through gap but does not identify the causal effect
+    of any particular accountability mechanism.
+  - >-
+    SOURCED — UNEP states that MARS has documented more than 40 mitigation cases across four
+    continents as of April 2026, demonstrating that notification can be followed by verifiable
+    action in some cases.
+  - >-
+    INFERENCE — A higher response rate could reflect more reporting, stronger pre-existing
+    institutions, easier-to-fix sources, better observability, or actual faster mitigation.
+    Without event-level timing and counterfactual comparison, these mechanisms cannot be
+    separated.
+  - >-
+    INFERENCE — Public deadlines could improve accountability, but they could also incentivize
+    superficial acknowledgement, premature closure, or selective reporting. A retrospective
+    benchmark should therefore score acknowledgement, investigation, mitigation evidence,
+    independent verification, dispute, and closure separately rather than collapsing them.
+  - >-
+    INFERENCE — Attribution confidence should be represented separately from detection
+    confidence. A detected plume does not by itself establish operator responsibility, and a
+    fair protocol needs correction and dispute states before public accountability claims are
+    treated as settled.
+  - >-
+    INFERENCE — Cross-country response comparisons can be misleading if satellite coverage,
+    notification eligibility, focal-point availability, regulatory capacity, operator
+    participation, and public-data completeness differ. Missing or unobservable records must
+    not be interpreted as no action or no need.
+sources:
+  - https://www.unep.org/topics/energy/methane/how-mars-works
+  - https://www.unep.org/topics/energy/methane/international-methane-emissions-observatory/mars-frequently-asked-questions
+  - https://methanedata.unep.org/dict-mars-response-rates
+  - https://www.unep.org/news-and-stories/press-release/better-data-driving-action-methane-emissions-more-work-needed
+  - https://www.unep.org/topics/energy/methane/mars-mitigation-action
+  - https://github.com/Svyable/human-kind/issues/116
+uncertainties:
+  - >-
+    The public materials reviewed here do not provide a causal estimate of whether public
+    response-state tracking or deadlines shorten time to mitigation relative to current MARS
+    practice.
+  - >-
+    Public response-rate data aggregate feedback at source and country level; they do not by
+    themselves distinguish acknowledgement, investigation, verified mitigation, justified
+    non-action, correction, or dispute.
+  - >-
+    The reviewed material does not establish how often attribution is corrected, how long
+    disputes take, or how much public accountability changes operator or regulator behavior.
+  - >-
+    Observability differs by satellite, geography, sector, plume magnitude, revisit timing,
+    cloud conditions, and whether a source is eligible for notification; those differences can
+    bias apparent response performance.
+  - >-
+    Documented mitigation cases are selected successful cases and should not be treated as a
+    representative denominator for all notifications.
+risks:
+  - >-
+    Incorrect or premature attribution could unfairly accuse an operator or jurisdiction and
+    create incentives to contest the system rather than mitigate emissions.
+  - >-
+    Deadline metrics can become Goodhart targets, rewarding fast acknowledgement or nominal
+    closure instead of durable physical mitigation.
+  - >-
+    Jurisdictions with weaker monitoring, regulatory capacity, or response resources may look
+    worse even when underlying effort is comparable, creating distributional and legitimacy
+    problems.
+  - >-
+    Publishing operational detail beyond what MARS already makes public could expose sensitive
+    facility information; a retrospective benchmark should use only already-public fields.
+  - >-
+    Treating missing feedback as proof of no mitigation, or feedback as proof of mitigation,
+    would fabricate outcomes and bias the benchmark.
+  - >-
+    No result in this review authorizes outreach, live deadlines, enforcement, mitigation,
+    procurement, deployment, or any other real-world intervention.
+recommended_status: needs-evidence
+next_action: >-
+  Build a repository-only retrospective benchmark from already-public MARS records. For each
+  record where public data permit, represent detection confidence, attribution confidence,
+  notification date, acknowledgement/feedback state, investigation evidence, mitigation claim,
+  independent verification evidence, dispute/correction state, and closure reason. Predefine
+  event inclusion rules and report missing fields explicitly. Compare whether richer state
+  information is associated with shorter time to independently verified mitigation without
+  claiming causation. Stratify or annotate obvious observability and capacity differences and
+  test whether apparent performance changes when acknowledgement is separated from mitigation.
+  Use no private data, contact no external parties, create no live deadlines, and make no
+  operational recommendations.
+generated_by: agent
+human_reviewer: required
+claims_requiring_verification: true
+source_links_required: true
+decision_authority: none
