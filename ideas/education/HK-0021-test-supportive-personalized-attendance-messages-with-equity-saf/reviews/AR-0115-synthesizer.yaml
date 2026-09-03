@@ -1,0 +1,134 @@
+review_id: AR-0115
+idea_id: HK-0021
+role: synthesizer
+reviewer_id: chatgpt-gpt-5.6-sol
+source_issue: https://github.com/Svyable/human-kind/issues/112
+created_at: '2026-09-02'
+summary: >-
+  The strongest currently supported case for HK-0021 is narrow: randomized studies in
+  different U.S. school settings suggest personalized caregiver attendance messaging can
+  produce modest average reductions in absences for some students when messages are
+  successfully delivered and attendance information is usable. The same evidence does not
+  support treating messaging as a comprehensive chronic-absence solution, a substitute for
+  structural supports, or uniformly benign. The landed Skeptic review identifies material
+  unresolved concerns about implementation fidelity, inaccurate or context-insensitive alerts,
+  caregiver trust and complaints, unequal reach from missing contact information, subgroup
+  heterogeneity, privacy, and the share of absences caused by barriers that messaging cannot
+  change. These disagreements should remain explicit. Human verification is required before
+  any claim here is treated as verified project knowledge, and nothing in this synthesis
+  establishes that a pilot is warranted.
+findings:
+  - >-
+    REPOSITORY-SOURCED — The dossier and AR-0040 both support a limited information-gap
+    mechanism rather than a general attendance intervention: accurate, timely attendance
+    information may reduce some avoidable absences, but health, transportation, housing,
+    disability, caregiving, disengagement, and other structural barriers are outside the
+    mechanism unless an existing support pathway can actually address them.
+  - >-
+    REPOSITORY-SOURCED — AR-0040 reports that the IES adaptive-messaging evaluation across
+    four urban districts reduced chronic absence across tested messaging strategies but did
+    not improve reading or mathematics achievement during the intervention year. The rural
+    LIFT Up replication reports a modest 1.7% intent-to-treat reduction in absences, with
+    larger treatment-on-treated estimates that were sensitive to delivery and implementation
+    fidelity.
+  - >-
+    INFERENCE — Taken together, the strongest supported claim is therefore not that attendance
+    messaging generally solves chronic absenteeism, but that a successfully delivered,
+    context-appropriate message can modestly improve attendance on average in some settings
+    where caregiver information gaps are part of the causal pathway.
+  - >-
+    REPOSITORY-SOURCED — The rural replication materially weakens any assumption of frictionless
+    implementation: AR-0040 records technical launch problems, inconsistent message filtering,
+    treatment noncompliance, incomplete caregiver contact information, and larger effects in
+    higher-fidelity districts.
+  - >-
+    REPOSITORY-SOURCED — Caregiver trust remains unresolved rather than disproven or established.
+    AR-0040 reports that 13 of 32 responding district leaders described negative caregiver
+    feedback and 9 described mixed feedback, including objections to messages after few or
+    excused absences. The same review cautions that district-leader reports are not a
+    representative caregiver survey and therefore cannot establish the prevalence or causal
+    magnitude of trust harm.
+  - >-
+    REPOSITORY-SOURCED — A concerning pooled adverse estimate for Black students in the rural
+    study is a real caution signal but not a settled subgroup conclusion: AR-0040 says it was
+    driven largely by one unusual low-contact-availability district and did not recur in the
+    smaller second cohort. Both ignoring the signal and generalizing it as established harm
+    would overstate the evidence.
+  - >-
+    INFERENCE — Unequal delivery is a central transfer problem because contact-data quality is
+    part of treatment assignment in practice. If families with missing, stale, inaccessible,
+    or language-mismatched contact channels differ systematically from reached families, an
+    average intent-to-treat effect can coexist with substantial inequity in who receives the
+    intervention or whose barriers are visible.
+  - >-
+    INFERENCE — The current evidence does not establish that supportive framing, opt-out design,
+    translation quality, human follow-up, or excluding excused absences will resolve negative
+    reactions. Those are plausible mitigations that require evidence rather than assumptions.
+  - >-
+    INFERENCE — Before a human reviewer could responsibly consider a pilot-design task, the
+    repository needs a compact cross-study evidence table separating message content and cadence,
+    delivery and fidelity, average treatment effects with uncertainty, subgroup estimates,
+    complaints and opt-outs, disputed-record handling, contact-data completeness, privacy
+    safeguards, and whether any support-routing mechanism accompanied the messages.
+  - >-
+    INFERENCE — Observations that would materially narrow or falsify the mechanism include:
+    effects disappearing after accounting for successful delivery; no practically meaningful
+    attendance benefit in settings with verified information gaps; repeated harmful complaint or
+    trust signals despite accurate records and supportive framing; systematic delivery exclusion
+    of higher-barrier families; adverse subgroup patterns that persist across settings; or evidence
+    that most target absences are caused by barriers that information and existing support routing
+    cannot plausibly change.
+sources:
+  - ideas/education/HK-0021-test-supportive-personalized-attendance-messages-with-equity-saf/idea.yaml
+  - ideas/education/HK-0021-test-supportive-personalized-attendance-messages-with-equity-saf/proposal.md
+  - ideas/education/HK-0021-test-supportive-personalized-attendance-messages-with-equity-saf/evidence.md
+  - ideas/education/HK-0021-test-supportive-personalized-attendance-messages-with-equity-saf/risks.md
+  - ideas/education/HK-0021-test-supportive-personalized-attendance-messages-with-equity-saf/reviews/AR-0040-skeptic.yaml
+  - https://ies.ed.gov/use-work/evaluations/impact-evaluation-parent-messaging-strategies-student-attendance
+  - https://ies.ed.gov/ies/2025/01/can-texting-parents-improve-attendance-elementary-school-test-adaptive-messaging-strategy-evaluation
+  - https://github.com/Svyable/human-kind/issues/112
+uncertainties:
+  - >-
+    This synthesis does not independently re-estimate the cited randomized trials. It relies on
+    the dossier and AR-0040's source extraction, so the underlying study details and effect sizes
+    still require human verification before consequential use.
+  - >-
+    The urban and rural studies differ in populations, delivery conditions, message design, and
+    implementation context. Agreement in direction does not establish universal portability or a
+    common effect size.
+  - >-
+    District-reported caregiver feedback is useful implementation evidence but is not a
+    representative measure of caregiver preferences, trust, or harm prevalence.
+  - >-
+    The adverse Black-student estimate is concerning but unstable across cohorts and entangled
+    with one district's implementation conditions; the repository should preserve it as a caution
+    signal rather than infer either no disparity or established differential harm.
+  - >-
+    The available record does not establish the share of absences caused by remediable information
+    gaps, nor whether existing school support pathways are sufficiently available, trusted, or
+    effective for message-triggered routing to matter.
+  - >-
+    The dossier identifies privacy, notice, retention, and access-control requirements, but this
+    review does not establish that any cited implementation satisfies a transferable privacy or
+    consent model.
+risks:
+  - Positive average attendance effects could be overgeneralized into a universal or sufficient intervention claim.
+  - Inaccurate, stale, or context-insensitive alerts could damage caregiver-school trust.
+  - Missing or unequal contact access could systematically exclude families facing greater barriers.
+  - Subgroup averages could conceal differential benefit or harm, especially when samples are small or implementation varies by district.
+  - Automated attendance contact can become blame, surveillance, or harassment if cadence, framing, and opt-out are poorly governed.
+  - Low apparent cost could displace investment in transportation, health, disability, housing, caregiving, or other structural supports.
+  - Attendance records are sensitive student data and any real-world use would require proportionate privacy and governance review.
+recommended_status: needs-evidence
+next_action: >-
+  For human consideration only, build the compact cross-study evidence table already identified
+  by AR-0040 before any pilot-design work. Pre-specify which fields remain unavailable rather
+  than imputing them, and separate average attendance effects from delivery fidelity, subgroup
+  estimates, caregiver complaints or trust, disputed-record handling, structural-barrier reach,
+  and privacy safeguards. Do not contact schools or families, collect student or caregiver data,
+  authorize messaging, or infer that a pilot is warranted from this synthesis.
+generated_by: agent
+human_reviewer: required
+claims_requiring_verification: true
+source_links_required: true
+decision_authority: none
