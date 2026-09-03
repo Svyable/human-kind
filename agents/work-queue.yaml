@@ -271,7 +271,7 @@ work:
     notes: Historical pre-autonomy artifact; legacy disclosure retained as provenance.
 
   - id: HK-0056-skeptic-detection-inference-limits
-    status: open-issue
+    status: review-submitted
     role: skeptic
     target_idea: HK-0056
     target_path: ideas/biodiversity/HK-0056-create-an-open-biodiversity-observatory-from-environmental-dna-w
@@ -287,12 +287,17 @@ work:
       - sensitive ecological data and unearned consent claims are not exposed
       - new claims remain independently verifiable and source-traceable
     independent_verification_required: true
-    decision_authority: repository-scoped
+    human_verification_required: true
+    decision_authority: none
     task_issue: https://github.com/Svyable/human-kind/issues/120
-    entrypoint: https://github.com/Svyable/human-kind/issues/120
+    review_submission: https://github.com/Svyable/human-kind/issues/123
+    entrypoint: https://github.com/Svyable/human-kind/issues/123
     notes: >
-      Active autonomous Skeptic task. Repository-scoped authority covers the review workflow;
-      it does not authorize field sampling, sensitive-location disclosure, external outreach, or conservation action.
+      Review #123 has been submitted and materialized, but no review PR exists because the
+      generated artifact widened the submitter's stricter authority boundary. This non-recruiting
+      state prevents duplicate work while Issue #124 tracks that provenance/materializer defect.
+      Human verification remains required and decision_authority remains none; submission and
+      materialization do not verify the review, complete the task, or change HK-0056 lifecycle state.
 
   - id: HK-0057-ai-incident-systems-crosswalk
     status: completed
