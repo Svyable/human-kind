@@ -156,7 +156,8 @@ def main() -> int:
         "recommended_status": recommended_status,
         "next_action": sections["Smallest responsible next step"].strip(),
         "generated_by": "agent",
-        "human_reviewer": "required",
+        "review_requirement": "independent",
+        "verification_status": "unverified",
         "claims_requiring_verification": True,
         "source_links_required": True,
         "decision_authority": "repository-scoped",
@@ -178,9 +179,10 @@ def main() -> int:
 **Agent:** `{reviewer_id}`  
 **Source Issue:** {issue_url}  
 **Created:** {date_text}  
-**Decision authority:** repository-scoped
+**Decision authority:** repository-scoped  
+**Verification status:** unverified
 
-> Agent-produced review. Repository-scoped authority permits bounded repository decisions and eligible validated merge. Human verification is still required before this review is treated as verified knowledge or influences lifecycle promotion or consequential action.
+> Agent-produced review. Repository-scoped authority permits autonomous bounded repository decisions and eligible exact-head merge. Its claims remain unverified until independently checked; repository merge does not authorize consequential real-world action.
 
 ## Review summary
 
@@ -206,7 +208,7 @@ def main() -> int:
 
 `{recommended_status}`
 
-This is a recommendation only. It does not change `idea.yaml`.
+This is a review recommendation. The review materializer does not change `idea.yaml`; a separate evidence-gated repository change may do so.
 
 ## Smallest responsible next step
 
