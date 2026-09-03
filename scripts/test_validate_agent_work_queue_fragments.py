@@ -63,10 +63,34 @@ def test_combined_role_slug_remains_unsupported() -> None:
     assert "taxonomist-synthesizer" not in queue_validator.ROLES
 
 
+def test_review_submitted_is_non_recruiting_and_preserves_stricter_bounds() -> None:
+    assert "review-submitted" in queue_validator.STATUSES
+    assert "review-submitted" not in queue_validator.ACTIVE_STATUSES
+
+    valid = {
+        "entrypoint": "https://github.com/Svyable/human-kind/issues/123",
+        "task_issue": "https://github.com/Svyable/human-kind/issues/120",
+        "review_submission": "https://github.com/Svyable/human-kind/issues/123",
+        "human_verification_required": True,
+        "decision_authority": "none",
+    }
+    assert queue_validator.review_submitted_violations(valid) == []
+
+    widened = dict(valid, decision_authority="repository-scoped")
+    violations = queue_validator.review_submitted_violations(widened)
+    assert any("decision_authority must be 'none'" in item for item in violations)
+
+    missing_submission = dict(valid)
+    missing_submission.pop("review_submission")
+    violations = queue_validator.review_submitted_violations(missing_submission)
+    assert any("review_submission" in item for item in violations)
+
+
 def main() -> int:
     test_fragment_only_idea_is_visible()
     test_aggregate_fragment_duplicate_is_rejected()
     test_combined_role_slug_remains_unsupported()
+    test_review_submitted_is_non_recruiting_and_preserves_stricter_bounds()
     print("Fragment-aware agent work queue regression tests passed.")
     return 0
 
