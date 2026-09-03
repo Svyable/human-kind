@@ -19,10 +19,13 @@
     "recommended_status",
     "next_action",
     "generated_by",
-    "human_reviewer",
     "claims_requiring_verification",
     "source_links_required",
     "decision_authority"
+  ],
+  "anyOf": [
+    {"required": ["human_reviewer"]},
+    {"required": ["review_requirement", "verification_status"]}
   ],
   "properties": {
     "review_id": {"type": "string", "pattern": "^AR-[0-9]{4,}$"},
@@ -40,6 +43,8 @@
     "next_action": {"type": "string", "minLength": 5},
     "generated_by": {"const": "agent"},
     "human_reviewer": {"const": "required"},
+    "review_requirement": {"const": "independent"},
+    "verification_status": {"enum": ["unverified", "independently-reviewed", "reproduced", "externally-validated"]},
     "claims_requiring_verification": {"const": true},
     "source_links_required": {"const": true},
     "decision_authority": {"enum": ["none", "repository-scoped"]}
