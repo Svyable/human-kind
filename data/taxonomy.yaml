@@ -1,4 +1,4 @@
-version: 1
+version: 2
 statuses:
   - intake
   - needs-evidence
@@ -20,10 +20,13 @@ domains:
   - digital-rights-and-ai-safety
   - biodiversity
   - disaster-resilience
+  - basic-science
+  - engineering-and-energy
   - cross-cutting
 time_horizons: [short, medium, long]
 maturities: [concept, researched, designed, pilot-ready, piloted, operational]
 evidence_levels: [hypothesis, suggestive, supported, strong, contested]
+verification_states: [unverified, independently-reviewed, reproduced, externally-validated]
 expected_impact: [unknown, low, medium, high, transformative]
 cost_bands: [unknown, low, medium, high, very-high]
 reversibility: [low, medium, high]
