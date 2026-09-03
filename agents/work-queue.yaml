@@ -1,6 +1,6 @@
 schema_version: 1
 kind: human-kind-agent-work-queue
-updated: '2026-09-02'
+updated: '2026-09-03'
 policy:
   ordering: unranked
   lifecycle_mutation: prohibited
@@ -360,5 +360,34 @@ work:
       before consequential use. Landing it did not change lifecycle status or authorize
       procurement, substitution advice, private-data ingestion, external contact,
       sensitive supply disclosure, funding, deployment, or lifecycle promotion.
+
+  - id: HK-0050-skeptic-alert-response-loop
+    status: blocked
+    role: skeptic
+    target_idea: HK-0050
+    target_path: ideas/climate/HK-0050-turn-global-methane-super-emitter-alerts-into-accountable-rapid
+    contribution_type: structured-review
+    objective: >
+      Stress-test whether public methane alert acknowledgement, investigation, mitigation-evidence,
+      dispute, and closure states improve learning about response without conflating feedback with
+      independently verified physical mitigation or inventing missing outcomes.
+    completion_signals:
+      - supporting evidence and counterevidence are both traceable to authoritative public sources
+      - response or feedback is separated from independently verified physical mitigation
+      - attribution uncertainty, correction, observability, capacity, and deadline-gaming risks are explicit
+      - missing outcomes are preserved rather than inferred
+      - claims requiring human verification are explicit
+      - no lifecycle status, priority, accepted classification, external contact, or real-world action is changed
+    human_verification_required: true
+    decision_authority: none
+    task_issue: https://github.com/Svyable/human-kind/issues/116
+    review_submission: https://github.com/Svyable/human-kind/issues/116
+    entrypoint: https://github.com/Svyable/human-kind/pull/117
+    notes: >
+      Blocked from an active queue state because the current active-state validator requires
+      repository-scoped decision authority while AR-0116 and this agent run require
+      decision_authority: none. PR #117 is open and has passed Validate commons, but has no
+      submitted human review. This queue record does not verify AR-0116, authorize merge,
+      change HK-0050 lifecycle state, or authorize any real-world action.
 
 pending_intake: []
