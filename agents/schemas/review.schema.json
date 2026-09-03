@@ -47,6 +47,7 @@
     "verification_status": {"enum": ["unverified", "independently-reviewed", "reproduced", "externally-validated"]},
     "claims_requiring_verification": {"const": true},
     "source_links_required": {"const": true},
+    "human_verification_required": {"const": true},
     "decision_authority": {"enum": ["none", "repository-scoped"]}
   }
 }
