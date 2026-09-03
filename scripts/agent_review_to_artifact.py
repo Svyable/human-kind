@@ -23,29 +23,13 @@ ROLE_MAP = {
     "Red team": "red-team",
 }
 STATUSES = {
-    "intake",
-    "needs-evidence",
-    "needs-scope",
-    "researching",
-    "designed",
-    "pilot-ready",
-    "piloting",
-    "validated",
-    "not-pursuing",
-    "archived",
+    "intake", "needs-evidence", "needs-scope", "researching", "designed",
+    "pilot-ready", "piloting", "validated", "not-pursuing", "archived",
 }
 REQUIRED = [
-    "Idea ID",
-    "Agent identifier",
-    "Agent role",
-    "Review summary",
-    "Findings",
-    "Sources and evidence",
-    "Counterevidence and uncertainty",
-    "Risks and safety",
-    "Recommended status",
-    "Smallest responsible next step",
-    "Agent attestation",
+    "Idea ID", "Agent identifier", "Agent role", "Review summary", "Findings",
+    "Sources and evidence", "Counterevidence and uncertainty", "Risks and safety",
+    "Recommended status", "Smallest responsible next step", "Agent attestation",
 ]
 
 
@@ -90,6 +74,17 @@ def find_dossier(idea_id: str) -> tuple[pathlib.Path, dict]:
     if len(matches) > 1:
         fail(f"Multiple dossiers found for {idea_id}; repository invariants are broken.")
     return matches[0]
+
+
+def submission_bounds(body: str) -> tuple[str, bool]:
+    """Preserve explicit stricter authority/verification declarations from the source Issue."""
+    authority = "repository-scoped"
+    if re.search(r"(?i)`?decision_authority`?\s*:\s*`?none`?", body):
+        authority = "none"
+    human_verification_required = bool(
+        re.search(r"(?i)`?human_verification_required`?\s*:\s*`?true`?", body)
+    )
+    return authority, human_verification_required
 
 
 def main() -> int:
@@ -140,6 +135,7 @@ def main() -> int:
     review_id = f"AR-{int(issue_number):04d}"
     date_text = issue_updated_at[:10] if re.match(r"^\d{4}-\d{2}-\d{2}", issue_updated_at) else dt.date.today().isoformat()
     dt.date.fromisoformat(date_text)
+    decision_authority, human_verification_required = submission_bounds(issue_body)
 
     review = {
         "review_id": review_id,
@@ -160,18 +156,33 @@ def main() -> int:
         "verification_status": "unverified",
         "claims_requiring_verification": True,
         "source_links_required": True,
-        "decision_authority": "repository-scoped",
+        "decision_authority": decision_authority,
     }
+    if human_verification_required:
+        review["human_verification_required"] = True
 
     reviews_dir = dossier_dir / "reviews"
     reviews_dir.mkdir(exist_ok=True)
     yaml_path = reviews_dir / f"{review_id}-{role}.yaml"
     md_path = reviews_dir / f"{review_id}-{role}.md"
-
     yaml_path.write_text(yaml.safe_dump(review, sort_keys=False, allow_unicode=True))
 
     def bullets(values: list[str]) -> str:
         return "\n".join(f"- {item}" for item in values)
+
+    if decision_authority == "none":
+        authority_note = (
+            "> Agent-produced review requiring human verification. Decision authority is none. "
+            "Its claims remain unverified until independently checked; repository merge does not "
+            "establish empirical truth, change dossier lifecycle status, or authorize real-world action."
+        )
+    else:
+        authority_note = (
+            "> Agent-produced review. Repository-scoped authority permits autonomous bounded repository "
+            "decisions and eligible exact-head merge. Its claims remain unverified until independently "
+            "checked; repository merge does not authorize consequential real-world action."
+        )
+    human_line = "**Human verification required:** true  \n" if human_verification_required else ""
 
     md = f"""# {review_id} — {role.replace('-', ' ').title()} review
 
@@ -179,10 +190,10 @@ def main() -> int:
 **Agent:** `{reviewer_id}`  
 **Source Issue:** {issue_url}  
 **Created:** {date_text}  
-**Decision authority:** repository-scoped  
-**Verification status:** unverified
+**Decision authority:** {decision_authority}  
+{human_line}**Verification status:** unverified
 
-> Agent-produced review. Repository-scoped authority permits autonomous bounded repository decisions and eligible exact-head merge. Its claims remain unverified until independently checked; repository merge does not authorize consequential real-world action.
+{authority_note}
 
 ## Review summary
 
