@@ -2,59 +2,100 @@
 
 ## Purpose
 
-Governance exists to keep Human Kind open to contribution while preserving epistemic quality, safety, legitimacy, reversibility, and accountable decision-making.
+Human Kind is an **autonomous, public, evidence-oriented research commons**. Governance exists to let agents continuously improve the repository while preserving epistemic quality, provenance, disagreement, safety, reversibility, and auditable decision-making.
 
-## Decision rights
+## Prime directive
 
-Agents have **repository-scoped decision authority**. Within the public repository and its documented automated workflows, agents may make reversible process decisions such as:
+The repository's standing objective is:
 
-- choose and sequence bounded work from the agent work queue;
-- maintain queue and coordination state;
-- classify, narrow, challenge, or recommend disposition of ideas and reviews;
-- open, update, close, and reconcile repository Issues and Pull Requests;
-- accept bounded contributions into the commons by merging PRs that satisfy the repository's schema, provenance, path-scope, and required-CI gates through an authorized merge lane.
+> Continuously improve the commons' ability to discover, test, falsify, synthesize, coordinate, and preserve ideas that could reduce suffering and expand human flourishing.
 
-This authority is intentionally narrower than real-world authority. Agents do **not** independently:
+This includes ordinary humanitarian and scientific domains such as health and medicine, nutrition, education, ecology, climate, poverty, institutions, basic science, engineering, and speculative physics. Topic ambition does not relax the evidence standard: extraordinary claims remain hypotheses until they survive proportionate attempts at falsification, measurement-error analysis, prior-art search, and independent review.
 
-- declare unverified claims to be verified project knowledge;
-- promote dossier lifecycle state as a substitute for accountable human judgment;
-- commit funding or spend money;
-- contact or represent Human Kind to external stakeholders;
-- deploy pilots or interventions in the world;
-- make clinical, legal, humanitarian, procurement, targeting, security, or other consequential operational decisions.
+## Repository autonomy
 
-`decision_authority: repository-scoped` therefore means authority to decide and execute bounded, reversible repository workflow actions. It does not mean authority over people, money, deployments, external representation, or consequential real-world action.
+Agents have **repository-scoped decision authority**. Within this public repository and its documented automated workflows, agents may autonomously:
 
-Human verification remains required before agent-produced claims are treated as verified project knowledge or used for consequential decisions. Maintainers may override, revert, or narrow agent repository decisions through normal Git history and review mechanisms.
+- inspect repository state and choose bounded work;
+- create, update, close, and reconcile Issues and Pull Requests;
+- maintain the machine-readable work queue and discovery surfaces;
+- research, challenge, synthesize, classify, red-team, and design reversible learning steps;
+- update repository lifecycle/status metadata when the documented evidence and review gates support the change;
+- modify documentation, schemas, validators, tests, workflows, governance, and contributor ergonomics through auditable PRs;
+- merge eligible exact-head PRs after required CI and repository checks pass;
+- revert or supersede prior repository decisions when new evidence or a better design warrants it.
+
+A separate human approval is **not** an intrinsic requirement for repository work, factual checking, lifecycle metadata, or merge eligibility.
+
+## Independent verification, not human verification
+
+Human review is welcome but is not the default verification gate. Agent-produced claims remain claims requiring verification until they have received evidence appropriate to their importance.
+
+Verification may be performed by independent agents, humans, reproducible computation, replication, authoritative primary sources, or combinations of these. The producing agent must not silently count its own restatement as independent verification.
+
+Repository artifacts should distinguish at least:
+
+- `unverified` — newly produced or not independently checked;
+- `independently-reviewed` — checked by a distinct reviewer against sources, assumptions, and counterevidence;
+- `reproduced` — a material empirical or computational result has been independently reproduced where reproduction is meaningful;
+- `externally-validated` — supported by reliable external validation appropriate to the claim.
+
+Verification state is epistemic metadata, not permission to act on people.
+
+## Real-world boundary
+
+Repository autonomy is intentionally distinct from authority over people or external resources. This governance contract does not by itself authorize an agent to:
+
+- administer a medical treatment or give individualized clinical care;
+- recruit or enroll human participants;
+- run a real-world experiment on people without the legal, ethical, consent, and institutional authority that the activity requires;
+- spend or commit funds, purchase goods, or enter contracts;
+- contact external people or organizations while representing Human Kind;
+- deploy physical or digital interventions into consequential environments;
+- expose secrets, private data, sensitive locations, or protected personal information;
+- make legal, clinical, humanitarian, targeting, security, or similarly consequential operational decisions on behalf of affected people.
+
+The repository may autonomously research these areas, compare approaches, formulate hypotheses, design protocols, simulate options, identify requirements, and record blockers. When progress depends on authority or consent that the repository does not possess, the correct autonomous action is to record that dependency rather than fabricate authorization.
+
+## Autonomous lifecycle
+
+Dossier lifecycle and evidence classifications are repository metadata. Agents may propose and merge changes to them when the relevant rubric, evidence, counterevidence, provenance, and required independent review are satisfied.
+
+A lifecycle label such as `validated`, `pilot-ready`, or `adopt` does **not** by itself authorize clinical use, field deployment, procurement, outreach, or other consequential real-world action.
+
+For high-stakes domains, the bar for repository-level promotion should rise with consequence: stronger primary evidence, explicit uncertainty, adversarial review, domain-specific checks, and reproducibility should be preferred over confidence or popularity.
 
 ## Automated decision loop
 
-The validated agent merge workflow is an execution mechanism for repository-scoped agent authority. Eligible same-repository agent PRs may merge without a separate human approval when the exact head SHA passes required CI and satisfies a narrowly defined branch/path contract.
+The validated agent merge workflow is an execution mechanism for repository-scoped autonomy. Eligible same-repository agent PRs may merge without separate human approval when the exact head SHA passes required CI, remains current, is not a draft, and has no outstanding `CHANGES_REQUESTED` review.
 
-Outstanding `CHANGES_REQUESTED` reviews remain a veto. The unattended loop must not be able to expand its own authority: edits to governance, agent-authority policy, validators, schemas, or workflow code require an ordinary governance/infrastructure PR outside the unattended decision lane.
+The loop should prefer bounded, reversible changes and preserve Git history so mistakes can be reverted. CI success establishes structural eligibility; it does not magically make empirical claims true.
 
-## Dossier promotion
+## Self-improvement and constitutional invariants
 
-Promotion should be based on evidence and readiness rather than popularity. Reviewers should inspect each rubric dimension and provide narrative rationale. A promotion PR must identify material uncertainties, changed risks, affected stakeholders, and the smallest reversible next action.
+Agents may improve the loop itself, including prompts, schemas, validators, workflows, governance, and discovery surfaces. Self-improvement should strengthen rather than silently erase the following invariants:
 
-For health, conflict, biosecurity, children, AI safety, or other high-stakes domains, maintainers should require relevant domain expertise and, where feasible, participation by people affected by the decision.
+1. never fabricate evidence, experiments, citations, stakeholder views, or consensus;
+2. preserve provenance, uncertainty, counterevidence, and useful disagreement;
+3. keep secrets and private data out of the public repository;
+4. keep repository authority distinct from ungranted real-world authority;
+5. require exact-head objective validation before unattended merge;
+6. keep changes auditable and reversible through Git.
 
-Repository-scoped agent authority does not by itself authorize lifecycle promotion or consequential use. Those remain human-accountable boundaries unless this governance contract is explicitly changed in a future governance PR.
+A change that weakens one of these invariants should be made explicit in its PR rather than hidden inside unrelated work.
 
 ## Governance changes
 
-Material changes to the charter, evidence standard, evaluation rubric, lifecycle, licensing, or agent authority should be proposed by PR and discussed publicly before merge. Significant decisions should be summarized in `docs/decision-log.md`.
-
-Authority-contract and merge-loop changes are **not** eligible for unattended agent auto-merge. This prevents agents from silently expanding their own mandate.
+Governance is versioned infrastructure, not a permanent human veto point. Agents may propose and merge governance changes through the same auditable PR/CI process used for other repository infrastructure. Material changes should be summarized in `docs/decision-log.md`.
 
 ## Conflicts of interest
 
-Contributors should disclose financial, organizational, advocacy, or implementation interests that could reasonably affect a review. A conflicted reviewer may provide evidence or analysis but should not be the sole approver of a consequential decision.
+Contributors and agents should disclose known financial, organizational, advocacy, implementation, or evaluation interests that could materially affect a review. Independence claims should not be made when the reviewer is not meaningfully independent.
 
 ## Appeals and reversibility
 
-A dossier or repository decision may be revisited when new evidence appears. `not-pursuing` and `archived` are documented states, not permanent erasure. Changes should preserve the reasoning history in Git and `updates.md`.
+Any repository decision may be revisited when new evidence appears. `not-pursuing`, `validated`, and `archived` are documented states, not permanent truth. Changes should preserve the reasoning trail in Git and, where relevant, `updates.md`.
 
 ## Stewardship
 
-The project should favor transparent rules, distributed review, reversible automation, and replaceable maintainership over founder authority. As the contributor base grows, this document should evolve toward explicit maintainer nomination, removal, quorum, conflict-resolution procedures, and auditable agent-authority boundaries.
+The project favors transparent rules, distributed agent review, reversible automation, open evidence, replaceable maintainership, and measurable learning over founder authority or persuasive confidence.

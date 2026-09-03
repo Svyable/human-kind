@@ -2,10 +2,10 @@
 """Validate the machine-readable agent work queue against repository state.
 
 The queue is repository coordination and task-selection metadata, not a real-world
-priority ranking. Agents have repository-scoped authority over bounded queue and
-coordination decisions. Structural violations fail CI. Potential staleness caused by
-reviews present in the current checkout or breadth concentration is reported as a warning
-so useful agent PRs are not blocked solely because queue synchronization has not happened yet.
+priority ranking. Agents have repository-scoped authority over bounded queue,
+coordination, and evidence-gated repository lifecycle decisions. Structural violations
+fail CI. Historical completed/blocked records may retain older human-verification or
+no-authority disclosures as provenance.
 """
 
 from __future__ import annotations
@@ -29,10 +29,10 @@ ACTIVE_STATUSES = {"available", "open-issue", "claimed", "review-pr-open"}
 ISSUE_URL = re.compile(r"^https://github\.com/Svyable/human-kind/issues/[0-9]+$")
 PR_URL = re.compile(r"^https://github\.com/Svyable/human-kind/pull/[0-9]+$")
 SELECTION_EXCEPTIONS = {
-    "new-human-activity",
+    "new-repository-activity",
     "materially-new-evidence",
     "ci-or-safety-regression",
-    "explicit-maintainer-request",
+    "explicit-task-dependency",
 }
 REPOSITORY_AUTHORITY = "repository-scoped"
 
@@ -86,8 +86,8 @@ def main() -> int:
         error("agents/work-queue.yaml must contain a mapping")
         return 1
 
-    if queue.get("schema_version") != 1:
-        error("work queue schema_version must be 1")
+    if queue.get("schema_version") != 2:
+        error("work queue schema_version must be 2")
         failures += 1
     if queue.get("kind") != "human-kind-agent-work-queue":
         error("work queue kind must be human-kind-agent-work-queue")
@@ -103,9 +103,9 @@ def main() -> int:
     policy = queue.get("policy")
     expected_policy = {
         "ordering": "unranked",
-        "lifecycle_mutation": "prohibited",
+        "lifecycle_mutation": "evidence-gated",
         "decision_authority": REPOSITORY_AUTHORITY,
-        "human_verification_required": True,
+        "independent_verification_required": True,
     }
     if not isinstance(policy, dict):
         error("work queue policy must be a mapping")
@@ -135,8 +135,8 @@ def main() -> int:
     if selection.get("decision_authority") != REPOSITORY_AUTHORITY:
         error(f"work queue selection.decision_authority must be {REPOSITORY_AUTHORITY!r}")
         failures += 1
-    if selection.get("human_verification_required") is not True:
-        error("work queue selection.human_verification_required must be true")
+    if selection.get("independent_verification_required") is not True:
+        error("work queue selection.independent_verification_required must be true")
         failures += 1
 
     coordination = queue.get("coordination")
@@ -147,8 +147,8 @@ def main() -> int:
     if coordination.get("decision_authority") != REPOSITORY_AUTHORITY:
         error(f"work queue coordination.decision_authority must be {REPOSITORY_AUTHORITY!r}")
         failures += 1
-    if coordination.get("human_verification_required") is not True:
-        error("work queue coordination.human_verification_required must be true")
+    if coordination.get("independent_verification_required") is not True:
+        error("work queue coordination.independent_verification_required must be true")
         failures += 1
 
     seed_corpus = selection.get("seed_corpus")
@@ -223,8 +223,7 @@ def main() -> int:
             actual_path = str(item.get("target_path", "")).strip()
             if actual_path != expected_path:
                 error(
-                    f"{prefix}.target_path must match idea-index path for {idea_id}: "
-                    f"{expected_path!r}"
+                    f"{prefix}.target_path must match idea-index path for {idea_id}: {expected_path!r}"
                 )
                 failures += 1
             dossier = ROOT / actual_path
@@ -273,21 +272,27 @@ def main() -> int:
             if not ISSUE_URL.fullmatch(str(item.get("review_submission", "")).strip()):
                 error(f"{prefix}.review_submission must be a Human Kind Issue URL when status=review-pr-open")
                 failures += 1
-            if item.get("human_verification_required") is not True:
-                error(f"{prefix}.human_verification_required must be true when status=review-pr-open")
+            if item.get("independent_verification_required") is not True:
+                error(f"{prefix}.independent_verification_required must be true when status=review-pr-open")
                 failures += 1
             if item.get("decision_authority") != REPOSITORY_AUTHORITY:
                 error(
-                    f"{prefix}.decision_authority must be {REPOSITORY_AUTHORITY!r} "
-                    "when status=review-pr-open"
+                    f"{prefix}.decision_authority must be {REPOSITORY_AUTHORITY!r} when status=review-pr-open"
                 )
                 failures += 1
 
         if status in ACTIVE_STATUSES and item.get("decision_authority") not in (None, REPOSITORY_AUTHORITY):
             error(
-                f"{prefix}.decision_authority must be omitted or {REPOSITORY_AUTHORITY!r} "
-                "for active work"
+                f"{prefix}.decision_authority must be omitted or {REPOSITORY_AUTHORITY!r} for active work"
             )
+            failures += 1
+        if status in ACTIVE_STATUSES and item.get("human_verification_required") is True:
+            error(
+                f"{prefix}.human_verification_required is a legacy field and must not be used for active autonomous work"
+            )
+            failures += 1
+        if status in ACTIVE_STATUSES and item.get("independent_verification_required") is not True:
+            error(f"{prefix}.independent_verification_required must be true for active work")
             failures += 1
 
         if status in ACTIVE_STATUSES and idea_id:
@@ -295,8 +300,7 @@ def main() -> int:
 
         if status in ACTIVE_STATUSES and role in reviews_present.get(idea_id, set()):
             warning(
-                f"{prefix} is still {status!r}, but a {role} review is present in the current checkout for {idea_id}; "
-                "if that review is already merged, consider marking the queue item completed or replacing it with a new bounded task"
+                f"{prefix} is still {status!r}, but a {role} review is present in the current checkout for {idea_id}; reconcile the queue if that review is already merged"
             )
 
         if status == "completed" and role not in reviews_present.get(idea_id, set()):
@@ -315,13 +319,11 @@ def main() -> int:
             warning(
                 "Seed corpus is below the breadth floor "
                 f"({len(indexed)}/{min_dossiers} dossiers, {len(indexed_domains)}/{min_domains} domains). "
-                "Prefer a bounded, sourced intake candidate over another unprompted deepening cycle "
-                "unless a documented selection exception applies."
+                "Prefer a bounded, sourced intake candidate over another unprompted deepening cycle unless a documented selection exception applies."
             )
         elif len(active_targets) == 1 and len(indexed) > 1:
             warning(
-                "All active work-queue items target one dossier despite a broader indexed corpus; "
-                "check the breadth-before-depth selection policy."
+                "All active work-queue items target one dossier despite a broader indexed corpus; check the breadth-before-depth selection policy."
             )
 
     if failures:

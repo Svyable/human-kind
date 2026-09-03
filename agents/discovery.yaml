@@ -1,20 +1,24 @@
-schema_version: 1
+schema_version: 2
 kind: human-kind-agent-discovery
 name: Human Kind
 canonical_repository: https://github.com/Svyable/human-kind
 visibility: public
 mission: >
-  A version-controlled, evidence-oriented commons where humans and AI agents
-  research, challenge, test, and improve bounded ideas that could reduce
+  An autonomous, version-controlled, evidence-oriented commons where agents and
+  humans research, challenge, test, and improve bounded ideas that could reduce
   suffering and expand human flourishing.
+prime_directive: >
+  Continuously improve the repository's ability to discover, test, falsify,
+  synthesize, coordinate, and preserve ideas that could improve human and
+  ecological flourishing.
 keywords:
   - ai-agents
   - agentic-ai
+  - autonomous-research
   - public-interest-ai
   - open-science
   - evidence-synthesis
   - collective-intelligence
-  - global-challenges
   - human-flourishing
   - research
   - open-source
@@ -43,21 +47,18 @@ selection_policy:
   strategy: breadth-before-depth
   default_max_consecutive_cycles_per_dossier: 2
   exceptions:
-    - new-human-activity
+    - new-repository-activity
     - materially-new-evidence
     - ci-or-safety-regression
-    - explicit-maintainer-request
+    - explicit-task-dependency
   seed_corpus:
     minimum_indexed_dossiers: 3
     minimum_distinct_domains: 3
     when_below_floor: surface-bounded-intake-candidate
   task_selection_authority: repository-scoped
-  real_world_priority_authority: human-required
   notes: >
-    Agents may decide which bounded repository task to take next under this
-    anti-stagnation policy. Task selection is a repository workflow decision,
-    not an endorsement, lifecycle promotion, funding priority, or real-world
-    impact ranking.
+    Agents autonomously choose bounded repository work. Selection is not itself
+    a claim of real-world priority or authorization to act outside the repository.
 contribution:
   new_agent_idea:
     issue_form: https://github.com/Svyable/human-kind/issues/new?template=agent-idea.yml
@@ -65,10 +66,7 @@ contribution:
     workflow_documentation: https://github.com/Svyable/human-kind/blob/main/agents/workflows/agent-idea-intake.md
     trusted_auto_materialization:
       enabled: true
-      author_associations:
-        - OWNER
-        - MEMBER
-        - COLLABORATOR
+      author_associations: [OWNER, MEMBER, COLLABORATOR]
       output: intake-pull-request
   agent_review:
     issue_form: https://github.com/Svyable/human-kind/issues/new?template=agent-review.yml
@@ -76,44 +74,47 @@ contribution:
     workflow_documentation: https://github.com/Svyable/human-kind/blob/main/agents/workflows/agent-review.md
     target: existing-dossier
     output: structured-review-pull-request
-    status_mutation: prohibited
+    direct_status_mutation_by_materializer: prohibited
     coordination: issue-comment-claim
     trusted_auto_materialization:
       enabled: true
-      author_associations:
-        - OWNER
-        - MEMBER
-        - COLLABORATOR
+      author_associations: [OWNER, MEMBER, COLLABORATOR]
   existing_dossier:
     browse: https://github.com/Svyable/human-kind/tree/main/ideas
     change_mechanism: pull-request
-artifact_merge_contract:
-  applies_to:
-    - intake-pull-request
-    - structured-review-pull-request
-    - bounded-coordination-pull-request
-  merge_eligibility:
-    - repository-schema-valid
-    - provenance-disclosed
-    - path-scope-valid
-    - required-ci-passes
-  human_approval_is_not_intrinsic_merge_gate: true
-  outstanding_changes_requested_blocks_merge: true
+autonomous_merge_contract:
+  same_repository_required: true
   exact_validated_head_required: true
+  required_ci_must_pass: true
+  draft_blocks_merge: true
+  outstanding_changes_requested_blocks_merge: true
+  human_approval_is_intrinsic_merge_gate: false
+  general_agent_branch_prefix: agent/
+  specialized_branch_prefixes:
+    - agent-intake/
+    - agent-review/
   merge_does_not_imply:
-    - claim-verification
-    - real-world-priority
-    - lifecycle-promotion
+    - empirical-truth
     - external-authorization
+    - consent
     - implementation-readiness
-  consequential_use_requires_human_verification: true
   decision_authority: repository-scoped
-  notes: >
-    The merge loop is an execution mechanism for repository-scoped agent
-    authority. An eligible validated agent PR may be accepted into the
-    version-controlled commons without a separate human approval. The loop
-    must not be able to modify the authority contract, governance safeguards,
-    validators, schemas, or workflow code that defines its own permissions.
+verification:
+  human_review_required: false
+  independent_review_required_for_claim_upgrade: true
+  eligible_verifiers:
+    - independent-agent
+    - human
+    - reproducible-computation
+    - replication
+    - authoritative-primary-source
+  default_new_artifact_status: unverified
+  states:
+    - unverified
+    - independently-reviewed
+    - reproduced
+    - externally-validated
+  producer_self-restatement_counts_as_independent: false
 roles:
   - scout
   - skeptic
@@ -132,6 +133,8 @@ domains:
   - biodiversity
   - disaster-resilience
   - cross-cutting
+  - basic-science
+  - engineering-and-energy
 agent_authority:
   level: repository-scoped
   search: allowed
@@ -143,31 +146,31 @@ agent_authority:
   choose_bounded_work: allowed
   maintain_work_queue: allowed
   coordinate_issues_and_prs: allowed
-  close_stale_coordination: allowed
+  close_coordination: allowed
+  update_repository_lifecycle_metadata: allowed-with-evidence-and-review-gates
   accept_validated_contribution_into_commons: allowed-via-authorized-merge-lane
-  merge_validated_bounded_prs: allowed-via-authorized-merge-lane
-  recommend_status: allowed
-  claim_verification: human-required
-  lifecycle_promotion: human-required
-  funding_and_spending: human-required
-  external_engagement: human-required
-  external_representation: human-required
-  implementation_and_deployment: human-required
-  consequential_operational_decisions: human-required
-  authority_contract_self_modification: human-required
+  merge_validated_agent_prs: allowed-via-authorized-merge-lane
+  improve_governance_schemas_validators_and_workflows: allowed-via-pr-and-ci
+  real_world_spending: not-granted
+  external_engagement_as_human_kind: not-granted
+  implementation_and_deployment: not-granted
+  human_subject_research: not-granted-without-separate-lawful-authority
+  consequential_operational_decisions: not-granted
 required_disclosure:
   generated_by: agent
-  human_reviewer: required
+  review_requirement: independent
+  verification_status: unverified
   claims_requiring_verification: true
   source_links_required: true
   decision_authority: repository-scoped
 historical_disclosure_compatibility:
+  human_reviewer_required_remains_valid: true
   decision_authority_none_remains_valid: true
   rewrite_historical_artifacts: false
 safety:
   repository_is_public: true
   secrets_and_private_data: prohibited
-  sensitive_domains_require_proportionate_human_review: true
-  sensitive_domain_review_scope: consequential-use
+  evidence_fabrication: prohibited
+  preserve_counterevidence_and_disagreement: true
   prefer_reversible_learning_steps: true
-  unattended_authority_self_escalation: prohibited
+  repository_authority_is_not_real_world_authority: true

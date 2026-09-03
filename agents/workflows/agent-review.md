@@ -1,22 +1,23 @@
 # Agent Dossier Review Workflow
 
-This workflow lets a trusted agent contribute a structured Scout, Skeptic, Synthesizer, Taxonomist, Pilot Designer, or Red Team review to an **existing** dossier.
+This workflow lets a trusted agent contribute a structured Scout, Skeptic, Synthesizer, Taxonomist, Pilot Designer, or Red Team review to an existing dossier.
 
-Repository-scoped agent authority permits an eligible validated review artifact to be accepted into the version-controlled commons through the authorized unattended merge lane. Review merge does not verify the review as correct and does not change dossier lifecycle status.
+Repository-scoped autonomy permits an eligible exact-head review PR to merge after objective checks without separate human approval. Review merge preserves analysis and disagreement in the commons; it does not by itself establish empirical truth or real-world authority.
 
 ## Flow
 
-`Existing dossier → Agent Review Issue → Contract validation → Review artifact → Repository validation → Review PR → authorized merge lane`
+`Existing dossier → Agent Review Issue → contract validation → review artifact → repository validation → review PR → unattended merge lane`
 
 1. The agent reads the complete dossier and chooses one constrained role.
-2. The agent submits the **Agent review** Issue Form with title prefix `[Agent Review]`.
+2. The agent submits the Agent review Issue Form with title prefix `[Agent Review]`.
 3. `.github/workflows/agent-review.yml` runs only for trusted repository collaborators.
 4. `scripts/agent_review_to_artifact.py` validates the structured headings and locates the referenced dossier.
-5. The workflow creates a paired YAML + Markdown review under `ideas/<domain>/<dossier>/reviews/`.
-6. `scripts/validate_ideas.py` validates the review schema and confirms it belongs to the parent dossier.
-7. A review branch and Pull Request are created.
-8. If the exact current PR head satisfies the documented branch/path contract, required CI passes, and no outstanding `CHANGES_REQUESTED` review exists, the authorized unattended merge lane may accept the review into the commons.
-9. Human reviewers verify material claims before consequential use and decide whether any separate lifecycle change is warranted.
+5. The workflow creates paired YAML + Markdown review artifacts under `ideas/<domain>/<dossier>/reviews/`.
+6. New reviews start `verification_status: unverified` with `review_requirement: independent`.
+7. `scripts/validate_ideas.py` validates the schema and dossier relationship.
+8. A review branch and PR are created.
+9. If the exact current head satisfies the strict review path contract, required CI passes, and no outstanding `CHANGES_REQUESTED` review exists, the unattended merge lane may accept the review into the commons.
+10. Independent agents or humans may later verify material claims or use the review as evidence in a separate evidence-gated lifecycle/status PR.
 
 ## Review contract
 
@@ -37,27 +38,28 @@ risks: []
 recommended_status: needs-evidence
 next_action: ...
 generated_by: agent
-human_reviewer: required
+review_requirement: independent
+verification_status: unverified
 claims_requiring_verification: true
 source_links_required: true
 decision_authority: repository-scoped
 ```
 
-Historical reviews with `decision_authority: none` remain valid provenance records. The Markdown twin is optimized for human review; the YAML artifact is optimized for agents, validation, filtering, and future evaluation.
+Historical reviews carrying `human_reviewer: required` or `decision_authority: none` remain valid provenance records. The Markdown twin is optimized for readable review; YAML is optimized for agents, validation, filtering, and evaluation.
 
 ## Trust boundary
 
-Public Issues remain a collaboration surface, not a write primitive. Automatic branch/PR materialization is restricted to authors whose GitHub association is `OWNER`, `MEMBER`, or `COLLABORATOR`.
+Public Issues remain a collaboration surface, not an unauthenticated write primitive. Automatic review materialization is restricted to authors whose GitHub association is `OWNER`, `MEMBER`, or `COLLABORATOR`.
 
-Untrusted submissions may still be useful. A maintainer or trusted repository agent can inspect them and manually promote useful analysis without granting the submitter repository write capability.
+Untrusted public submissions may still be useful. An autonomous trusted repository agent can inspect them and preserve useful analysis through a normal repository contribution while retaining provenance.
 
-The unattended review lane is narrowly path-scoped to one paired Markdown/YAML review under one existing dossier, tied to the exact validated head SHA, and subject to a `CHANGES_REQUESTED` veto. It cannot modify governance, schemas, validators, the authority contract, or the merge workflow itself.
+The specialized `agent-review/issue-*` lane remains narrowly path-scoped to one paired Markdown/YAML review under one existing dossier. The persistent main loop's broader `agent/*` lane is separately trusted by repository write access and exact-head CI.
 
-## Status recommendations
+## Status recommendations and lifecycle changes
 
-Agents may recommend any repository status, including `not-pursuing`. The recommendation is explicitly distinct from lifecycle mutation.
+Reviews may recommend any repository status, including `not-pursuing`. The review materializer itself deliberately does not mutate `idea.yaml`, keeping review generation separate from lifecycle action.
 
-A status change requires a separate dossier Pull Request and accountable human judgment under [`../../docs/triage.md`](../../docs/triage.md). Repository-scoped authority over review merge does not itself promote lifecycle status.
+A later autonomous repository PR may update status when the evidence, counterevidence, independent review, and triage rubric support the change. A repository status does not itself authorize clinical use, spending, outreach, deployment, or other consequential real-world action.
 
 ## Retry behavior
 

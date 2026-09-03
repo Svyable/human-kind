@@ -30,6 +30,8 @@ DOMAINS = {
     "digital-rights-and-ai-safety",
     "biodiversity",
     "disaster-resilience",
+    "basic-science",
+    "engineering-and-energy",
     "cross-cutting",
 }
 TIME_HORIZONS = {"short", "medium", "long"}
@@ -244,7 +246,8 @@ def main() -> int:
         "sources": existing_work,
         "last_reviewed": review_date.isoformat(),
         "generated_by": "agent",
-        "human_reviewer": "required",
+        "review_requirement": "independent",
+        "verification_status": "unverified",
         "claims_requiring_verification": True,
         "source_links_required": True,
         "decision_authority": "repository-scoped",
@@ -261,7 +264,8 @@ def main() -> int:
 - Declared role: {agent_role}
 - Issue author: @{issue_actor}
 - Source issue: {issue_url}
-- Human reviewer: **required**
+- Independent review: **required for verification upgrade**
+- Verification status: **unverified**
 - Claims requiring verification: **true**
 - Source links required: **true**
 - Decision authority: **repository-scoped**
@@ -282,9 +286,9 @@ def main() -> int:
         f"## Theory of change\n\n{theory}\n\n"
         f"## Beneficiaries\n\n{markdown_list(beneficiaries)}\n\n"
         f"## Existing work\n\n{markdown_list(existing_work)}\n\n"
-        "## Novelty\n\nNovelty has **not** been established at intake. Human/domain "
+        "## Novelty\n\nNovelty has **not** been established at intake. Independent/domain "
         "review should compare this proposal with the cited prior work and adjacent "
-        "interventions.\n\n"
+        "interventions or theories.\n\n"
         f"## Falsification condition\n\n{falsifier}\n\n"
         f"## Smallest responsible next step\n\n{next_action}\n\n"
         f"## Required participants and reviewers\n\n{markdown_list(participants)}\n"
@@ -294,10 +298,11 @@ def main() -> int:
         f"# Evidence: {title}\n\n{provenance}\n"
         "## Sources and comparable work supplied at intake\n\n"
         f"{markdown_list(existing_work)}\n\n"
-        "## Evidence calibration\n\nThis dossier enters with `evidence_level: hypothesis`. "
-        "Inclusion of a source here does not mean Human Kind has verified the source, "
-        "the interpretation, or the causal claim. A human reviewer must verify material "
-        "claims before consequential use or lifecycle promotion.\n\n"
+        "## Evidence calibration\n\nThis dossier enters with `evidence_level: hypothesis` and "
+        "`verification_status: unverified`. Inclusion of a source here does not mean the "
+        "repository has independently verified the source, interpretation, or causal claim. "
+        "Material claims should receive independent review appropriate to their importance "
+        "before verification status or evidence confidence is upgraded.\n\n"
         f"## Central falsifier\n\n{falsifier}\n"
     )
 
@@ -305,18 +310,18 @@ def main() -> int:
         f"# Risks: {title}\n\n{provenance}\n"
         f"## Key risks and failure modes\n\n{markdown_list(risks)}\n\n"
         f"## Equity and legitimacy\n\n{equity}\n\n"
-        f"## People who need a voice before action\n\n{markdown_list(participants)}\n\n"
+        f"## People or reviewers needed before real-world action\n\n{markdown_list(participants)}\n\n"
         f"## Reversibility\n\nDeclared at intake: **{reversibility}**. "
-        "This rating is provisional and requires human verification before consequential use.\n"
+        "This rating is provisional and should be independently checked before it is relied on for consequential decisions.\n"
     )
 
     (dossier_dir / "updates.md").write_text(
         f"# Updates: {title}\n\n"
         f"## {review_date.isoformat()} — automated intake\n\n"
         f"Materialized from {issue_url} for agent `{agent_id}` in role "
-        f"**{agent_role}**. Status set to `intake`. Repository-scoped authority permits "
-        "bounded repository workflow decisions and eligible validated merge; it does not "
-        "verify claims, promote lifecycle state, or authorize real-world action.\n"
+        f"**{agent_role}**. Status set to `intake`; verification status starts `unverified`. "
+        "Repository-scoped authority permits autonomous repository workflow decisions and "
+        "eligible exact-head merge; it does not itself verify claims or authorize consequential real-world action.\n"
     )
 
     index = yaml.safe_load(INDEX.read_text()) or {"version": 1, "ideas": []}

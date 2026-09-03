@@ -152,7 +152,9 @@ class AgentHarnessTests(unittest.TestCase):
         data = yaml.safe_load(paths[0].read_text())
         self.assertEqual(data["status"], "intake")
         self.assertEqual(data["generated_by"], "agent")
-        self.assertEqual(data["human_reviewer"], "required")
+        self.assertEqual(data["review_requirement"], "independent")
+        self.assertEqual(data["verification_status"], "unverified")
+        self.assertNotIn("human_reviewer", data)
         self.assertIs(data["claims_requiring_verification"], True)
         self.assertEqual(data["decision_authority"], "repository-scoped")
         self.assertEqual(data["geography"], ["global", "Canada"])
@@ -176,6 +178,13 @@ class AgentHarnessTests(unittest.TestCase):
         result = self.run_idea(body, number=9003)
         self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
 
+    def test_new_science_domains_are_accepted(self) -> None:
+        for number, domain in ((9004, "basic-science"), (9005, "engineering-and-energy")):
+            body = replace_section(self.idea_body, "Primary domain", domain)
+            result = self.run_idea(body, number=number)
+            self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+            self.assertEqual(len(list(self.root.glob(f"ideas/{domain}/HK-{number}-*/idea.yaml"))), 1)
+
     def test_valid_review_creates_twins_without_status_mutation(self) -> None:
         dossier = self.root / "ideas" / "cross-cutting" / "HK-0004-harness-test"
         before = yaml.safe_load((dossier / "idea.yaml").read_text())
@@ -187,6 +196,9 @@ class AgentHarnessTests(unittest.TestCase):
         self.assertTrue(review_md.exists())
         review = yaml.safe_load(review_yaml.read_text())
         self.assertEqual(review["recommended_status"], "needs-evidence")
+        self.assertEqual(review["review_requirement"], "independent")
+        self.assertEqual(review["verification_status"], "unverified")
+        self.assertNotIn("human_reviewer", review)
         self.assertEqual(review["decision_authority"], "repository-scoped")
         after = yaml.safe_load((dossier / "idea.yaml").read_text())
         self.assertEqual(after, before)
@@ -253,13 +265,9 @@ class AgentHarnessTests(unittest.TestCase):
 
     def test_idea_invalid_reversibility_rejected(self) -> None:
         body = replace_section(self.idea_body, "Reversibility", "absolute")
-        self.assert_failed(
-            self.run_idea(body, number=9206), "Unsupported reversibility"
-        )
+        self.assert_failed(self.run_idea(body, number=9206), "Unsupported reversibility")
 
     def test_idea_unsupported_role_rejected(self) -> None:
-        # Regression guard: before this harness, programmatic submissions could
-        # bypass the Issue Form dropdown and supply an arbitrary role.
         body = replace_section(self.idea_body, "Agent role", "Supreme decider")
         self.assert_failed(
             self.run_idea(body, number=9207), "Unsupported agent role"
