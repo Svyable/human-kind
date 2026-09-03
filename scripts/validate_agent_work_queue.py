@@ -24,7 +24,15 @@ INDEX_PATH = ROOT / "data/idea-index.yaml"
 IDEAS = ROOT / "ideas"
 
 ROLES = {"scout", "skeptic", "synthesizer", "taxonomist", "pilot-designer", "red-team"}
-STATUSES = {"available", "open-issue", "claimed", "review-pr-open", "completed", "blocked"}
+STATUSES = {
+    "available",
+    "open-issue",
+    "claimed",
+    "review-submitted",
+    "review-pr-open",
+    "completed",
+    "blocked",
+}
 ACTIVE_STATUSES = {"available", "open-issue", "claimed", "review-pr-open"}
 ISSUE_URL = re.compile(r"^https://github\.com/Svyable/human-kind/issues/[0-9]+$")
 PR_URL = re.compile(r"^https://github\.com/Svyable/human-kind/pull/[0-9]+$")
@@ -66,6 +74,28 @@ def review_roles_present_in_checkout() -> dict[str, set[str]]:
             if idea_id and role:
                 roles[idea_id].add(role)
     return roles
+
+
+def review_submitted_violations(item: dict) -> list[str]:
+    """Return structural violations for a submitted/materialized review with no PR yet."""
+    violations: list[str] = []
+    if not ISSUE_URL.fullmatch(str(item.get("entrypoint", "")).strip()):
+        violations.append("entrypoint must be a Human Kind Issue URL when status=review-submitted")
+    if not ISSUE_URL.fullmatch(str(item.get("task_issue", "")).strip()):
+        violations.append("task_issue must be a Human Kind Issue URL when status=review-submitted")
+    if not ISSUE_URL.fullmatch(str(item.get("review_submission", "")).strip()):
+        violations.append("review_submission must be a Human Kind Issue URL when status=review-submitted")
+
+    authority = item.get("decision_authority")
+    if authority not in (None, "none", REPOSITORY_AUTHORITY):
+        violations.append(
+            "decision_authority must be omitted, 'none', or 'repository-scoped' when status=review-submitted"
+        )
+    if item.get("human_verification_required") is True and authority != "none":
+        violations.append(
+            "decision_authority must be 'none' when status=review-submitted and human_verification_required=true"
+        )
+    return violations
 
 
 def main() -> int:
@@ -262,6 +292,10 @@ def main() -> int:
         if status == "open-issue" and not ISSUE_URL.fullmatch(entrypoint):
             error(f"{prefix}.entrypoint must be a Human Kind Issue URL when status=open-issue")
             failures += 1
+        if status == "review-submitted":
+            for violation in review_submitted_violations(item):
+                error(f"{prefix}.{violation}")
+                failures += 1
         if status == "review-pr-open":
             if not PR_URL.fullmatch(entrypoint):
                 error(f"{prefix}.entrypoint must be a Human Kind PR URL when status=review-pr-open")
