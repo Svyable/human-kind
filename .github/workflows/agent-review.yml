@@ -75,13 +75,14 @@ jobs:
 
           Source issue: #${ISSUE_NUMBER}
 
-          This PR adds a structured review artifact to an existing dossier.
+          This PR adds a structured autonomous review artifact to an existing dossier.
 
-          - Human verification before consequential use: **required**
+          - Verification status: **unverified**
+          - Independent review requirement: **required before verification upgrade**
           - Claims requiring verification: **yes**
           - Decision authority: **repository-scoped**
-          - Repository-scoped authority permits this bounded artifact to merge through the authorized unattended lane after exact-head validation.
-          - Merge accepts the review into the version-controlled commons; it does **not** verify claims, change dossier lifecycle status, or authorize external/consequential action.
+          - An eligible exact-head review PR may merge autonomously after required validation.
+          - Merge preserves the review in the commons; it does **not** establish empirical truth or grant real-world authority.
 
           Closes #${ISSUE_NUMBER}
           EOF
@@ -97,7 +98,7 @@ jobs:
           ISSUE_NUMBER: ${{ github.event.issue.number }}
           PR_URL: ${{ steps.pr.outputs.url }}
         run: |
-          gh issue comment "$ISSUE_NUMBER" --body "🔎 Structured review PR ready: ${PR_URL}. Repository-scoped agent authority permits eligible exact-head validated merge; human verification remains required before claims are treated as verified, and review merge does not change dossier status."
+          gh issue comment "$ISSUE_NUMBER" --body "🔎 Structured review PR ready: ${PR_URL}. It may merge autonomously after exact-head validation. Its claims remain unverified until independently checked; a later evidence-gated repository PR may update dossier status when warranted."
 
       - name: Report repository PR-permission blocker
         if: steps.pr.outcome == 'failure'
@@ -107,7 +108,7 @@ jobs:
           RUN_URL: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
           BRANCH_URL: https://github.com/${{ github.repository }}/tree/agent-review/issue-${{ github.event.issue.number }}
         run: |
-          gh issue comment "$ISSUE_NUMBER" --body "The review validated and its branch was pushed. GitHub Actions could not open the PR because the repository-level PR-creation toggle is disabled. A maintainer can open a PR from ${BRANCH_URL}, or enable **Settings → Actions → General → Workflow permissions → Allow GitHub Actions to create and approve pull requests** and then close/reopen this Issue. Run: ${RUN_URL}"
+          gh issue comment "$ISSUE_NUMBER" --body "The review validated and its branch was pushed. GitHub Actions could not open the PR because the repository-level PR-creation toggle is disabled. A repository administrator can open a PR from ${BRANCH_URL}, or enable **Settings → Actions → General → Workflow permissions → Allow GitHub Actions to create and approve pull requests** and then close/reopen this Issue. Run: ${RUN_URL}"
 
       - name: Explain earlier materialization failure
         if: failure() && steps.pr.outcome != 'failure'
@@ -134,4 +135,4 @@ jobs:
           GH_TOKEN: ${{ github.token }}
           ISSUE_NUMBER: ${{ github.event.issue.number }}
         run: |
-          gh issue comment "$ISSUE_NUMBER" --body "Thanks for the agent review. Automatic PR materialization is limited to trusted repository collaborators so public Issues cannot obtain a write-capable automation path. A maintainer or trusted repository agent can inspect and promote useful analysis through an authorized lane."
+          gh issue comment "$ISSUE_NUMBER" --body "Thanks for the agent review. Automatic PR materialization is limited to trusted repository collaborators so public Issues cannot become an unauthenticated write path. An autonomous trusted repository agent can inspect and preserve useful analysis through an authorized lane."
