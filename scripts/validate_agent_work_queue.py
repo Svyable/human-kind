@@ -98,6 +98,31 @@ def review_submitted_violations(item: dict) -> list[str]:
     return violations
 
 
+def review_pr_open_violations(item: dict) -> list[str]:
+    """Return structural violations for an open review PR, preserving stricter provenance."""
+    violations: list[str] = []
+    if not PR_URL.fullmatch(str(item.get("entrypoint", "")).strip()):
+        violations.append("entrypoint must be a Human Kind PR URL when status=review-pr-open")
+    if not ISSUE_URL.fullmatch(str(item.get("task_issue", "")).strip()):
+        violations.append("task_issue must be a Human Kind Issue URL when status=review-pr-open")
+    if not ISSUE_URL.fullmatch(str(item.get("review_submission", "")).strip()):
+        violations.append("review_submission must be a Human Kind Issue URL when status=review-pr-open")
+    if item.get("independent_verification_required") is not True:
+        violations.append("independent_verification_required must be true when status=review-pr-open")
+
+    authority = item.get("decision_authority")
+    if item.get("human_verification_required") is True:
+        if authority != "none":
+            violations.append(
+                "decision_authority must be 'none' when status=review-pr-open and human_verification_required=true"
+            )
+    elif authority != REPOSITORY_AUTHORITY:
+        violations.append(
+            f"decision_authority must be {REPOSITORY_AUTHORITY!r} when status=review-pr-open"
+        )
+    return violations
+
+
 def main() -> int:
     failures = 0
 
@@ -297,30 +322,29 @@ def main() -> int:
                 error(f"{prefix}.{violation}")
                 failures += 1
         if status == "review-pr-open":
-            if not PR_URL.fullmatch(entrypoint):
-                error(f"{prefix}.entrypoint must be a Human Kind PR URL when status=review-pr-open")
-                failures += 1
-            if not ISSUE_URL.fullmatch(str(item.get("task_issue", "")).strip()):
-                error(f"{prefix}.task_issue must be a Human Kind Issue URL when status=review-pr-open")
-                failures += 1
-            if not ISSUE_URL.fullmatch(str(item.get("review_submission", "")).strip()):
-                error(f"{prefix}.review_submission must be a Human Kind Issue URL when status=review-pr-open")
-                failures += 1
-            if item.get("independent_verification_required") is not True:
-                error(f"{prefix}.independent_verification_required must be true when status=review-pr-open")
-                failures += 1
-            if item.get("decision_authority") != REPOSITORY_AUTHORITY:
-                error(
-                    f"{prefix}.decision_authority must be {REPOSITORY_AUTHORITY!r} when status=review-pr-open"
-                )
+            for violation in review_pr_open_violations(item):
+                error(f"{prefix}.{violation}")
                 failures += 1
 
-        if status in ACTIVE_STATUSES and item.get("decision_authority") not in (None, REPOSITORY_AUTHORITY):
+        strict_human_review_pr = (
+            status == "review-pr-open"
+            and item.get("human_verification_required") is True
+            and item.get("decision_authority") == "none"
+        )
+        if (
+            status in ACTIVE_STATUSES
+            and not strict_human_review_pr
+            and item.get("decision_authority") not in (None, REPOSITORY_AUTHORITY)
+        ):
             error(
                 f"{prefix}.decision_authority must be omitted or {REPOSITORY_AUTHORITY!r} for active work"
             )
             failures += 1
-        if status in ACTIVE_STATUSES and item.get("human_verification_required") is True:
+        if (
+            status in ACTIVE_STATUSES
+            and not strict_human_review_pr
+            and item.get("human_verification_required") is True
+        ):
             error(
                 f"{prefix}.human_verification_required is a legacy field and must not be used for active autonomous work"
             )
