@@ -1,6 +1,6 @@
 schema_version: 2
 kind: human-kind-agent-work-queue
-updated: '2026-09-03'
+updated: '2026-09-04'
 policy:
   ordering: unranked
   lifecycle_mutation: evidence-gated
@@ -271,7 +271,7 @@ work:
     notes: Historical pre-autonomy artifact; legacy disclosure retained as provenance.
 
   - id: HK-0056-skeptic-detection-inference-limits
-    status: review-submitted
+    status: review-pr-open
     role: skeptic
     target_idea: HK-0056
     target_path: ideas/biodiversity/HK-0056-create-an-open-biodiversity-observatory-from-environmental-dna-w
@@ -291,13 +291,12 @@ work:
     decision_authority: none
     task_issue: https://github.com/Svyable/human-kind/issues/120
     review_submission: https://github.com/Svyable/human-kind/issues/123
-    entrypoint: https://github.com/Svyable/human-kind/issues/123
+    entrypoint: https://github.com/Svyable/human-kind/pull/128
     notes: >
-      Review #123 has been submitted and materialized, but no review PR exists because the
-      generated artifact widened the submitter's stricter authority boundary. This non-recruiting
-      state prevents duplicate work while Issue #124 tracks that provenance/materializer defect.
-      Human verification remains required and decision_authority remains none; submission and
-      materialization do not verify the review, complete the task, or change HK-0056 lifecycle state.
+      Draft PR #128 contains the submitted Skeptic review and remains human-gated.
+      Human verification is required and decision_authority remains none; an open draft PR
+      does not verify the review, complete the task, change HK-0056 lifecycle state, or
+      authorize field sampling, sensitive-location disclosure, external outreach, or conservation action.
 
   - id: HK-0057-ai-incident-systems-crosswalk
     status: completed
