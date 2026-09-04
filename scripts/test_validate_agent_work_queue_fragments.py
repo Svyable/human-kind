@@ -86,11 +86,38 @@ def test_review_submitted_is_non_recruiting_and_preserves_stricter_bounds() -> N
     assert any("review_submission" in item for item in violations)
 
 
+def test_review_pr_open_supports_normal_and_stricter_authority_lanes() -> None:
+    normal = {
+        "entrypoint": "https://github.com/Svyable/human-kind/pull/128",
+        "task_issue": "https://github.com/Svyable/human-kind/issues/120",
+        "review_submission": "https://github.com/Svyable/human-kind/issues/123",
+        "independent_verification_required": True,
+        "decision_authority": "repository-scoped",
+    }
+    assert queue_validator.review_pr_open_violations(normal) == []
+
+    stricter = dict(
+        normal,
+        human_verification_required=True,
+        decision_authority="none",
+    )
+    assert queue_validator.review_pr_open_violations(stricter) == []
+
+    widened = dict(stricter, decision_authority="repository-scoped")
+    violations = queue_validator.review_pr_open_violations(widened)
+    assert any("decision_authority must be 'none'" in item for item in violations)
+
+    missing_verification = dict(stricter, independent_verification_required=False)
+    violations = queue_validator.review_pr_open_violations(missing_verification)
+    assert any("independent_verification_required" in item for item in violations)
+
+
 def main() -> int:
     test_fragment_only_idea_is_visible()
     test_aggregate_fragment_duplicate_is_rejected()
     test_combined_role_slug_remains_unsupported()
     test_review_submitted_is_non_recruiting_and_preserves_stricter_bounds()
+    test_review_pr_open_supports_normal_and_stricter_authority_lanes()
     print("Fragment-aware agent work queue regression tests passed.")
     return 0
 
