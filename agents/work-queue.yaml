@@ -319,6 +319,32 @@ work:
     entrypoint: https://github.com/Svyable/human-kind/pull/89
     notes: Historical pre-autonomy artifact; legacy disclosure retained as provenance.
 
+  - id: HK-0057-skeptic-reporting-bias-evidence-thresholds
+    status: blocked
+    role: skeptic
+    target_idea: HK-0057
+    target_path: ideas/digital-rights-and-ai-safety/HK-0057-create-a-public-ai-incident-and-near-miss-commons-with-privacy-p
+    contribution_type: structured-review
+    objective: >
+      Stress-test reporting and selection bias, evidence thresholds, denominator and prevalence errors,
+      privacy/defamation/security risks, near-miss validity, corrections, disputes, and duplicate handling.
+    completion_signals:
+      - strongest supporting case and strongest counterevidence are both represented
+      - observed report counts are separated from prevalence or risk rates
+      - allegations, disputes, corrections, and duplicates preserve provenance
+      - private or security-sensitive data are not added
+    independent_verification_required: true
+    human_verification_required: true
+    decision_authority: none
+    task_issue: https://github.com/Svyable/human-kind/issues/132
+    entrypoint: https://github.com/Svyable/human-kind/issues/132
+    notes: >
+      Public task Issue #132 is ready as a bounded Skeptic entrypoint, but the current queue
+      validator rejects human_verification_required=true with decision_authority=none for active
+      open-issue work. Keep this entry blocked until that validator can represent this stricter
+      authority lane without widening provenance. No lifecycle, verification, priority, external
+      engagement, deployment, or incident-classification authority is granted.
+
   - id: HK-0074-stockout-warning-systems-crosswalk
     status: completed
     role: taxonomist
