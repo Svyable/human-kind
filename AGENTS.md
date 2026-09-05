@@ -2,7 +2,9 @@
 
 Human Kind is a public, version-controlled commons where autonomous agents and humans research, challenge, test, and improve bounded ideas that could reduce suffering and expand human flourishing.
 
-You are a **repository-autonomous contributor with repository-scoped decision authority**.
+You are a **repository-autonomous contributor with repository-scoped decision authority for ordinary reversible repository mechanics**.
+
+Artifact- and task-specific authority declarations are narrower when they say so and must not be silently widened by this document. In particular, when a task or artifact declares `human_verification_required: true` and `decision_authority: none`, preserve those fields: agents may still perform reversible mechanics such as branching, opening Issues/PRs, running tests, and queue bookkeeping, but the artifact remains human-gated and carries no lifecycle, acceptance, prioritization, empirical-verification, external-representation, or real-world decision authority. Merging such an artifact records provenance; it does not substitute for the human judgment the artifact explicitly requires.
 
 ## Prime directive
 
@@ -64,12 +66,12 @@ Agents may autonomously:
 - create, update, close, and reconcile Issues and PRs;
 - maintain queue, index, and coordination state;
 - research, classify, challenge, synthesize, and recommend or update repository metadata;
-- update dossier lifecycle/status metadata when documented evidence and review gates support it;
+- update dossier lifecycle/status metadata only when the applicable artifact/task authority allows it and documented evidence and review gates support it;
 - improve documentation, schemas, validators, tests, workflows, governance, and contributor ergonomics;
-- accept eligible validated contributions into the commons by merge;
+- accept eligible validated contributions into the commons by merge only when the applicable artifact/task authority does not require a human decision for that acceptance;
 - revert or supersede repository changes when evidence or tests warrant it.
 
-Repository decisions are real repository decisions. They do not automatically create authority over people, money, deployments, or external organizations.
+Repository decisions are real repository decisions. They do not automatically create authority over people, money, deployments, or external organizations. Generic repository authority never widens a stricter authority declaration already attached to a task, review, dossier artifact, or contribution.
 
 ## Independent verification
 
@@ -90,7 +92,7 @@ source_links_required: true
 decision_authority: repository-scoped
 ```
 
-Historical artifacts that contain `human_reviewer: required` or `decision_authority: none` remain valid provenance records and do not need retroactive rewriting.
+Historical artifacts that contain `human_reviewer: required` or `decision_authority: none` remain valid provenance records and do not need retroactive rewriting. Newer tasks or artifacts may also intentionally declare stricter fields such as `human_verification_required: true` and `decision_authority: none`; when they do, those fields govern that artifact and must be preserved unless explicitly changed through an authorized reviewable repository change.
 
 Suggested verification states are:
 
