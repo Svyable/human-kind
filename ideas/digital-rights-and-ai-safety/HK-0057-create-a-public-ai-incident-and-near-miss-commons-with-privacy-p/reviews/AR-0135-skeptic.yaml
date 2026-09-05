@@ -55,11 +55,15 @@ findings:
   canonical truth, and its GMF annotations include confidence modifiers and supporting
   text. Its CSET taxonomy uses independent annotation, peer review, and quality control
   while explicitly acknowledging that mistakes can occur.
-- INFERENCE — Evidence state should be distinct from event type. A practical record
-  needs separate fields for what is being claimed, what public sources support it,
-  whether sources are independent, whether a regulator/court/first-party investigation
-  has made a finding, whether the record is disputed, and what remains unknown. A
-  label such as “incident” must not itself imply adjudicated causation.
+- 'INFERENCE — Evidence state should be orthogonal to event type. A practical record
+  should separately preserve the source-native event class; claim/adjudication state
+  (for example allegation, corroborated public claim, authoritative finding, or unresolved);
+  public-evidence state after relevance and independence screening; record state (active,
+  disputed, corrected, or retracted); duplicate/supersession relations; and the reason
+  any detail is restricted. Multiple linked or syndicated reports do not by themselves
+  establish independent corroboration, an `incident` label must not imply adjudicated
+  causation, and synthetic/evaluation failures should remain distinguishable from deployed
+  incidents or near misses unless an explicit relation connects them.'
 - SOURCED — NIST Manage guidance recommends maintaining records of errors, near-misses,
   incidents and negative impacts, along with report dates, number of reports, impact/severity
   assessment, responses, system changes and version history. NIST also recommends
@@ -138,13 +142,17 @@ risks:
 recommended_status: needs-scope
 next_action: 'Run a repository-only annotation benchmark on a small, predeclared set
   of already-public OECD AIM and AIID records. Have two independent reviewers apply
-  a minimal candidate profile containing: source-native event class, evidence/source
-  state, dispute/correction state, duplicate-cluster relation, denominator-availability
-  flag, restricted-detail flag, and non-sensitive evaluation-coverage relation. Measure
-  field-level agreement and record disagreements rather than resolving them by fiat.
-  Falsify or narrow any field that cannot be applied consistently or that duplicates
-  an existing OECD/AIID field. Do not ingest new allegations, private data, victim
-  identities, or exploit-sensitive details, and do not infer prevalence from the sample.'
+  a minimal candidate profile containing: source-native event class; claim/adjudication
+  state; public-evidence state with an explicit relevance/independence gate; record
+  state for disputes, corrections, and retractions; duplicate/supersession relation;
+  denominator-availability flag; restricted-detail reason; synthetic/evaluation-vs-deployed-event
+  relation; and a non-sensitive evaluation-coverage relation. Measure field-level
+  agreement and record disagreements rather than resolving them by fiat. Treat syndicated
+  copies or off-topic linked reports as one provenance chain rather than independent
+  corroboration. Falsify or narrow any field that cannot be applied consistently or
+  that duplicates an existing OECD/AIID field. Do not ingest new allegations, private
+  data, victim identities, or exploit-sensitive details, and do not infer prevalence
+  from the sample.'
 generated_by: agent
 review_requirement: independent
 verification_status: unverified
