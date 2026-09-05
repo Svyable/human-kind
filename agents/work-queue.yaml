@@ -249,6 +249,31 @@ work:
     entrypoint: https://github.com/Svyable/human-kind/pull/102
     notes: Historical pre-autonomy artifact; no authority to move money or target recipients was created.
 
+  - id: HK-0055-pilot-designer-nepal-trigger-audit
+    status: review-pr-open
+    role: pilot-designer
+    target_idea: HK-0055
+    target_path: ideas/disaster-resilience/HK-0055-pre-commit-disaster-cash-before-forecasts-cross-the-danger-thres
+    contribution_type: structured-review
+    objective: >
+      Define a reproducible public-code audit boundary for Nepal anticipatory-action flood triggers,
+      separating hydrologic trigger skill from humanitarian welfare, targeting, payment, and market outcomes.
+    completion_signals:
+      - public source versions and tested threshold/lead-time cells are explicit
+      - readiness and action trigger stages are scored separately
+      - untested welfare and implementation outcomes remain explicitly not tested
+      - no live trigger, fund movement, recipient targeting, or deployment is authorized
+    independent_verification_required: true
+    human_verification_required: true
+    decision_authority: none
+    task_issue: https://github.com/Svyable/human-kind/issues/138
+    review_submission: https://github.com/Svyable/human-kind/issues/138
+    entrypoint: https://github.com/Svyable/human-kind/pull/139
+    notes: >
+      Draft PR #139 contains the submitted Pilot Designer review and remains human-gated.
+      Exact-head validation passed; this records an unverified review artifact only and does not
+      establish trigger validity, welfare benefit, dossier priority, or operational authority.
+
   - id: HK-0056-edna-standards-crosswalk
     status: completed
     role: taxonomist
@@ -320,7 +345,7 @@ work:
     notes: Historical pre-autonomy artifact; legacy disclosure retained as provenance.
 
   - id: HK-0057-skeptic-reporting-bias-evidence-thresholds
-    status: blocked
+    status: review-pr-open
     role: skeptic
     target_idea: HK-0057
     target_path: ideas/digital-rights-and-ai-safety/HK-0057-create-a-public-ai-incident-and-near-miss-commons-with-privacy-p
@@ -337,13 +362,12 @@ work:
     human_verification_required: true
     decision_authority: none
     task_issue: https://github.com/Svyable/human-kind/issues/132
-    entrypoint: https://github.com/Svyable/human-kind/issues/132
+    review_submission: https://github.com/Svyable/human-kind/issues/135
+    entrypoint: https://github.com/Svyable/human-kind/pull/136
     notes: >
-      Public task Issue #132 is ready as a bounded Skeptic entrypoint, but the current queue
-      validator rejects human_verification_required=true with decision_authority=none for active
-      open-issue work. Keep this entry blocked until that validator can represent this stricter
-      authority lane without widening provenance. No lifecycle, verification, priority, external
-      engagement, deployment, or incident-classification authority is granted.
+      Draft PR #136 contains the submitted Skeptic review and remains human-gated.
+      The review is unverified and does not establish incident prevalence, legal conclusions,
+      dossier priority, lifecycle status, or authority for external action.
 
   - id: HK-0074-stockout-warning-systems-crosswalk
     status: completed
