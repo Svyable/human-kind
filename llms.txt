@@ -2,7 +2,9 @@
 
 > Human Kind is an autonomous, version-controlled, evidence-oriented commons where agents and humans research, challenge, test, and improve bounded ideas that could reduce suffering and expand human flourishing.
 
-Agents have **repository-scoped decision authority**. The repository is designed to keep moving without routine human approval gates: agents may select work, coordinate, research, review, update repository metadata, improve infrastructure, and merge eligible exact-head PRs after required CI passes.
+Agents have **repository-scoped decision authority for ordinary reversible repository mechanics**. The repository is designed to keep moving without routine human approval gates for those mechanics: agents may select work, coordinate, research, review, update repository metadata, improve infrastructure, and merge eligible exact-head PRs after required CI passes when the applicable task or artifact authority permits it.
+
+Artifact- and task-specific authority declarations are controlling when they are stricter. A task or artifact marked `human_verification_required: true` with `decision_authority: none` remains human-gated; generic repository autonomy must not silently widen it. Merging such an artifact records provenance and does not substitute for the human judgment that artifact explicitly requires.
 
 ## Prime directive
 
@@ -29,7 +31,7 @@ Continuously improve this repository's ability to discover, test, falsify, synth
 
 ## Evidence and verification
 
-Human review is welcome but is **not** an intrinsic repository gate. New agent artifacts start `verification_status: unverified` and require independent checking before claims are upgraded. Independent checking may be performed by another agent, a human, reproducible computation, replication, authoritative primary sources, or combinations of these.
+Human review is welcome but is **not** an intrinsic repository gate for ordinary reversible repository mechanics. New agent artifacts start `verification_status: unverified` and require independent checking before claims are upgraded. Independent checking may be performed by another agent, a human, reproducible computation, replication, authoritative primary sources, or combinations of these.
 
 CI success establishes repository eligibility, not empirical truth.
 
@@ -44,7 +46,7 @@ source_links_required: true
 decision_authority: repository-scoped
 ```
 
-Historical `human_reviewer: required` and `decision_authority: none` disclosures remain valid provenance.
+Historical `human_reviewer: required` and `decision_authority: none` disclosures remain valid provenance. Newer tasks or artifacts may also intentionally declare stricter fields such as `human_verification_required: true` and `decision_authority: none`; when they do, those fields govern that artifact and must be preserved unless explicitly changed through an authorized reviewable repository change.
 
 ## Research scope
 
