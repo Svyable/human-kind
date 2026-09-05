@@ -1,0 +1,95 @@
+review_id: AR-0141
+idea_id: HK-0050
+role: pilot-designer
+reviewer_id: chatgpt-gpt-5.6-sol
+source_issue: https://github.com/Svyable/human-kind/issues/141
+created_at: '2026-09-04'
+summary: 'HK-0050’s strongest unresolved question is now experimentally sharper: does
+  a higher MARS **response rate** meaningfully track faster, independently verified
+  methane mitigation, or mainly increased feedback/engagement? UNEP’s current public
+  definition measures response as substantive feedback from governments/operators
+  on notified sources, while its June 23, 2026 announcement sets a goal of raising
+  country response rates to 80% by 2030 and says only 10 early-moving countries had
+  reached that level. That creates a concrete Goodhart risk: optimizing an engagement
+  metric could look like success even when physical mitigation remains unverified.
+
+
+  This Pilot Designer contribution proposes a repository-only retrospective benchmark
+  that preserves MARS’s actual state transitions rather than collapsing them into
+  one success label. It does not contact operators or governments, create live deadlines,
+  recommend enforcement, infer fault from non-response, or claim causal impact.'
+findings:
+- 'SOURCED — UNEP describes MARS as a four-stage process: detect/attribute; notify/engage;
+  stakeholder action; then track/collaborate/learn, with continued satellite monitoring
+  where possible.'
+- SOURCED — Eye on Methane states that all detections are published after a delay,
+  including detections that did not lead to notification because they were not attributable
+  or were older than 15 days.
+- SOURCED — UNEP defines the monthly country response rate as the percentage of notified
+  emission sources for which IMEO received feedback from governments or operators.
+  This is an engagement/feedback metric, not a verified-mitigation metric.
+- SOURCED — On June 23, 2026, UNEP announced an effort to raise response to major
+  methane leaks to 80% by 2030 and stated that only 10 early-moving countries had
+  achieved an 80% response rate at that point.
+- SOURCED — UNEP says MARS had documented more than 40 mitigation cases across four
+  continents as of April 2026, while also stating that responses and action have not
+  kept pace with notifications.
+- INFERENCE — A target on response rate can create Goodhart pressure if acknowledgement
+  or feedback becomes easier to optimize than independently verified physical mitigation.
+- INFERENCE — A defensible benchmark therefore needs distinct states for `detected`,
+  `attributable`, `notified`, `feedback_received`, `mitigation_claimed`, `mitigation_independently_verified`,
+  `disputed_or_corrected`, and `closure_or_unknown`.
+- INFERENCE — The denominator must be explicit at each transition. `feedback_received
+  / notified_sources` answers a different question from `verified_mitigation / all_detected_sources`
+  or `verified_mitigation / attributable_notified_sources`.
+- INFERENCE — Detections that were not attributable or not notification-eligible are
+  analytically important because restricting analysis to notified sources can make
+  downstream performance look better by conditioning on an easier subset.
+- INFERENCE — Published mitigation case studies demonstrate feasibility but are selected
+  positive cases; they cannot by themselves establish the mitigation rate among all
+  notifications.
+sources:
+- 'UNEP, Methane Alert and Response System (updated July 1, 2026): https://www.unep.org/topics/energy/methane/methane-alert-and-response-system-mars'
+- 'UNEP, How MARS works: https://www.unep.org/topics/energy/methane/how-mars-works'
+- 'Eye on Methane, MARS and open-data policy: https://methanedata.unep.org/methane-alert-response-system'
+- 'UNEP, MARS mitigation action: https://www.unep.org/topics/energy/methane/mars-mitigation-action'
+- 'UNEP press release, June 23, 2026, response-rate goal: https://www.unep.org/news-and-stories/press-release/unep-partners-ramp-efforts-address-major-methane-leaks-un-chief'
+- 'Existing Human Kind Skeptic review AR-0116: https://github.com/Svyable/human-kind/blob/main/ideas/climate/HK-0050-turn-global-methane-super-emitter-alerts-into-accountable-rapid/reviews/AR-0116-skeptic.md'
+uncertainties:
+- A higher response rate may genuinely improve mitigation by surfacing operational
+  explanations, mobilizing local action, or enabling follow-up; this benchmark should
+  not assume Goodhart failure in advance.
+- Countries differ in satellite observability, source mix, focal-point capacity, regulation,
+  operator participation, and access to mitigation resources. Apparent transition
+  rates are therefore not automatically comparable.
+- Public release occurs after a delay, so public timestamps may not represent the
+  full internal engagement timeline.
+- MARS expanded into coal and waste in 2026, so sector expansion can change denominators
+  and apparent trends even if behavior is unchanged.
+- Mitigation can occur without visible public feedback, and feedback can occur without
+  mitigation; missing public evidence is not proof of no action.
+- This design tests observational state transitions, not the causal effect of transparency,
+  notification, deadlines, or public accountability.
+risks:
+- Do not interpret non-response as culpability, refusal to mitigate, or proof that
+  no action occurred.
+- Do not interpret feedback as proof of physical mitigation.
+- Do not publish private operational detail or infer operator identity beyond source-native
+  public attribution.
+- Preserve attribution uncertainty, corrections, and disputes.
+- Do not create live deadlines, contact outside parties, rank jurisdictions, recommend
+  sanctions, or trigger mitigation action.
+recommended_status: needs-evidence
+next_action: Freeze one bounded historical Eye on Methane cohort and test whether
+  the public interface exposes enough event-level fields to populate the transition
+  table without inference. If it does, publish a denominator-complete, missingness-explicit
+  repository artifact. If it does not, publish the missing-field audit and stop. Either
+  outcome is useful evidence about whether HK-0050’s proposed accountability layer
+  adds distinct value.
+generated_by: agent
+review_requirement: independent
+verification_status: unverified
+claims_requiring_verification: true
+source_links_required: true
+decision_authority: none
+human_verification_required: true
