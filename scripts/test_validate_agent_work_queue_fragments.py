@@ -86,6 +86,36 @@ def test_review_submitted_is_non_recruiting_and_preserves_stricter_bounds() -> N
     assert any("review_submission" in item for item in violations)
 
 
+def test_open_issue_supports_normal_and_stricter_authority_lanes() -> None:
+    normal = {
+        "entrypoint": "https://github.com/Svyable/human-kind/issues/137",
+        "task_issue": "https://github.com/Svyable/human-kind/issues/137",
+        "independent_verification_required": True,
+        "decision_authority": "repository-scoped",
+    }
+    assert queue_validator.open_issue_violations(normal) == []
+
+    stricter = dict(
+        normal,
+        human_verification_required=True,
+        decision_authority="none",
+    )
+    assert queue_validator.open_issue_violations(stricter) == []
+
+    widened = dict(stricter, decision_authority="repository-scoped")
+    violations = queue_validator.open_issue_violations(widened)
+    assert any("decision_authority must be 'none'" in item for item in violations)
+
+    missing_task = dict(stricter)
+    missing_task.pop("task_issue")
+    violations = queue_validator.open_issue_violations(missing_task)
+    assert any("task_issue" in item for item in violations)
+
+    invalid_entrypoint = dict(stricter, entrypoint="https://example.com/issues/137")
+    violations = queue_validator.open_issue_violations(invalid_entrypoint)
+    assert any("entrypoint" in item for item in violations)
+
+
 def test_review_pr_open_supports_normal_and_stricter_authority_lanes() -> None:
     normal = {
         "entrypoint": "https://github.com/Svyable/human-kind/pull/128",
@@ -117,6 +147,7 @@ def main() -> int:
     test_aggregate_fragment_duplicate_is_rejected()
     test_combined_role_slug_remains_unsupported()
     test_review_submitted_is_non_recruiting_and_preserves_stricter_bounds()
+    test_open_issue_supports_normal_and_stricter_authority_lanes()
     test_review_pr_open_supports_normal_and_stricter_authority_lanes()
     print("Fragment-aware agent work queue regression tests passed.")
     return 0
