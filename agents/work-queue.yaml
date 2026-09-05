@@ -1,1 +1,416 @@
-PLACEHOLDER
+schema_version: 2
+kind: human-kind-agent-work-queue
+updated: '2026-09-04'
+policy:
+  ordering: unranked
+  lifecycle_mutation: evidence-gated
+  decision_authority: repository-scoped
+  independent_verification_required: true
+  notes: >
+    Entries are bounded contribution opportunities inferred from repository state.
+    Agents may select, coordinate, complete, and reconcile repository work autonomously.
+    Lifecycle metadata may change only through a separate evidence-gated repository change;
+    queue selection is not itself a real-world priority or authorization to act.
+selection:
+  strategy: breadth-before-depth
+  default_max_consecutive_cycles_per_dossier: 2
+  exceptions:
+    - new-repository-activity
+    - materially-new-evidence
+    - ci-or-safety-regression
+    - explicit-task-dependency
+  seed_corpus:
+    minimum_indexed_dossiers: 3
+    minimum_distinct_domains: 3
+    when_below_floor: surface-bounded-intake-candidate
+  decision_authority: repository-scoped
+  independent_verification_required: true
+  notes: >
+    Agents choose and sequence bounded repository tasks. Selection does not establish
+    real-world impact priority, funding priority, consent, or implementation authority.
+coordination:
+  protocol_path: agents/coordination.md
+  claim_surface: issue-comments
+  claim_prefix: CLAIM
+  complete_prefix: CLAIM COMPLETE
+  release_prefix: CLAIM RELEASED
+  claim_ttl_hours: 48
+  claims_are_nonexclusive: true
+  parallel_work_allowed_when_declared: true
+  decision_authority: repository-scoped
+  independent_verification_required: true
+  notes: >
+    Agents may make reversible repository coordination decisions such as claiming,
+    releasing, reconciling, and closing bounded work. Coordination does not verify evidence
+    or grant authority over people, money, external representation, or deployment.
+work:
+  - id: HK-0004-scout-evidence-map
+    status: completed
+    role: scout
+    target_idea: HK-0004
+    target_path: ideas/cross-cutting/HK-0004-maintain-an-adversarial-regression-corpus-for-agent-intake-quali
+    contribution_type: structured-review
+    objective: >
+      Map relevant prior work, evaluation methods, and evidence for maintaining adversarial
+      regression corpora for agent intake quality, including sources that could falsify or narrow the proposal.
+    completion_signals:
+      - source links are provided for substantive factual claims
+      - prior art and counterevidence are both represented
+      - uncertainty is explicit
+      - no unrecorded real-world action is taken
+    task_issue: https://github.com/Svyable/human-kind/issues/12
+    completed_by_review: AR-0018
+    entrypoint: https://github.com/Svyable/human-kind/pull/19
+
+  - id: HK-0004-synthesizer-review
+    status: completed
+    role: synthesizer
+    target_idea: HK-0004
+    target_path: ideas/cross-cutting/HK-0004-maintain-an-adversarial-regression-corpus-for-agent-intake-quali
+    contribution_type: structured-review
+    objective: >
+      Synthesize the dossier and existing Skeptic review into the strongest supported case,
+      strongest unresolved objections, and concrete information gaps while preserving disagreement.
+    completion_signals:
+      - disagreement is preserved rather than averaged away
+      - evidence strength and uncertainty are separated
+      - unresolved questions are concrete and testable
+      - provenance remains traceable
+    human_verification_required: true
+    decision_authority: none
+    task_issue: https://github.com/Svyable/human-kind/issues/13
+    completed_by_review: AR-0107
+    entrypoint: https://github.com/Svyable/human-kind/pull/107
+    notes: Historical pre-autonomy artifact; legacy disclosure retained as provenance.
+
+  - id: HK-0004-taxonomist-fit-check
+    status: completed
+    role: taxonomist
+    target_idea: HK-0004
+    target_path: ideas/cross-cutting/HK-0004-maintain-an-adversarial-regression-corpus-for-agent-intake-quali
+    contribution_type: structured-review
+    objective: >
+      Check taxonomy fit, aliases, neighboring proposals, and duplicate risk for HK-0004
+      while preserving ambiguity and the existing reasoning trail.
+    completion_signals:
+      - potential duplicates or near-neighbors are linked when found
+      - taxonomy ambiguity is recorded rather than silently resolved
+      - provenance remains traceable
+    human_verification_required: true
+    decision_authority: none
+    task_issue: https://github.com/Svyable/human-kind/issues/14
+    completed_by_review: AR-0111
+    entrypoint: https://github.com/Svyable/human-kind/pull/111
+    notes: Historical pre-autonomy artifact; legacy disclosure retained as provenance.
+
+  - id: HK-0004-red-team-failure-modes
+    status: completed
+    role: red-team
+    target_idea: HK-0004
+    target_path: ideas/cross-cutting/HK-0004-maintain-an-adversarial-regression-corpus-for-agent-intake-quali
+    contribution_type: structured-review
+    objective: >
+      Identify failure modes, gaming risks, false-confidence pathways, misuse, and
+      regression-corpus blind spots, then propose bounded mitigations or tests.
+    completion_signals:
+      - plausible failure mechanisms are distinguished from speculation
+      - misuse cases are explicit
+      - mitigations favor reversible tests and measurable checks
+    human_verification_required: true
+    decision_authority: none
+    task_issue: https://github.com/Svyable/human-kind/issues/15
+    completed_by_review: AR-0109
+    entrypoint: https://github.com/Svyable/human-kind/pull/109
+    notes: Historical pre-autonomy artifact; legacy disclosure retained as provenance.
+
+  - id: HK-0021-skeptic-equity-and-trust-review
+    status: completed
+    role: skeptic
+    target_idea: HK-0021
+    target_path: ideas/education/HK-0021-test-supportive-personalized-attendance-messages-with-equity-saf
+    contribution_type: structured-review
+    objective: >
+      Stress-test caregiver trust, inaccurate alerts, structural causes of absence, delivery
+      inequality, subgroup effects, and responsibility-shifting assumptions.
+    completion_signals:
+      - supporting evidence and counterevidence are both cited
+      - structural and subgroup failure modes are distinguished from speculation
+      - uncertainty and affected-stakeholder considerations are explicit
+    human_verification_required: true
+    decision_authority: none
+    task_issue: https://github.com/Svyable/human-kind/issues/24
+    review_submission: https://github.com/Svyable/human-kind/issues/40
+    completed_by_review: AR-0040
+    entrypoint: https://github.com/Svyable/human-kind/pull/41
+    notes: Historical pre-autonomy artifact; legacy disclosure retained as provenance.
+
+  - id: HK-0021-synthesizer-evidence-and-disagreement-map
+    status: completed
+    role: synthesizer
+    target_idea: HK-0021
+    target_path: ideas/education/HK-0021-test-supportive-personalized-attendance-messages-with-equity-saf
+    contribution_type: structured-review
+    objective: >
+      Synthesize HK-0021 evidence and the landed Skeptic review into the strongest supported
+      attendance-messaging case, strongest objections, and concrete information gaps without
+      treating modest average effects as evidence that structural barriers are solved.
+    completion_signals:
+      - positive evidence and counterevidence are both preserved
+      - delivery, subgroup, trust, privacy, and structural-barrier uncertainties remain explicit
+      - claims and sources are traceable to the landed review artifacts
+    human_verification_required: true
+    decision_authority: none
+    task_issue: https://github.com/Svyable/human-kind/issues/112
+    completed_by_review: AR-0115
+    entrypoint: https://github.com/Svyable/human-kind/pull/115
+    notes: >
+      Historical pre-autonomy artifact added during queue reconciliation; merge records the
+      contribution, not empirical verification or authority to implement attendance messaging.
+
+  - id: HK-0023-skeptic-implementation-and-equity-review
+    status: completed
+    role: skeptic
+    target_idea: HK-0023
+    target_path: ideas/education/HK-0023-high-frequency-small-group-tutoring-for-students-substantially-b
+    contribution_type: structured-review
+    objective: >
+      Stress-test transfer from tutoring efficacy evidence to realistic school implementation,
+      including heterogeneity, tutor quality, dosage, opportunity costs, stigma, unequal access, and scalability.
+    completion_signals:
+      - supporting evidence and counterevidence are both cited
+      - efficacy claims are separated from scaling assumptions
+      - equity and subgroup risks are explicit
+    human_verification_required: true
+    decision_authority: none
+    task_issue: https://github.com/Svyable/human-kind/issues/32
+    completed_by_review: AR-0034
+    entrypoint: https://github.com/Svyable/human-kind/pull/35
+
+  - id: HK-0023-synthesizer-evidence-and-disagreement-map
+    status: completed
+    role: synthesizer
+    target_idea: HK-0023
+    target_path: ideas/education/HK-0023-high-frequency-small-group-tutoring-for-students-substantially-b
+    contribution_type: structured-review
+    objective: >
+      Synthesize the dossier and landed Skeptic review into the strongest supported case,
+      strongest implementation/equity objections, and concrete information gaps.
+    completion_signals:
+      - strongest supported case and strongest objections are both represented
+      - evidence strength and transfer assumptions are separated
+      - disagreement is preserved rather than averaged away
+    human_verification_required: true
+    decision_authority: none
+    task_issue: https://github.com/Svyable/human-kind/issues/37
+    review_submission: https://github.com/Svyable/human-kind/issues/85
+    completed_by_review: AR-0085
+    entrypoint: https://github.com/Svyable/human-kind/pull/86
+    notes: Historical pre-autonomy artifact; legacy disclosure retained as provenance.
+
+  - id: HK-0029-scout-evidence-map
+    status: completed
+    role: scout
+    target_idea: HK-0029
+    target_path: ideas/poverty-and-economic-mobility/HK-0029-test-flexible-snap-interviews-to-reduce-procedural-denials-while
+    contribution_type: structured-review
+    objective: >
+      Build the bounded evidence map for HK-0029, separating access and participation from
+      payment accuracy, program integrity, administrative burden, privacy, accessibility, and transferability.
+    completion_signals:
+      - primary or authoritative sources are preferred
+      - access effects are separated from transfer assumptions
+      - counterevidence and missing outcomes are explicit
+    human_verification_required: true
+    decision_authority: none
+    task_issue: https://github.com/Svyable/human-kind/issues/46
+    review_submission: https://github.com/Svyable/human-kind/issues/48
+    completed_by_review: AR-0048
+    entrypoint: https://github.com/Svyable/human-kind/pull/49
+    notes: Historical pre-autonomy artifact; legacy disclosure retained as provenance.
+
+  - id: HK-0055-skeptic-trigger-stress-test
+    status: completed
+    role: skeptic
+    target_idea: HK-0055
+    target_path: ideas/disaster-resilience/HK-0055-pre-commit-disaster-cash-before-forecasts-cross-the-danger-thres
+    contribution_type: structured-review
+    objective: >
+      Stress-test whether retrospective, predeclared forecast-trigger analysis can distinguish
+      useful anticipatory cash from performance created by post-hoc threshold or outcome selection.
+    completion_signals:
+      - forecast skill is separated from welfare value and implementation reliability
+      - asymmetric errors and lead time are explicit
+      - post-hoc selection and distributional risks are preserved
+    human_verification_required: true
+    decision_authority: none
+    task_issue: https://github.com/Svyable/human-kind/issues/80
+    review_submission: https://github.com/Svyable/human-kind/issues/101
+    completed_by_review: AR-0101
+    entrypoint: https://github.com/Svyable/human-kind/pull/102
+    notes: Historical pre-autonomy artifact; no authority to move money or target recipients was created.
+
+  - id: HK-0055-pilot-designer-nepal-trigger-audit
+    status: review-pr-open
+    role: pilot-designer
+    target_idea: HK-0055
+    target_path: ideas/disaster-resilience/HK-0055-pre-commit-disaster-cash-before-forecasts-cross-the-danger-thres
+    contribution_type: structured-review
+    objective: >
+      Define a reproducible public-code audit boundary for Nepal anticipatory-action flood triggers,
+      separating hydrologic trigger skill from humanitarian welfare, targeting, payment, and market outcomes.
+    completion_signals:
+      - public source versions and tested threshold/lead-time cells are explicit
+      - readiness and action trigger stages are scored separately
+      - untested welfare and implementation outcomes remain explicitly not tested
+      - no live trigger, fund movement, recipient targeting, or deployment is authorized
+    independent_verification_required: true
+    human_verification_required: true
+    decision_authority: none
+    task_issue: https://github.com/Svyable/human-kind/issues/138
+    review_submission: https://github.com/Svyable/human-kind/issues/138
+    entrypoint: https://github.com/Svyable/human-kind/pull/139
+    notes: >
+      Draft PR #139 contains the submitted Pilot Designer review and remains human-gated.
+      Exact-head validation passed; this records an unverified review artifact only and does not
+      establish trigger validity, welfare benefit, dossier priority, or operational authority.
+
+  - id: HK-0056-edna-standards-crosswalk
+    status: completed
+    role: taxonomist
+    target_idea: HK-0056
+    target_path: ideas/biodiversity/HK-0056-create-an-open-biodiversity-observatory-from-environmental-dna-w
+    contribution_type: structured-review
+    objective: >
+      Crosswalk existing eDNA standards and infrastructure before extending HK-0056, testing
+      whether distinct value remains in uncertainty, provenance, sensitive-location controls, or survey routing.
+    completion_signals:
+      - major standards and infrastructure are compared with sources
+      - overlap is treated as a possible falsifier
+      - sensitive locations and community consent are not inferred or exposed
+    human_verification_required: true
+    decision_authority: none
+    task_issue: https://github.com/Svyable/human-kind/issues/75
+    review_submission: https://github.com/Svyable/human-kind/issues/91
+    completed_by_review: AR-0091
+    entrypoint: https://github.com/Svyable/human-kind/pull/92
+    notes: Historical pre-autonomy artifact; legacy disclosure retained as provenance.
+
+  - id: HK-0056-skeptic-detection-inference-limits
+    status: review-pr-open
+    role: skeptic
+    target_idea: HK-0056
+    target_path: ideas/biodiversity/HK-0056-create-an-open-biodiversity-observatory-from-environmental-dna-w
+    contribution_type: structured-review
+    objective: >
+      Stress-test what an eDNA detection can and cannot support about local or viable populations,
+      contamination, missingness, reference quality, transport, reproducibility, confirmation thresholds,
+      and sensitive-location or community-governance constraints.
+    completion_signals:
+      - strongest supported case and strongest counterevidence are both represented
+      - detection is separated from local-population and viability inference
+      - contamination, missingness, transport, reproducibility, and confirmation limits are explicit
+      - sensitive ecological data and unearned consent claims are not exposed
+      - new claims remain independently verifiable and source-traceable
+    independent_verification_required: true
+    human_verification_required: true
+    decision_authority: none
+    task_issue: https://github.com/Svyable/human-kind/issues/120
+    review_submission: https://github.com/Svyable/human-kind/issues/123
+    entrypoint: https://github.com/Svyable/human-kind/pull/128
+    notes: >
+      Draft PR #128 contains the submitted Skeptic review and remains human-gated.
+      Human verification is required and decision_authority remains none; an open draft PR
+      does not verify the review, complete the task, change HK-0056 lifecycle state, or
+      authorize field sampling, sensitive-location disclosure, external outreach, or conservation action.
+
+  - id: HK-0057-ai-incident-systems-crosswalk
+    status: completed
+    role: taxonomist
+    target_idea: HK-0057
+    target_path: ideas/digital-rights-and-ai-safety/HK-0057-create-a-public-ai-incident-and-near-miss-commons-with-privacy-p
+    contribution_type: structured-review
+    objective: >
+      Crosswalk existing AI incident and hazard reporting systems, testing whether distinct value
+      remains in interoperability, evidence grading, corrections, privacy tiers, or evaluation links.
+    completion_signals:
+      - major incident/hazard systems are compared with sources
+      - overlap is treated as a possible falsifier
+      - private or security-sensitive material is not added
+    human_verification_required: true
+    decision_authority: none
+    task_issue: https://github.com/Svyable/human-kind/issues/71
+    review_submission: https://github.com/Svyable/human-kind/issues/88
+    completed_by_review: AR-0088
+    entrypoint: https://github.com/Svyable/human-kind/pull/89
+    notes: Historical pre-autonomy artifact; legacy disclosure retained as provenance.
+
+  - id: HK-0057-skeptic-reporting-bias-evidence-thresholds
+    status: review-pr-open
+    role: skeptic
+    target_idea: HK-0057
+    target_path: ideas/digital-rights-and-ai-safety/HK-0057-create-a-public-ai-incident-and-near-miss-commons-with-privacy-p
+    contribution_type: structured-review
+    objective: >
+      Stress-test reporting and selection bias, evidence thresholds, denominator and prevalence errors,
+      privacy/defamation/security risks, near-miss validity, corrections, disputes, and duplicate handling.
+    completion_signals:
+      - strongest supporting case and strongest counterevidence are both represented
+      - observed report counts are separated from prevalence or risk rates
+      - allegations, disputes, corrections, and duplicates preserve provenance
+      - private or security-sensitive data are not added
+    independent_verification_required: true
+    human_verification_required: true
+    decision_authority: none
+    task_issue: https://github.com/Svyable/human-kind/issues/132
+    review_submission: https://github.com/Svyable/human-kind/issues/135
+    entrypoint: https://github.com/Svyable/human-kind/pull/136
+    notes: >
+      Draft PR #136 contains the submitted Skeptic review and remains human-gated.
+      The review is unverified and does not establish incident prevalence, legal conclusions,
+      dossier priority, lifecycle status, or authority for external action.
+
+  - id: HK-0074-stockout-warning-systems-crosswalk
+    status: completed
+    role: taxonomist
+    target_idea: HK-0074
+    target_path: ideas/health/HK-0074-make-essential-medicine-stockout-risk-visible-before-patients-lo
+    contribution_type: structured-review
+    objective: >
+      Crosswalk WHO guidance and public medicine-shortage systems, testing whether an
+      interoperability, uncertainty, response-state, or validation gap remains.
+    completion_signals:
+      - WHO guidance and public systems are compared with sources
+      - equivalent capability is treated as a possible falsifier
+      - clinically consequential substitution or procurement advice is not produced
+    human_verification_required: true
+    decision_authority: none
+    task_issue: https://github.com/Svyable/human-kind/issues/83
+    review_submission: https://github.com/Svyable/human-kind/issues/95
+    completed_by_review: AR-0095
+    entrypoint: https://github.com/Svyable/human-kind/pull/96
+    notes: Historical pre-autonomy artifact; legacy disclosure retained as provenance.
+
+  - id: HK-0050-skeptic-alert-response-loop
+    status: completed
+    role: skeptic
+    target_idea: HK-0050
+    target_path: ideas/climate/HK-0050-turn-global-methane-super-emitter-alerts-into-accountable-rapid
+    contribution_type: structured-review
+    objective: >
+      Stress-test whether public methane alert acknowledgement, investigation, mitigation evidence,
+      dispute, and closure states improve learning without conflating feedback with verified physical mitigation.
+    completion_signals:
+      - response or feedback is separated from independently verified physical mitigation
+      - attribution, correction, observability, capacity, and gaming risks are explicit
+      - missing outcomes are preserved rather than inferred
+    human_verification_required: true
+    decision_authority: none
+    task_issue: https://github.com/Svyable/human-kind/issues/116
+    review_submission: https://github.com/Svyable/human-kind/issues/116
+    completed_by_review: AR-0116
+    entrypoint: https://github.com/Svyable/human-kind/pull/117
+    notes: >
+      Reconciled after PR #117 merged. The legacy review disclosure is retained as provenance;
+      merge recorded the Skeptic analysis but did not authorize methane mitigation or external action.
+
+pending_intake: []
