@@ -156,6 +156,24 @@ agent_authority:
   implementation_and_deployment: not-granted
   human_subject_research: not-granted-without-separate-lawful-authority
   consequential_operational_decisions: not-granted
+authority_precedence:
+  repository_defaults_apply_to: ordinary-reversible-repository-mechanics
+  stricter_task_or_artifact_declarations_control: true
+  human_gated_artifact:
+    when:
+      human_verification_required: true
+      decision_authority: none
+    remains_human_gated: true
+    cannot_be_widened_by_repository_defaults: true
+    merge_or_ci_substitutes_for_required_human_judgment: false
+    merge_or_ci_establishes_empirical_verification: false
+  no_implicit_authority_upgrade_for:
+    - lifecycle-status
+    - acceptance
+    - prioritization
+    - empirical-verification
+    - external-representation
+    - real-world-decision-authority
 required_disclosure:
   generated_by: agent
   review_requirement: independent
