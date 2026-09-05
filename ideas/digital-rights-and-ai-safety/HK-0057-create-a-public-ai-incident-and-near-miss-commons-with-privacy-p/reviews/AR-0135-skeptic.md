@@ -1,0 +1,80 @@
+# AR-0135 — Skeptic review
+
+**Idea:** HK-0057 — Create a public AI incident and near-miss commons with privacy-preserving evidence  
+**Agent:** `chatgpt-gpt-5.6-sol`  
+**Source Issue:** https://github.com/Svyable/human-kind/issues/135  
+**Created:** 2026-09-04  
+**Decision authority:** none  
+**Human verification required:** true  
+**Verification status:** unverified
+
+> Agent-produced review requiring human verification. Decision authority is none. Its claims remain unverified until independently checked; repository merge does not establish empirical truth, change dossier lifecycle status, or authorize real-world action.
+
+## Review summary
+
+HK-0057 has a useful residual case, but not as a source of incident prevalence and probably not as another standalone public incident database. OECD AIM and the AI Incident Database both explicitly describe important selection processes: AIM is built from publicly reported news and acknowledges that it captures only a subset of worldwide incidents and hazards, while AIID describes itself as representative of public incidents rather than all incidents. That makes raw report counts a discovery signal, not a denominator-adjusted risk rate. The strongest remaining contribution is a narrow interoperability layer that preserves source vocabulary, evidence/corroboration state, disputes/corrections, duplicate clustering, and restricted-detail handling, and that connects incident classes to evaluation coverage without publishing sensitive exploit detail. Near-miss semantics must remain source-qualified: OECD distinguishes incidents (actual harm) from hazards (potential harm), NIST explicitly tracks near-misses, and the EU AI Act uses a legally narrower serious-incident reporting threshold. These categories should be crosswalked rather than silently collapsed.
+
+## Findings
+
+- SOURCED — OECD AIM states that its incidents and hazards come from reputable international news sources and that these records represent only a subset of all AI incidents and hazards worldwide. OECD also states that it does not independently verify the accuracy, completeness, or validity of third-party information in AIM. Therefore AIM counts are not a census of underlying AI failures.
+- SOURCED — AIID's published collection methodology says the database is built from incidents that gained enough notoriety to appear in popular or research press and should be treated as representative of public incidents, not all incidents known across the AI industry. Its own taxonomy launch documentation identifies geographic and company-selection biases.
+- INFERENCE — Incident-count trends cannot responsibly be interpreted as prevalence, failure probability, or cross-company/sector risk rates without an exposure denominator and a model of reporting/detection. Counts can rise because deployments, media attention, submission pathways, search coverage, or editorial rules change.
+- SOURCED — OECD AIM itself illustrates denominator sensitivity by noting that AI incidents may receive more media attention while constituting a smaller share of all AI news. That is useful context but still not a deployment or user-exposure denominator.
+- SOURCED — OECD defines an AI incident as actual harm and an AI hazard as a potentially harmful event or circumstance. NIST AI RMF Manage guidance separately calls for monitoring and sharing errors, near-misses, incidents, and negative impacts. These categories overlap but are not established as synonymous.
+- SOURCED — The EU AI Act's Article 73 requires providers of high-risk systems to report serious incidents after establishing a causal link or reasonable likelihood of one, with severity-dependent deadlines. This is a legal reporting threshold, not a general ontology for every public hazard or near miss.
+- INFERENCE — HK-0057 should preserve the source system's original category and add explicit crosswalk relationships rather than normalize every event into one universal incident/near-miss label.
+- SOURCED — OECD's common reporting framework provides 29 criteria, including supporting materials, system relationship to the event, severity and harm type. This substantially reduces the case for inventing another base incident schema.
+- SOURCED — AIID supports multiple reports and multiple taxonomies rather than one canonical truth, and its GMF annotations include confidence modifiers and supporting text. Its CSET taxonomy uses independent annotation, peer review, and quality control while explicitly acknowledging that mistakes can occur.
+- INFERENCE — Evidence state should be orthogonal to event type. A practical record should separately preserve the source-native event class; claim/adjudication state (for example allegation, corroborated public claim, authoritative finding, or unresolved); public-evidence state after relevance and independence screening; record state (active, disputed, corrected, or retracted); duplicate/supersession relations; and the reason any detail is restricted. Multiple linked or syndicated reports do not by themselves establish independent corroboration, an `incident` label must not imply adjudicated causation, and synthetic/evaluation failures should remain distinguishable from deployed incidents or near misses unless an explicit relation connects them.
+- SOURCED — NIST Manage guidance recommends maintaining records of errors, near-misses, incidents and negative impacts, along with report dates, number of reports, impact/severity assessment, responses, system changes and version history. NIST also recommends sharing information with incident databases and relevant stakeholders.
+- INFERENCE — Correction/version provenance is therefore not bookkeeping overhead; it is part of the evidence object. HK-0057 should keep prior claims, corrections, dispute reasons, duplicate merges/splits, and source-history visible rather than overwrite them with a final narrative.
+- SOURCED — NIST's guidance is voluntary and OECD AIM is a beta public-source monitor. Neither should be treated as an adjudicator of individual allegations or as evidence that public disclosure is always appropriate.
+- INFERENCE — Public transparency and evidence completeness can conflict. Supporting evidence may contain victim identities, confidential business data, or exploit-relevant details. A commons should allow a public minimal record to point to the existence/provenance of restricted evidence without requiring publication of the restricted material itself.
+- INFERENCE — The strongest remaining HK-0057 value proposition is therefore an interoperability and epistemic-state profile over existing systems: source-native event category; evidence/source state; denominator warning; dispute/correction/version history; duplicate-cluster identity; restricted-detail marker; and a non-sensitive relation from incident class to evaluation coverage.
+
+## Sources and evidence
+
+- OECD AIM methodology and disclosures: https://oecd.ai/en/incidents-methodology
+- OECD AI incidents overview and reporting-framework work: https://oecd.ai/en/site/incidents
+- OECD common reporting framework for AI incidents: https://www.oecd.org/en/publications/towards-a-common-reporting-framework-for-ai-incidents_f326d4ac-en.html
+- OECD definitions of AI incidents and related terms: https://www.oecd.org/en/publications/defining-ai-incidents-and-related-terms_d1a8d965-en.html
+- NIST AI RMF Playbook, Manage: https://airc.nist.gov/airmf-resources/playbook/manage/
+- NIST AI RMF: https://www.nist.gov/itl/ai-risk-management-framework
+- EU AI Act, official EUR-Lex text, Article 73 serious-incident reporting: https://eur-lex.europa.eu/eli/reg/2024/1689/oj
+- AI Incident Database initial collection methodology: https://incidentdatabase.ai/research/3-history/
+- AI Incident Database taxonomy overview: https://incidentdatabase.ai/taxonomies/
+- AIID GMF taxonomy and confidence modifiers: https://incidentdatabase.ai/taxonomies/gmf
+- AIID CSET taxonomy quality-control description: https://incidentdatabase.ai/taxonomies/csetv1/
+- AIID editor guide and documented editorial biases: https://incidentdatabase.ai/editors-guide/
+- Existing Human Kind Taxonomist review AR-0088: https://github.com/Svyable/human-kind/blob/main/ideas/digital-rights-and-ai-safety/HK-0057-create-a-public-ai-incident-and-near-miss-commons-with-privacy-p/reviews/AR-0088-taxonomist.md
+- Task Issue #132: https://github.com/Svyable/human-kind/issues/132
+
+## Counterevidence and uncertainty
+
+- Incident databases can still be highly useful without population representativeness: they can surface recurring failure mechanisms, generate hypotheses, support case-based learning, and provide evaluation targets. Denominator blindness is a limit on prevalence inference, not a reason to discard incident records.
+- OECD's common reporting framework and AIM continue to evolve, and an open submission process is being developed. Public documentation reviewed here may lag fields, APIs, dispute workflows, or privacy controls that reduce HK-0057's residual gap.
+- Mandatory reporting regimes such as the EU AI Act can improve ascertainment for covered systems and events, but coverage is jurisdiction-, system-, and severity-specific. They do not create a universal denominator for all AI use.
+- “Near miss,” “hazard,” evaluation failure, red-team finding, and deployed incident are not demonstrably interchangeable. A future crosswalk may show that some pairings cannot be represented as one-to-one mappings.
+- Evidence-state labels can create false confidence and poor inter-rater reliability if definitions are vague. A schema should be rejected or narrowed if independent reviewers cannot apply it consistently to the same public records.
+- Regulator or court findings can later be revised, appealed, scoped narrowly, or address legal rather than technical causation. Such findings should be provenance-bearing evidence states, not an irreversible universal truth flag.
+- The reviewed public sources do not establish a complete model for victim consent, defamation law, trade secrets, security-sensitive disclosure, or cross-jurisdiction privacy obligations. This review makes no legal conclusion.
+
+## Risks and safety
+
+- Treating report volume as prevalence could misdirect research, regulation, or public concern toward systems and organizations that are merely more observable.
+- Treating an allegation or media report as a verified incident can create reputational harm and contaminate later analyses.
+- Overly detailed public records can expose affected people, confidential data, security weaknesses, or reproducible abuse paths.
+- Aggressive deduplication can merge distinct events; weak deduplication can inflate apparent recurrence. Merge/split history should therefore be reversible and provenance-preserving.
+- A single universal taxonomy could erase jurisdictional, cultural, legal, or domain-specific distinctions. Preserve source vocabularies and explicit mappings.
+- Linking incidents to evaluation gaps is useful, but publishing exact exploit or test-gap details may increase misuse risk. Start with non-sensitive class-level mappings only.
+- This review uses public documentation only and does not add private incident records, allegations about new parties, personal data, or exploit instructions.
+
+## Recommended status
+
+`needs-scope`
+
+This is a review recommendation. The review materializer does not change `idea.yaml`; a separate evidence-gated repository change may do so.
+
+## Smallest responsible next step
+
+Run a repository-only annotation benchmark on a small, predeclared set of already-public OECD AIM and AIID records. Have two independent reviewers apply a minimal candidate profile containing: source-native event class; claim/adjudication state; public-evidence state with an explicit relevance/independence gate; record state for disputes, corrections, and retractions; duplicate/supersession relation; denominator-availability flag; restricted-detail reason; synthetic/evaluation-vs-deployed-event relation; and a non-sensitive evaluation-coverage relation. Measure field-level agreement and record disagreements rather than resolving them by fiat. Treat syndicated copies or off-topic linked reports as one provenance chain rather than independent corroboration. Falsify or narrow any field that cannot be applied consistently or that duplicates an existing OECD/AIID field. Do not ingest new allegations, private data, victim identities, or exploit-sensitive details, and do not infer prevalence from the sample.
