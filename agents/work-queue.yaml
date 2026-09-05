@@ -1,6 +1,6 @@
 schema_version: 2
 kind: human-kind-agent-work-queue
-updated: '2026-09-04'
+updated: '2026-09-05'
 policy:
   ordering: unranked
   lifecycle_mutation: evidence-gated
@@ -250,7 +250,7 @@ work:
     notes: Historical pre-autonomy artifact; no authority to move money or target recipients was created.
 
   - id: HK-0055-pilot-designer-nepal-trigger-audit
-    status: review-pr-open
+    status: completed
     role: pilot-designer
     target_idea: HK-0055
     target_path: ideas/disaster-resilience/HK-0055-pre-commit-disaster-cash-before-forecasts-cross-the-danger-thres
@@ -268,11 +268,13 @@ work:
     decision_authority: none
     task_issue: https://github.com/Svyable/human-kind/issues/138
     review_submission: https://github.com/Svyable/human-kind/issues/138
+    completed_by_review: AR-0138
     entrypoint: https://github.com/Svyable/human-kind/pull/139
     notes: >
-      Draft PR #139 contains the submitted Pilot Designer review and remains human-gated.
-      Exact-head validation passed; this records an unverified review artifact only and does not
-      establish trigger validity, welfare benefit, dossier priority, or operational authority.
+      Merged PR #139 preserves the submitted Pilot Designer review as provenance only.
+      The review remains unverified and does not establish trigger validity, welfare benefit,
+      targeting quality, dossier priority, lifecycle status, or authority to move funds or
+      deploy anticipatory cash.
 
   - id: HK-0056-edna-standards-crosswalk
     status: completed
@@ -345,7 +347,7 @@ work:
     notes: Historical pre-autonomy artifact; legacy disclosure retained as provenance.
 
   - id: HK-0057-skeptic-reporting-bias-evidence-thresholds
-    status: review-pr-open
+    status: completed
     role: skeptic
     target_idea: HK-0057
     target_path: ideas/digital-rights-and-ai-safety/HK-0057-create-a-public-ai-incident-and-near-miss-commons-with-privacy-p
@@ -363,11 +365,13 @@ work:
     decision_authority: none
     task_issue: https://github.com/Svyable/human-kind/issues/132
     review_submission: https://github.com/Svyable/human-kind/issues/135
+    completed_by_review: AR-0135
     entrypoint: https://github.com/Svyable/human-kind/pull/136
     notes: >
-      Draft PR #136 contains the submitted Skeptic review and remains human-gated.
-      The review is unverified and does not establish incident prevalence, legal conclusions,
-      dossier priority, lifecycle status, or authority for external action.
+      Merged PR #136 preserves the submitted Skeptic review as provenance only.
+      The review remains unverified and does not establish incident prevalence, legal conclusions,
+      empirical truth, stakeholder consent, dossier priority or lifecycle status, or authority
+      for external engagement or deployment.
 
   - id: HK-0074-stockout-warning-systems-crosswalk
     status: completed
@@ -412,5 +416,32 @@ work:
     notes: >
       Reconciled after PR #117 merged. The legacy review disclosure is retained as provenance;
       merge recorded the Skeptic analysis but did not authorize methane mitigation or external action.
+
+  - id: HK-0050-pilot-designer-mars-state-transition-benchmark
+    status: completed
+    role: pilot-designer
+    target_idea: HK-0050
+    target_path: ideas/climate/HK-0050-turn-global-methane-super-emitter-alerts-into-accountable-rapid
+    contribution_type: structured-review
+    objective: >
+      Define a retrospective public-data benchmark for MARS state transitions that separates
+      detection, attribution, notification, feedback, mitigation claims, and independently verified mitigation.
+    completion_signals:
+      - source-native state transitions and missingness are preserved without inference
+      - denominators are explicit for each transition rather than collapsed into one response rate
+      - feedback is not treated as proof of physical mitigation
+      - no country/operator ranking, outreach, enforcement, or real-world mitigation action is authorized
+    independent_verification_required: true
+    human_verification_required: true
+    decision_authority: none
+    task_issue: https://github.com/Svyable/human-kind/issues/141
+    review_submission: https://github.com/Svyable/human-kind/issues/141
+    completed_by_review: AR-0141
+    entrypoint: https://github.com/Svyable/human-kind/pull/142
+    notes: >
+      Merged PR #142 preserves the submitted Pilot Designer review as provenance only.
+      The review remains unverified and does not establish methane mitigation rates, dossier
+      priority, lifecycle status, country/operator rankings, outreach or enforcement authority,
+      or operational methane-mitigation authority.
 
 pending_intake: []
