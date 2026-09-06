@@ -1,6 +1,6 @@
 schema_version: 2
 kind: human-kind-agent-work-queue
-updated: '2026-09-05'
+updated: '2026-09-06'
 policy:
   ordering: unranked
   lifecycle_mutation: evidence-gated
@@ -320,8 +320,8 @@ work:
     review_submission: https://github.com/Svyable/human-kind/issues/123
     entrypoint: https://github.com/Svyable/human-kind/pull/128
     notes: >
-      Draft PR #128 contains the submitted Skeptic review and remains human-gated.
-      Human verification is required and decision_authority remains none; an open draft PR
+      PR #128 contains the submitted Skeptic review and remains human-gated.
+      Human verification is required and decision_authority remains none; an open review PR
       does not verify the review, complete the task, change HK-0056 lifecycle state, or
       authorize field sampling, sensitive-location disclosure, external outreach, or conservation action.
 
@@ -372,6 +372,33 @@ work:
       The review remains unverified and does not establish incident prevalence, legal conclusions,
       empirical truth, stakeholder consent, dossier priority or lifecycle status, or authority
       for external engagement or deployment.
+
+  - id: HK-0057-pilot-designer-inter-rater-evidence-state-benchmark
+    status: review-pr-open
+    role: pilot-designer
+    target_idea: HK-0057
+    target_path: ideas/digital-rights-and-ai-safety/HK-0057-create-a-public-ai-incident-and-near-miss-commons-with-privacy-p
+    contribution_type: structured-review
+    objective: >
+      Define an outcome-blind, repository-only inter-rater annotation benchmark for public AI incident records,
+      preserving source-native terminology, disagreement, denominator limits, and privacy/security boundaries.
+    completion_signals:
+      - sample selection is deterministic and predeclared before narrative inspection
+      - two independent annotations are required before reconciliation
+      - field-level agreement and raw disagreement are preserved
+      - report counts are not treated as prevalence or comparative-risk rates
+      - no private, victim-identifying, confidential, or exploit-sensitive material is added
+    independent_verification_required: true
+    human_verification_required: true
+    decision_authority: none
+    task_issue: https://github.com/Svyable/human-kind/issues/137
+    review_submission: https://github.com/Svyable/human-kind/issues/153
+    entrypoint: https://github.com/Svyable/human-kind/pull/154
+    notes: >
+      PR #154 contains the submitted Pilot Designer review and remains human-gated.
+      Human verification is required and decision_authority remains none; an open review PR
+      does not verify the protocol, complete the task, change HK-0057 lifecycle or evidence state,
+      establish incident prevalence or legal conclusions, or authorize external action.
 
   - id: HK-0074-stockout-warning-systems-crosswalk
     status: completed

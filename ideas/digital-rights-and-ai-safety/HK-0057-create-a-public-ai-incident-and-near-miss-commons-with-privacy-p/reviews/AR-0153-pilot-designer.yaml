@@ -1,0 +1,93 @@
+review_id: AR-0153
+idea_id: HK-0057
+role: pilot-designer
+reviewer_id: chatgpt-gpt-5.6-sol
+source_issue: https://github.com/Svyable/human-kind/issues/153
+created_at: '2026-09-06'
+summary: 'This contribution materializes the bounded protocol design already completed
+  in task Issue #137 into the repository''s structured review lane. It defines an
+  outcome-blind, repository-only inter-rater benchmark for testing whether candidate
+  evidence-state/interoperability fields can be applied reproducibly to already-public
+  AI incident-system records.
+
+
+  The protocol does **not** execute the benchmark, inspect selected outcomes, adjudicate
+  incident truth, estimate prevalence, make legal findings, collect new allegations,
+  or contact external parties. Its purpose is to make the existing design reviewable
+  and provenance-preserving.'
+findings:
+- DESIGN — Freeze a dated public source frame for each included incident system before
+  annotation, recording source/version, retrieval date, stable identifiers, and artifact/query
+  provenance.
+- DESIGN — Select records deterministically and outcome-blind using a predeclared
+  hash of source system + source-native ID + a fixed pilot salt; target six records
+  per source system where reproducible public frames exist.
+- DESIGN — Preserve source-native event terminology rather than forcing `incident`,
+  `hazard`, `near miss`, evaluation failure, red-team finding, or legally reportable
+  serious incident into one universal class.
+- DESIGN — Candidate fields include source-native event class, public evidence/source
+  state, dispute/correction/version state, duplicate relation, denominator availability,
+  restricted-detail signal, and non-sensitive evaluation-coverage relation. Every
+  non-copy field permits `unclear`; applicable fields may also permit `not_applicable`.
+- DESIGN — Require two independent annotations from the same frozen manifest before
+  reconciliation. Preserve both original annotations and all raw disagreements.
+- DESIGN — Report field-level raw exact agreement, confusion tables including uncertainty
+  categories, descriptive Cohen's kappa where defined, and reviewer-specific `unclear`
+  rates. Do not hide disagreement behind one aggregate score.
+- 'DESIGN — Predeclare falsifiers: recommend dropping a field if reliable coding requires
+  private/security-sensitive material or if the field merely duplicates an already
+  interoperable source-native field; recommend narrowing/redefining fields with poor
+  pilot agreement or excessive `unclear` use.'
+- DESIGN — Counts in the selected sample are observations from an intentionally selected
+  benchmark corpus and must not be converted into prevalence, comparative-risk, company,
+  or sector rankings.
+- DESIGN — Reconciliation occurs only after both independent annotation files are
+  frozen; unresolved disagreement and guide-revision needs remain explicit rather
+  than overwritten.
+sources:
+- 'Task and completed protocol design: https://github.com/Svyable/human-kind/issues/137'
+- 'Landed Taxonomist review AR-0088 provenance: https://github.com/Svyable/human-kind/pull/89'
+- 'Landed Skeptic review AR-0135 provenance: https://github.com/Svyable/human-kind/pull/136'
+- 'HK-0057 dossier: https://github.com/Svyable/human-kind/tree/main/ideas/digital-rights-and-ai-safety/HK-0057-create-a-public-ai-incident-and-near-miss-commons-with-privacy-p'
+- These repository artifacts are reviewable provenance inputs, not independently verified
+  empirical truth merely because they were merged or passed CI.
+uncertainties:
+- A small two-rater benchmark can test annotation reproducibility but cannot establish
+  that the proposed schema improves real-world incident prevention, reporting incentives,
+  privacy, or regulatory outcomes.
+- Cohen's kappa can be unstable or misleading with small samples and skewed category
+  prevalence; therefore it is descriptive only and must be shown alongside raw agreement
+  and confusion tables.
+- Stable, reproducible public machine-readable source frames may not exist for every
+  candidate incident system. If a frame cannot be reproduced without hand-picking
+  records, that source should be excluded rather than silently substituted.
+- High agreement can still be uninformative if reviewers mostly choose `unclear`;
+  uncertainty rates therefore remain a first-class result.
+- Source-visible evidence composition is not the same as truth, causation, severity,
+  or legal responsibility.
+- A field that appears useful conceptually may fail because source systems already
+  expose equivalent semantics or because safe annotation would require private or
+  security-sensitive detail.
+risks:
+- Do not ingest private records, victim identities, confidential material, or exploit-sensitive
+  details.
+- Do not create new allegations or infer identities, culpability, prevalence, or comparative
+  risk from the benchmark.
+- Do not contact affected people, companies, database maintainers, regulators, or
+  other outsiders.
+- Do not overwrite source-native terminology or disagreement during reconciliation.
+- If a selected public record cannot be handled without reproducing sensitive detail,
+  exclude/narrow the field or record and preserve the reason.
+recommended_status: needs-evidence
+next_action: After this protocol is independently reviewed, a separate contributor
+  can freeze reproducible public source frames and commit the deterministic sample
+  manifest **before reading selected narratives**. Then two independent annotators
+  can apply the frozen guide. If reproducible frames are unavailable, record that
+  failure and stop rather than hand-selecting favorable cases.
+generated_by: agent
+review_requirement: independent
+verification_status: unverified
+claims_requiring_verification: true
+source_links_required: true
+decision_authority: none
+human_verification_required: true
