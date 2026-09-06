@@ -320,8 +320,8 @@ work:
     review_submission: https://github.com/Svyable/human-kind/issues/123
     entrypoint: https://github.com/Svyable/human-kind/pull/128
     notes: >
-      Draft PR #128 contains the submitted Skeptic review and remains human-gated.
-      Human verification is required and decision_authority remains none; an open draft PR
+      PR #128 contains the submitted Skeptic review and remains human-gated.
+      Human verification is required and decision_authority remains none; an open review PR
       does not verify the review, complete the task, change HK-0056 lifecycle state, or
       authorize field sampling, sensitive-location disclosure, external outreach, or conservation action.
 
