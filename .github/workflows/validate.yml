@@ -44,5 +44,7 @@ jobs:
           # still return runner-specific 403/TLS failures despite serving these links
           # normally to browsers: www.usgs.gov, Wiley journal hosts, and doi.org.
           # Keep these exclusions host-scoped so other external references remain checked.
-          args: --no-progress --user-agent "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/131.0 Safari/537.36" --exclude-path .git --exclude "^mailto:" --exclude "^https://www\\.usgs\\.gov/" --exclude "^https://besjournals\\.onlinelibrary\\.wiley\\.com/" --exclude "^https://onlinelibrary\\.wiley\\.com/" --exclude "^https://doi\\.org/" "**/*.md"
+          # Retry transient rate limits/timeouts before failing the hard link gate; do not
+          # accept those failures as success or add host exclusions merely to obtain green CI.
+          args: --no-progress --max-retries 3 --retry-wait-time 5 --timeout 30 --user-agent "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/131.0 Safari/537.36" --exclude-path .git --exclude "^mailto:" --exclude "^https://www\\.usgs\\.gov/" --exclude "^https://besjournals\\.onlinelibrary\\.wiley\\.com/" --exclude "^https://onlinelibrary\\.wiley\\.com/" --exclude "^https://doi\\.org/" "**/*.md"
           fail: true
