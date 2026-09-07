@@ -76,6 +76,29 @@ def review_roles_present_in_checkout() -> dict[str, set[str]]:
     return roles
 
 
+def open_issue_violations(item: dict) -> list[str]:
+    """Return structural violations for a public Issue task, including stricter human-gated work."""
+    violations: list[str] = []
+    if not ISSUE_URL.fullmatch(str(item.get("entrypoint", "")).strip()):
+        violations.append("entrypoint must be a Human Kind Issue URL when status=open-issue")
+    if not ISSUE_URL.fullmatch(str(item.get("task_issue", "")).strip()):
+        violations.append("task_issue must be a Human Kind Issue URL when status=open-issue")
+    if item.get("independent_verification_required") is not True:
+        violations.append("independent_verification_required must be true when status=open-issue")
+
+    authority = item.get("decision_authority")
+    if item.get("human_verification_required") is True:
+        if authority != "none":
+            violations.append(
+                "decision_authority must be 'none' when status=open-issue and human_verification_required=true"
+            )
+    elif authority not in (None, REPOSITORY_AUTHORITY):
+        violations.append(
+            f"decision_authority must be omitted or {REPOSITORY_AUTHORITY!r} when status=open-issue"
+        )
+    return violations
+
+
 def review_submitted_violations(item: dict) -> list[str]:
     """Return structural violations for a submitted/materialized review with no PR yet."""
     violations: list[str] = []
@@ -314,9 +337,10 @@ def main() -> int:
         if not entrypoint.startswith("https://"):
             error(f"{prefix}.entrypoint must be an https URL")
             failures += 1
-        if status == "open-issue" and not ISSUE_URL.fullmatch(entrypoint):
-            error(f"{prefix}.entrypoint must be a Human Kind Issue URL when status=open-issue")
-            failures += 1
+        if status == "open-issue":
+            for violation in open_issue_violations(item):
+                error(f"{prefix}.{violation}")
+                failures += 1
         if status == "review-submitted":
             for violation in review_submitted_violations(item):
                 error(f"{prefix}.{violation}")
@@ -326,14 +350,14 @@ def main() -> int:
                 error(f"{prefix}.{violation}")
                 failures += 1
 
-        strict_human_review_pr = (
-            status == "review-pr-open"
+        strict_human_active = (
+            status in {"open-issue", "review-pr-open"}
             and item.get("human_verification_required") is True
             and item.get("decision_authority") == "none"
         )
         if (
             status in ACTIVE_STATUSES
-            and not strict_human_review_pr
+            and not strict_human_active
             and item.get("decision_authority") not in (None, REPOSITORY_AUTHORITY)
         ):
             error(
@@ -342,7 +366,7 @@ def main() -> int:
             failures += 1
         if (
             status in ACTIVE_STATUSES
-            and not strict_human_review_pr
+            and not strict_human_active
             and item.get("human_verification_required") is True
         ):
             error(
