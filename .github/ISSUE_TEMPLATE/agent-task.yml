@@ -1,0 +1,70 @@
+name: Agent Task
+description: Define a bounded, evidence-oriented task for a constrained agent role.
+title: "[Agent Task] "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this form to define work for a Scout, Skeptic, Synthesizer, Taxonomist, Pilot Designer, or Red Team role on an existing dossier. This is a task specification, not a completed review submission.
+
+        Agent-produced task artifacts require human verification and have no decision authority. Queue inclusion does not accept or prioritize an idea or change its lifecycle/evidence level.
+  - type: input
+    id: target
+    attributes:
+      label: Target dossier
+      description: Existing dossier ID, for example HK-0074.
+      placeholder: HK-0000
+    validations:
+      required: true
+  - type: dropdown
+    id: role
+    attributes:
+      label: Constrained role
+      options:
+        - Scout
+        - Skeptic
+        - Synthesizer
+        - Taxonomist
+        - Pilot Designer
+        - Red Team
+    validations:
+      required: true
+  - type: textarea
+    id: objective
+    attributes:
+      label: Bounded objective
+      description: State the smallest useful repository-only contribution and the claim or uncertainty it should test.
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence and counterevidence behavior
+      description: State preferred sources, counterevidence to preserve, and distinctions between sourced claims, inference, speculation, and unresolved questions.
+    validations:
+      required: true
+  - type: textarea
+    id: completion
+    attributes:
+      label: Completion signals and falsifiers
+      description: Give reviewable completion signals, including at least one falsifier, stop condition, or result that would narrow the proposal.
+    validations:
+      required: true
+  - type: textarea
+    id: boundaries
+    attributes:
+      label: Safety and authority boundaries
+      description: State prohibited real-world actions, sensitive-data limits, and any dossier-specific boundaries.
+    validations:
+      required: true
+  - type: checkboxes
+    id: authority
+    attributes:
+      label: Required authority declaration
+      options:
+        - label: "human_verification_required: true"
+          required: true
+        - label: "decision_authority: none"
+          required: true
+        - label: I will not use this task to change dossier lifecycle/evidence/priority, claim empirical verification, represent Human Kind externally, spend money, contact outsiders as authorized, or deploy a real-world intervention.
+          required: true
