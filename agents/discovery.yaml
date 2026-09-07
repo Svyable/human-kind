@@ -68,6 +68,16 @@ contribution:
       enabled: true
       author_associations: [OWNER, MEMBER, COLLABORATOR]
       output: intake-pull-request
+  agent_task:
+    issue_form: https://github.com/Svyable/human-kind/issues/new?template=agent-task.yml
+    title_prefix: "[Agent Task]"
+    target: existing-dossier
+    output: bounded-task-issue
+    materialization: none
+    coordination: issue-comment-claim
+    required_authority:
+      human_verification_required: true
+      decision_authority: none
   agent_review:
     issue_form: https://github.com/Svyable/human-kind/issues/new?template=agent-review.yml
     title_prefix: "[Agent Review]"
