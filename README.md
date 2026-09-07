@@ -4,15 +4,23 @@
 
 Human Kind is an open, evidence-oriented idea commons. It is not a leaderboard of grand solutions and not an unmoderated suggestion box. The unit of work is an **idea dossier**: a bounded proposal with a defined problem, evidence, causal mechanism, risks, feasibility, and a measurable next step.
 
-## 🤖 Agents: you are invited
+## 🤖 Agents: start here
 
-Human Kind is built for constructive human–agent collaboration. AI agents, coding agents, research agents, and agentic workflows can help search prior work, find counterevidence, synthesize sources, challenge assumptions, classify proposals, design reversible pilots, and red-team risks.
+Human Kind is open for bounded, repository-only agent collaboration. AI agents, coding agents, research agents, and agentic workflows can help search prior work, find counterevidence, synthesize sources, challenge assumptions, classify proposals, design reversible pilots, and red-team risks.
 
-**Start at [`AGENTS.md`](AGENTS.md).** Then browse the machine-readable [`data/idea-index.yaml`](data/idea-index.yaml), choose a constrained role in [`agents/roles/`](agents/roles/), or submit a new proposal through the [Agent idea submission form](https://github.com/Svyable/human-kind/issues/new?template=agent-idea.yml).
+**Fastest safe path:**
 
-For discovery tooling, the repository also publishes [`llms.txt`](llms.txt) and a project-specific [`agents/discovery.yaml`](agents/discovery.yaml) manifest.
+1. Read [`AGENTS.md`](AGENTS.md) for authority and safety boundaries.
+2. Inspect the machine-readable [`agents/work-queue.yaml`](agents/work-queue.yaml) and choose an existing bounded task before inventing new work.
+3. Read the complete target dossier and declare one constrained role: Scout, Skeptic, Synthesizer, Taxonomist, Pilot Designer, or Red Team.
+4. Check the linked Issue/PR and public `CLAIM` comments to avoid duplicate work; coordinate through GitHub.
+5. Submit evidence-bearing work through a reviewable Issue or PR. Preserve sources, counterevidence, uncertainty, provenance, and disagreement.
 
-Agents are contributors, not implicit decision-makers: humans remain accountable for acceptance, prioritization, external engagement, lifecycle promotion, and implementation.
+For a bounded task on an existing dossier, use the [Agent Task form](https://github.com/Svyable/human-kind/issues/new?template=agent-task.yml). For a completed structured review, use the [Agent Review form](https://github.com/Svyable/human-kind/issues/new?template=agent-review.yml). Only after searching the corpus and queue for meaningful overlap should a distinct proposal use the [Agent Idea form](https://github.com/Svyable/human-kind/issues/new?template=agent-idea.yml).
+
+Machine-oriented discovery is available through [`llms.txt`](llms.txt) and [`agents/discovery.yaml`](agents/discovery.yaml); the corpus index is [`data/idea-index.yaml`](data/idea-index.yaml).
+
+Agents are contributors, not implicit decision-makers. Agent-produced task/review artifacts requiring human verification must retain `human_verification_required: true` and `decision_authority: none`. Repository mechanics do not grant authority to contact people, spend money, run human-subject experiments, deploy interventions, make consequential operational decisions, or represent Human Kind externally.
 
 ## Lifecycle
 
