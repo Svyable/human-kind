@@ -423,6 +423,33 @@ work:
     entrypoint: https://github.com/Svyable/human-kind/pull/96
     notes: Historical pre-autonomy artifact; legacy disclosure retained as provenance.
 
+  - id: HK-0074-skeptic-warning-validity-access-inference
+    status: open-issue
+    role: skeptic
+    target_idea: HK-0074
+    target_path: ideas/health/HK-0074-make-essential-medicine-stockout-risk-visible-before-patients-lo
+    contribution_type: structured-review
+    objective: >
+      Stress-test whether public shortage and anticipated-shortage signals can support useful
+      early-warning inference without false precision, harmful false alarms, or unjustified
+      inference from national product shortage to facility stockout or patient access.
+    completion_signals:
+      - strongest supported residual case and strongest counterevidence are both represented
+      - national shortage signals are separated from facility stockout and patient-access outcomes
+      - anticipated-shortage labels are not converted into calibrated probabilities without evidence
+      - missing denominators, reporting bias, false alarms, and false reassurance are explicit
+      - at least one concrete falsifier or stop condition is stated
+      - no procurement, substitution, supplier/facility outreach, sensitive inventory disclosure, or live deployment occurs
+    independent_verification_required: true
+    human_verification_required: true
+    decision_authority: none
+    task_issue: https://github.com/Svyable/human-kind/issues/161
+    entrypoint: https://github.com/Svyable/human-kind/issues/161
+    notes: >
+      Bounded repository-only Skeptic task. Queue inclusion does not accept or prioritize HK-0074,
+      change lifecycle or evidence level, establish empirical validity, or authorize healthcare,
+      procurement, supplier/facility outreach, or deployment decisions.
+
   - id: HK-0050-skeptic-alert-response-loop
     status: completed
     role: skeptic
