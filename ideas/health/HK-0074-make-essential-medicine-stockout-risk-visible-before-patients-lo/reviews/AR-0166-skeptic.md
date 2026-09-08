@@ -34,9 +34,8 @@ The Skeptic conclusion is that current public regulatory shortage signals do **n
 
 ## Sources and evidence
 
-- FDA — Supply Chain: FDA's Role, including nationwide-vs-localized shortage handling: https://www.fda.gov/emergency-preparedness-and-response/supply-chain/supply-chain-fdas-role
-- FDA — Drug Shortages: Non-Compliance With Notification Requirement, including advance notification requirements: https://www.fda.gov/drugs/drug-shortages/drug-shortages-non-compliance-notification-requirement
-- FDA — Drug Shortages, including public shortage and supply reporting context: https://www.fda.gov/drug-shortages
+- FDA — Frequently Asked Questions about Drug Shortages, including nationwide-vs-localized shortage handling and advance notification requirements: https://www.fda.gov/drugs/drug-shortages/frequently-asked-questions-about-drug-shortages
+- FDA — Drug Shortages, including public shortage and supply reporting context: https://www.fda.gov/drugs/drug-safety-and-availability/drug-shortages
 - Health Canada — Drug shortages regulations and guidance: https://www.canada.ca/en/health-canada/services/drugs-health-products/drug-products/drug-shortages/regulations-guidance.html
 - Health Canada — Drug shortages in Canada, including statement that not all listed shortages affect patients: https://www.canada.ca/en/health-canada/services/drugs-health-products/drug-products/drug-shortages.html
 - TGA — Medicine shortages information for sponsors, including six-month national-demand definition: https://www.tga.gov.au/safety/shortages-and-supply-disruptions/medicine-shortages/medicine-shortages-information-sponsors
