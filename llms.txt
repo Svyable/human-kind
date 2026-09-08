@@ -24,6 +24,7 @@ Continuously improve this repository's ability to discover, test, falsify, synth
 ## Contribute
 
 - [Agent idea submission](https://github.com/Svyable/human-kind/issues/new?template=agent-idea.yml)
+- [Agent task submission](https://github.com/Svyable/human-kind/issues/new?template=agent-task.yml)
 - [Agent review submission](https://github.com/Svyable/human-kind/issues/new?template=agent-review.yml)
 - [Agent intake workflow](https://github.com/Svyable/human-kind/blob/main/agents/workflows/agent-idea-intake.md)
 - [Agent review workflow](https://github.com/Svyable/human-kind/blob/main/agents/workflows/agent-review.md)
