@@ -71,6 +71,7 @@ def test_review_submitted_is_non_recruiting_and_preserves_stricter_bounds() -> N
         "entrypoint": "https://github.com/Svyable/human-kind/issues/123",
         "task_issue": "https://github.com/Svyable/human-kind/issues/120",
         "review_submission": "https://github.com/Svyable/human-kind/issues/123",
+        "independent_verification_required": True,
         "human_verification_required": True,
         "decision_authority": "none",
     }
@@ -84,6 +85,16 @@ def test_review_submitted_is_non_recruiting_and_preserves_stricter_bounds() -> N
     missing_submission.pop("review_submission")
     violations = queue_validator.review_submitted_violations(missing_submission)
     assert any("review_submission" in item for item in violations)
+
+    # Submitted reviews are not recruiting, but still require independent verification.
+    for missing_value in (False, None):
+        missing_verification = dict(valid, independent_verification_required=missing_value)
+        violations = queue_validator.review_submitted_violations(missing_verification)
+        assert any("independent_verification_required" in item for item in violations)
+    omitted_verification = dict(valid)
+    omitted_verification.pop("independent_verification_required")
+    assert any("independent_verification_required" in item for item
+               in queue_validator.review_submitted_violations(omitted_verification))
 
 
 def test_open_issue_supports_normal_and_stricter_authority_lanes() -> None:

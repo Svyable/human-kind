@@ -108,6 +108,8 @@ def review_submitted_violations(item: dict) -> list[str]:
         violations.append("task_issue must be a Human Kind Issue URL when status=review-submitted")
     if not ISSUE_URL.fullmatch(str(item.get("review_submission", "")).strip()):
         violations.append("review_submission must be a Human Kind Issue URL when status=review-submitted")
+    if item.get("independent_verification_required") is not True:
+        violations.append("independent_verification_required must be true when status=review-submitted")
 
     authority = item.get("decision_authority")
     if authority not in (None, "none", REPOSITORY_AUTHORITY):
