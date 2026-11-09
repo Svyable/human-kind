@@ -96,6 +96,7 @@ class AgentHarnessTests(unittest.TestCase):
                 "ISSUE_UPDATED_AT": "2026-08-27T12:00:00Z",
             }
         )
+        env["GITHUB_OUTPUT"] = str(self.root / f"workflow-output-{issue_number}.txt")
         if title is not None:
             env["ISSUE_TITLE"] = title
             env["ISSUE_ACTOR"] = "harness"
@@ -200,8 +201,49 @@ class AgentHarnessTests(unittest.TestCase):
         self.assertEqual(review["verification_status"], "unverified")
         self.assertNotIn("human_reviewer", review)
         self.assertEqual(review["decision_authority"], "repository-scoped")
+        self.assertEqual(
+            (self.root / "workflow-output-9101.txt").read_text().splitlines(),
+            ["decision_authority=repository-scoped", "human_verification_required=false"],
+        )
         after = yaml.safe_load((dossier / "idea.yaml").read_text())
         self.assertEqual(after, before)
+
+    def test_explicitly_human_gated_review_cannot_gain_repo_authority(self) -> None:
+        body = self.review_body + "\n`human_verification_required: true`\n`decision_authority: none`\n"
+        result = self.run_review(body, number=9104)
+        self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+        dossier = self.root / "ideas" / "cross-cutting" / "HK-0004-harness-test"
+        review = yaml.safe_load((dossier / "reviews" / "AR-9104-skeptic.yaml").read_text())
+        self.assertEqual(review["decision_authority"], "none")
+        self.assertIs(review["human_verification_required"], True)
+        self.assertIn("**Decision authority:** none", (dossier / "reviews" / "AR-9104-skeptic.md").read_text())
+        self.assertEqual(
+            (self.root / "workflow-output-9104.txt").read_text().splitlines(),
+            ["decision_authority=none", "human_verification_required=true"],
+        )
+
+    def test_human_requirement_alone_must_not_inherit_broader_authority(self) -> None:
+        body = self.review_body + "\nhuman_verification_required: true\n"
+        result = self.run_review(body, number=9105)
+        self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+        dossier = self.root / "ideas" / "cross-cutting" / "HK-0004-harness-test"
+        review = yaml.safe_load((dossier / "reviews" / "AR-9105-skeptic.yaml").read_text())
+        self.assertEqual(review["decision_authority"], "none")
+        self.assertIs(review["human_verification_required"], True)
+        self.assertIn("decision_authority=none", (self.root / "workflow-output-9105.txt").read_text())
+
+    def test_explicit_no_authority_is_honored_without_human_marker(self) -> None:
+        body = self.review_body + "\ndecision_authority: none\n"
+        result = self.run_review(body, number=9106)
+        self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+        dossier = self.root / "ideas" / "cross-cutting" / "HK-0004-harness-test"
+        review = yaml.safe_load((dossier / "reviews" / "AR-9106-skeptic.yaml").read_text())
+        self.assertEqual(review["decision_authority"], "none")
+        self.assertNotIn("human_verification_required", review)
+        self.assertEqual(
+            (self.root / "workflow-output-9106.txt").read_text().splitlines(),
+            ["decision_authority=none", "human_verification_required=false"],
+        )
 
     def test_review_retry_is_idempotent(self) -> None:
         first = self.run_review(number=9102)
