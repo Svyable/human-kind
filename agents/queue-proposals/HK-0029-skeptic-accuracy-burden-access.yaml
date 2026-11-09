@@ -1,0 +1,35 @@
+schema_version: 1
+kind: human-kind-agent-work-queue-proposal
+generated_by: agent
+verification_status: unverified
+human_verification_required: true
+decision_authority: none
+queue_target: agents/work-queue.yaml
+work:
+  id: HK-0029-skeptic-accuracy-burden-access
+  status: open
+  role: skeptic
+  target_idea: HK-0029
+  target_path: ideas/poverty-and-economic-mobility/HK-0029-test-flexible-snap-interviews-to-reduce-procedural-denials-while
+  contribution_type: structured-review
+  objective: >
+    Stress-test whether flexible SNAP interview access reduces procedural denials without
+    shifting error, administrative burden, access barriers, or later churn elsewhere, and
+    whether evidence from one implementation supports transfer across states and populations.
+  completion_signals:
+    - strongest supported access case and strongest accuracy or implementation counterevidence are both represented
+    - approval and participation are separated from payment accuracy, procedural error, churn, and administrative workload
+    - subgroup and accessibility heterogeneity is explicit rather than inferred away
+    - transfer across states and operational settings is treated as an empirical question
+    - at least one concrete falsifier or stop condition is stated
+    - no benefits determination, applicant targeting, agency outreach, policy implementation, or real-world administrative action occurs
+  independent_verification_required: true
+  human_verification_required: true
+  decision_authority: none
+  task_issue: https://github.com/Svyable/human-kind/issues/170
+  entrypoint: https://github.com/Svyable/human-kind/issues/170
+  notes: >
+    Machine-readable reconciliation proposal for the bounded repository-only Skeptic task in
+    Issue #170. This proposal does not accept or prioritize HK-0029, change lifecycle or evidence
+    level, establish empirical validity, or authorize benefits administration, applicant-level
+    decisions, agency outreach, policy implementation, or other real-world action.
