@@ -84,6 +84,9 @@ def submission_bounds(body: str) -> tuple[str, bool]:
     human_verification_required = bool(
         re.search(r"(?i)`?human_verification_required`?\s*:\s*`?true`?", body)
     )
+    # Human-gated submissions cannot silently inherit broader repository authority.
+    if human_verification_required:
+        authority = "none"
     return authority, human_verification_required
 
 
@@ -226,6 +229,15 @@ This is a review recommendation. The review materializer does not change `idea.y
 {review['next_action']}
 """
     md_path.write_text(md)
+
+    # Expose the *materialized* contract to the workflow. GitHub PR metadata
+    # must never infer broader authority than the review artifact itself.
+    output_path = os.environ.get("GITHUB_OUTPUT")
+    if output_path:
+        with open(output_path, "a", encoding="utf-8") as output:
+            output.write(f"decision_authority={decision_authority}\\n".replace("\\n", "\n"))
+            output.write(f"human_verification_required={str(human_verification_required).lower()}\\n".replace("\\n", "\n"))
+
     print(f"Materialized {review_id} for {idea_id} at {yaml_path.relative_to(ROOT)}")
     return 0
 
