@@ -45,6 +45,22 @@ jobs:
       - name: Validate repository
         run: python scripts/validate_ideas.py
 
+      - name: Protect reused human-gated PR before changing its head
+        if: steps.materialized.outputs.decision_authority == 'none'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+        run: |
+          set -euo pipefail
+          branch="agent-review/issue-${ISSUE_NUMBER}"
+          url=$(gh pr list --base main --head "$branch" --state open --json url --jq '.[0].url // empty')
+          if [[ -n "$url" ]]; then
+            is_draft=$(gh pr view "$url" --json isDraft --jq '.isDraft')
+            if [[ "$is_draft" != "true" ]]; then
+              gh pr ready --undo "$url"
+            fi
+          fi
+
       - name: Commit review branch
         env:
           ISSUE_NUMBER: ${{ github.event.issue.number }}
