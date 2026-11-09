@@ -235,8 +235,8 @@ This is a review recommendation. The review materializer does not change `idea.y
     output_path = os.environ.get("GITHUB_OUTPUT")
     if output_path:
         with open(output_path, "a", encoding="utf-8") as output:
-            output.write(f"decision_authority={decision_authority}\\n".replace("\\n", "\n"))
-            output.write(f"human_verification_required={str(human_verification_required).lower()}\\n".replace("\\n", "\n"))
+            output.write(f"decision_authority={decision_authority}\n")
+            output.write(f"human_verification_required={str(human_verification_required).lower()}\n")
 
     print(f"Materialized {review_id} for {idea_id} at {yaml_path.relative_to(ROOT)}")
     return 0
