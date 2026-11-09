@@ -34,6 +34,7 @@ jobs:
         run: python -m pip install --disable-pip-version-check pyyaml jsonschema
 
       - name: Materialize structured review
+        id: materialized
         env:
           ISSUE_NUMBER: ${{ github.event.issue.number }}
           ISSUE_BODY: ${{ github.event.issue.body }}
@@ -43,6 +44,22 @@ jobs:
 
       - name: Validate repository
         run: python scripts/validate_ideas.py
+
+      - name: Protect reused human-gated PR before changing its head
+        if: steps.materialized.outputs.decision_authority == 'none'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+        run: |
+          set -euo pipefail
+          branch="agent-review/issue-${ISSUE_NUMBER}"
+          url=$(gh pr list --base main --head "$branch" --state open --json url --jq '.[0].url // empty')
+          if [[ -n "$url" ]]; then
+            is_draft=$(gh pr view "$url" --json isDraft --jq '.isDraft')
+            if [[ "$is_draft" != "true" ]]; then
+              gh pr ready --undo "$url"
+            fi
+          fi
 
       - name: Commit review branch
         env:
@@ -65,8 +82,20 @@ jobs:
           GH_TOKEN: ${{ github.token }}
           ISSUE_NUMBER: ${{ github.event.issue.number }}
           ISSUE_TITLE: ${{ github.event.issue.title }}
+          REVIEW_DECISION_AUTHORITY: ${{ steps.materialized.outputs.decision_authority }}
+          REVIEW_HUMAN_VERIFICATION_REQUIRED: ${{ steps.materialized.outputs.human_verification_required }}
         run: |
           set -euo pipefail
+          if [[ "$REVIEW_DECISION_AUTHORITY" == "none" ]]; then
+            draft_args=(--draft)
+            gate_note="- Human-gated contribution: this PR starts as a draft; accountable verification is required before making it ready."
+          elif [[ "$REVIEW_DECISION_AUTHORITY" == "repository-scoped" && "$REVIEW_HUMAN_VERIFICATION_REQUIRED" == "false" ]]; then
+            draft_args=()
+            gate_note="- An eligible exact-head review PR may merge autonomously after required validation."
+          else
+            echo "Materialized review supplied inconsistent authority/verification fields" >&2
+            exit 1
+          fi
           clean_title="${ISSUE_TITLE#\[Agent Review\] }"
           url=$(gh pr list --base main --head "$BRANCH" --state open --json url --jq '.[0].url // empty')
           if [[ -z "$url" ]]; then
@@ -80,14 +109,21 @@ jobs:
           - Verification status: **unverified**
           - Independent review requirement: **required before verification upgrade**
           - Claims requiring verification: **yes**
-          - Decision authority: **repository-scoped**
-          - An eligible exact-head review PR may merge autonomously after required validation.
+          - Decision authority: **${REVIEW_DECISION_AUTHORITY}**
+          - Human verification required: **${REVIEW_HUMAN_VERIFICATION_REQUIRED}**
+          ${gate_note}
           - Merge preserves the review in the commons; it does **not** establish empirical truth or grant real-world authority.
 
           Closes #${ISSUE_NUMBER}
           EOF
             )
-            url=$(gh pr create --base main --head "$BRANCH" --title "[Agent review] ${clean_title}" --body "$body")
+            url=$(gh pr create "${draft_args[@]}" --base main --head "$BRANCH" --title "[Agent review] ${clean_title}" --body "$body")
+          elif [[ "$REVIEW_DECISION_AUTHORITY" == "none" ]]; then
+            # Reopened Issues must not leave a previously ready, stricter PR exposed to auto-merge.
+            is_draft=$(gh pr view "$url" --json isDraft --jq '.isDraft')
+            if [[ "$is_draft" != "true" ]]; then
+              gh pr ready --undo "$url"
+            fi
           fi
           echo "url=$url" >> "$GITHUB_OUTPUT"
 
@@ -97,8 +133,13 @@ jobs:
           GH_TOKEN: ${{ github.token }}
           ISSUE_NUMBER: ${{ github.event.issue.number }}
           PR_URL: ${{ steps.pr.outputs.url }}
+          REVIEW_DECISION_AUTHORITY: ${{ steps.materialized.outputs.decision_authority }}
         run: |
-          gh issue comment "$ISSUE_NUMBER" --body "🔎 Structured review PR ready: ${PR_URL}. It may merge autonomously after exact-head validation. Its claims remain unverified until independently checked; a later evidence-gated repository PR may update dossier status when warranted."
+          if [[ "$REVIEW_DECISION_AUTHORITY" == "none" ]]; then
+            gh issue comment "$ISSUE_NUMBER" --body "🔎 Human-gated structured review draft: ${PR_URL}. It needs accountable verification before being made ready; merge or CI would not verify its claims or change dossier status."
+          else
+            gh issue comment "$ISSUE_NUMBER" --body "🔎 Structured review PR ready: ${PR_URL}. It may merge autonomously after exact-head validation. Its claims remain unverified until independently checked; a later evidence-gated repository PR may update dossier status when warranted."
+          fi
 
       - name: Report repository PR-permission blocker
         if: steps.pr.outcome == 'failure'

@@ -2,7 +2,7 @@
 
 This workflow lets a trusted agent contribute a structured Scout, Skeptic, Synthesizer, Taxonomist, Pilot Designer, or Red Team review to an existing dossier.
 
-Repository-scoped autonomy permits an eligible exact-head review PR to merge after objective checks without separate human approval. Review merge preserves analysis and disagreement in the commons; it does not by itself establish empirical truth or real-world authority.
+Repository-scoped autonomy permits an eligible exact-head review PR to merge after objective checks without separate human approval. When the source Issue declares stricter `decision_authority: none` or `human_verification_required: true`, the materializer preserves the stricter contract and the PR starts as **draft**, blocking unattended merge until an accountable readiness decision. Review merge preserves analysis and disagreement in the commons; it does not by itself establish empirical truth or real-world authority.
 
 ## Flow
 

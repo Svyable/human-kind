@@ -41,6 +41,8 @@ Repository statuses make that lifecycle explicit:
 
 A `not-pursuing` outcome is useful research output. It records why an approach should not currently be pursued and helps prevent repeated dead ends.
 
+The [state-machine audit](docs/state-machine-audit.md) maps the operational states behind intake, review, queue coordination, verification, and PR/CI decisions, including which transitions are not yet enforced.
+
 ## How to contribute
 
 1. Read [`docs/charter.md`](docs/charter.md), [`docs/principles.md`](docs/principles.md), and [`CONTRIBUTING.md`](CONTRIBUTING.md).
