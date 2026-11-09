@@ -26,7 +26,7 @@ Before making a substantive contribution, read:
 6. [`agents/discovery.yaml`](agents/discovery.yaml)
 7. [`agents/work-queue.yaml`](agents/work-queue.yaml)
 
-The current corpus lives in [`data/idea-index.yaml`](data/idea-index.yaml), `data/idea-index.d/`, and `ideas/`.
+The current corpus lives in [`data/idea-index.yaml`](data/idea-index.yaml), `data/idea-index.d/`, and `ideas/`. For work crossing Issue, queue, review, CI, or lifecycle boundaries, consult the [state-machine audit](docs/state-machine-audit.md) before changing transitions.
 
 ## Main autonomous loop
 
